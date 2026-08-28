@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Earnit — Earn your screen time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+:root {
+  /* Earnit design v6 — App/DesignSystem/NightTheme.swift */
+  --ground: #070E0D;
+  --ground-deep: #05100C;
+  --panel: #0B1712;
+  --forest-lift: #1B2A24;
+  --cobalt: #2E5CE6;
+  --cobalt-lift: #4674FF;
+  --cobalt-text: #6E97FF;
+  --cobalt-wash: rgba(46, 92, 230, 0.16);
+  --moss: #8CBF6B;
+  --text: #ECF3EE;
+  --text-soft: #B9CCC2;
+  --text-muted: #93A79D;
+  --text-faint: #61756B;
+  --text-ghost: #4E6159;
+  --line: rgba(236, 243, 238, 0.07);
+  --edge: rgba(236, 243, 238, 0.09);
+  --radius: 18px;
+  --sheet-radius: 28px;
+  --font-display: 'Instrument Serif', 'Times New Roman', Times, serif;
+  --font-body: Figtree, system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: var(--text); text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: rgba(236, 243, 238, 0.7); }
+h1, h2, h3 { margin: 0; font-weight: 400; }
+p { margin: 0; }
+button { font-family: inherit; }
+
+.serif { font-family: var(--font-display); font-weight: 400; }
+.serif-i { font-family: var(--font-display); font-weight: 400; font-style: italic; }
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.9px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---- liquid glass ---- */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.01);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.45) 0%,
+    rgba(255,255,255,0.15) 20%,
+    rgba(255,255,255,0) 40%,
+    rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0.15) 80%,
+    rgba(255,255,255,0.45) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.liquid-glass:hover { transform: scale(1.03); }
+
+.btn-ghost {
+  border-radius: 999px;
+  border: 1px solid rgba(236, 243, 238, 0.22);
+  color: rgba(236, 243, 238, 0.8);
+  cursor: pointer;
+  background: transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.btn-ghost:hover { color: var(--text); border-color: rgba(236, 243, 238, 0.4); }
+
+/* ---- animations ---- */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
+.animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-rise, .animate-fade-rise-delay, .animate-fade-rise-delay-2 { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* =================== 1 · HERO =================== */
+.hero {
+  position: relative;
+  /* height follows the width so the video keeps its own aspect: no vertical crop,
+     the whole composition reads, and the figure lands just under the headline */
+  height: clamp(620px, 62vw, 1200px);
+  overflow: hidden;
+  border-radius: 0 0 var(--sheet-radius) var(--sheet-radius);
+  background: var(--ground);
+}
+/* the media column extends the video's own sky upward, so the figure sits below the headline */
+.hero-media { position: absolute; inset: 0; display: flex; flex-direction: column; z-index: 0; }
+.hero-sky { flex: 0 0 6%; background: linear-gradient(180deg, #355DA0 0%, #406EB4 100%); }
+.hero-video {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(7,14,13,0.58) 0%,
+    rgba(7,14,13,0.40) 18%,
+    rgba(7,14,13,0.22) 34%,
+    rgba(7,14,13,0.08) 50%,
+    rgba(7,14,13,0) 62%);
+}
+.hero-foot {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 24%;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(7,14,13,0.62) 0%, rgba(7,14,13,0) 100%);
+}
+
+.nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.brand { font-family: var(--font-display); font-size: 30px; letter-spacing: -0.02em; }
+.nav-links { display: flex; align-items: center; gap: 40px; font-size: 14px; }
+.nav-cta { border-radius: 999px; padding: 10px 24px; font-size: 14px; }
+.nav-menu { display: none; flex-direction: column; justify-content: center; align-items: flex-end; gap: 5px; width: 44px; height: 44px; }
+.nav-menu span { display: block; width: 20px; height: 1px; background: rgba(236,243,238,0.8); }
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 24px 0;
+}
+.hero-content .eyebrow { color: rgba(236, 243, 238, 0.72); margin-bottom: 24px; }
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6.7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -2.46px;
+  max-width: 1280px;
+}
+.hero-sub {
+  margin-top: 24px;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.6;
+  color: rgba(236, 243, 238, 0.84);
+  max-width: 560px;
+}
+.hero-actions { display: flex; align-items: center; gap: 16px; margin-top: 32px; }
+.hero-actions > * { border-radius: 999px; padding: 15px 44px; font-size: 15px; }
+.hero-actions .btn-ghost { padding: 15px 36px; }
+
+/* =================== 2 · TAGLINE =================== */
+.tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 120px 24px;
+  background: var(--ground);
+}
+.tagline h2 {
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 1.06;
+  letter-spacing: -1.5px;
+  text-align: center;
+  max-width: 900px;
+  text-wrap: pretty;
+}
+.tagline .serif-i { color: rgba(236, 243, 238, 0.66); }
+
+/* =================== 3 · FEATURE SPLIT =================== */
+.split { padding: 0 48px 140px; max-width: 1280px; margin: 0 auto; }
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  min-height: 560px;
+}
+.split-copy {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+}
+.split-copy h3 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 3.4vw, 48px);
+  line-height: 0.95;
+  letter-spacing: -1px;
+  margin: 30px 0 24px;
+  white-space: pre-line;
+}
+.split-copy p { font-size: 16px; line-height: 1.6; color: var(--text-muted); max-width: 390px; }
+
+.meter-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; }
+.meter-value { font-size: 13px; color: rgba(236, 243, 238, 0.82); }
+.meter-rule { font-size: 12px; color: var(--text-ghost); }
+/* the app's TickMeter — a rule of hairline ticks, deliberately not a bar and not a ring */
+.tickmeter { display: flex; align-items: stretch; height: 22px; margin-bottom: 26px; }
+.tickmeter i { flex: 1 1 0; display: flex; justify-content: center; }
+.tickmeter i::before {
+  content: "";
+  width: 1.5px;
+  background: rgba(236, 243, 238, 0.16);
+  transition: background 0.4s ease;
+}
+.tickmeter i.on::before { background: var(--cobalt); }
+
+.steps { display: flex; align-items: center; gap: 8px; margin-bottom: 32px; }
+.steps button {
+  font-size: 12px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--edge);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.steps button:hover { color: var(--text); }
+.steps button[aria-pressed="true"] {
+  border-color: rgba(46, 92, 230, 0.6);
+  background: var(--cobalt-wash);
+  color: var(--text);
+}
+.split-copy .liquid-glass { display: inline-block; border-radius: 999px; padding: 12px 32px; font-size: 14px; }
+
+.split-scene {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 400px;
+  background: var(--ground);
+}
+.split-scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.split-scene .veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7,14,13,0.55) 0%, rgba(7,14,13,0.18) 34%, rgba(7,14,13,0.10) 62%, rgba(7,14,13,0.42) 100%);
+}
+
+/* --- the phone, holding the real Home screen --- */
+.phone {
+  position: absolute;
+  right: 46px;
+  top: 30px;
+  width: 250px;
+  height: 500px;
+  border-radius: 40px;
+  padding: 5px;
+  background: var(--panel);
+  box-shadow:
+    0 0 90px -18px rgba(46, 92, 230, 0.45),
+    0 30px 64px -26px rgba(0, 0, 0, 0.9),
+    inset 0 1px 1px rgba(255, 255, 255, 0.14);
+}
+.phone-screen { position: relative; width: 100%; height: 100%; border-radius: 35px; overflow: hidden; background: var(--ground); }
+.phone-screen > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.phone-screen .veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7,14,13,0.86) 0%, rgba(7,14,13,0.72) 40%, rgba(7,14,13,0.30) 72%, rgba(7,14,13,0.12) 100%);
+}
+.phone-ui { position: relative; display: flex; flex-direction: column; align-items: center; padding: 26px 18px 0; text-align: center; }
+.phone-head { display: flex; align-items: center; justify-content: space-between; width: 100%; font-size: 8px; font-weight: 500; color: var(--text-muted); }
+.phone-head .serif { font-size: 14px; color: var(--text); }
+.phone-eyebrow { font-size: 7.5px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-top: 26px; }
+.phone-balance { display: flex; align-items: last baseline; gap: 5px; margin-top: 6px; }
+.phone-balance .n { font-family: var(--font-display); font-size: 72px; line-height: 0.9; }
+.phone-balance .u { font-size: 12px; color: var(--text-muted); }
+.phone-sub { font-size: 9px; color: var(--text-muted); margin-top: 5px; }
+.phone-pill {
+  display: flex; align-items: center; gap: 5px; margin-top: 18px;
+  background: var(--cobalt); color: #fff; font-size: 9.5px; font-weight: 600;
+  padding: 8px 14px; border-radius: 999px;
+  box-shadow: 0 6px 14px -4px rgba(46, 92, 230, 0.42);
+}
+.phone-next { font-size: 8px; color: var(--text-faint); margin-top: 11px; }
+.phone-totals { font-size: 8px; color: var(--text-ghost); margin-top: 5px; }
+.phone-totals span { color: var(--moss); }
+
+/* =================== 4 & 5 · SCENE SECTIONS =================== */
+.scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  padding: 0 24px;
+  overflow: hidden;
+}
+.scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.scene .veil { position: absolute; inset: 0; z-index: 1; }
+.scene-inner {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 96px 0;
+}
+
+#why > img { object-position: center 55%; }
+#why .veil { background: linear-gradient(180deg, var(--ground) 0%, rgba(7,14,13,0.82) 18%, rgba(7,14,13,0.62) 46%, rgba(7,14,13,0.70) 74%, var(--ground) 100%); }
+#why .scene-inner { max-width: 1024px; }
+#why h2 { font-size: clamp(38px, 5vw, 72px); line-height: 1.06; letter-spacing: -1.5px; margin-top: 26px; }
+#why p { margin-top: 30px; font-size: clamp(15px, 1.3vw, 18px); line-height: 1.6; color: rgba(236,243,238,0.65); max-width: 660px; }
+
+.loop {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 48px;
+  margin-top: 56px;
+}
+.loop div { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.loop .v { font-family: var(--font-display); font-size: clamp(30px, 2.6vw, 38px); }
+.loop .l { font-size: 13px; color: var(--text-muted); }
+
+#join > img { object-position: center 72%; }
+#join .veil { background: linear-gradient(180deg, var(--ground) 0%, rgba(7,14,13,0.74) 20%, rgba(7,14,13,0.46) 44%, rgba(7,14,13,0.66) 72%, var(--ground) 100%); }
+#join .scene-inner { max-width: 900px; }
+#join h2 { font-size: clamp(46px, 6.7vw, 96px); line-height: 0.95; letter-spacing: -2px; }
+#join p { margin-top: 26px; font-size: clamp(15px, 1.3vw, 18px); line-height: 1.6; color: rgba(236,243,238,0.65); max-width: 560px; }
+.join-actions { display: flex; align-items: center; gap: 16px; margin-top: 40px; }
+.join-actions > * { border-radius: 999px; padding: 16px 40px; font-size: 14px; }
+.join-note { font-size: 12px; color: var(--text-muted); margin-top: 20px; }
+
+.scene .liquid-glass { border-radius: 999px; padding: 16px 40px; font-size: 14px; margin-top: 48px; }
+
+/* =================== 6 · FOOTER =================== */
+.footer { background: var(--ground); border-top: 1px solid var(--line); padding: 64px 48px; }
+.footer-inner { max-width: 1280px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-bottom: 64px; }
+.footer-grid h3 { font-size: clamp(24px, 2.2vw, 30px); line-height: 1.22; }
+.footer-grid h3 .serif-i { color: rgba(236, 243, 238, 0.66); }
+.footer-links { display: flex; flex-direction: column; gap: 12px; font-size: 14px; }
+.footer-links a { color: var(--text-muted); }
+.footer-links a:hover { color: var(--text); }
+.footer-say { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.footer-say p { font-size: 14px; line-height: 1.55; color: var(--text-muted); white-space: pre-line; }
+.footer-say .liquid-glass { border-radius: 999px; padding: 10px 24px; font-size: 14px; }
+.footer-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-top: 32px; border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--text-muted);
+}
+.footer-bar .l, .footer-bar .r { display: flex; align-items: center; gap: 20px; }
+.footer-bar .r { gap: 24px; }
+.footer-bar a { color: var(--text-muted); }
+.footer-bar a:hover { color: var(--text); }
+.footer-bar .brand { font-size: 20px; color: var(--text); }
+
+/* =================== responsive =================== */
+@media (max-width: 900px) {
+  .nav { padding: 20px; }
+  .nav-links { display: none; }
+  .nav-menu { display: flex; }
+  .brand { font-size: 26px; }
+  .hero { height: 700px; border-radius: 0 0 24px 24px; }
+  /* portrait crops the sides hard, so the sky band does the work of lowering the figure */
+  .hero-sky { flex: 0 0 24%; }
+  .hero-content { padding: 18px 24px 0; }
+  .hero-title { letter-spacing: -1.4px; }
+  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 290px; margin-top: 26px; }
+  .hero-actions > * { padding: 15px 32px; text-align: center; }
+
+  .tagline { min-height: 0; padding: 100px 24px; }
+  .split { padding: 0 20px 96px; }
+  .split-grid { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .split-copy { padding: 32px 26px; gap: 32px; }
+  .split-scene { height: 460px; }
+  .phone { right: 20px; top: 26px; width: 196px; height: 396px; border-radius: 32px; padding: 4px; }
+  .phone-screen { border-radius: 28px; }
+  .phone-ui { padding: 20px 14px 0; }
+  .phone-head { font-size: 7px; }
+  .phone-head .serif { font-size: 11px; }
+  .phone-eyebrow { font-size: 6.5px; margin-top: 20px; }
+  .phone-balance .n { font-size: 56px; }
+  .phone-balance .u { font-size: 10px; }
+  .phone-sub { font-size: 8px; }
+  .phone-pill { font-size: 8px; padding: 7px 12px; margin-top: 14px; }
+  .phone-next, .phone-totals { font-size: 7px; }
+  .steps button { padding: 15px 20px; }
+
+  .scene { min-height: 0; }
+  .scene-inner { padding: 72px 0; }
+  .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; width: 100%; max-width: 300px; }
+  .join-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 300px; }
+  .join-actions > * { text-align: center; }
+
+  .footer { padding: 56px 24px; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; margin-bottom: 48px; }
+  .footer-links a { padding: 8px 0; }
+  .footer-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 1 · HERO ============ -->
+<header class="hero">
+  <div class="hero-media">
+    <div class="hero-sky"></div>
+    <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="assets/hero-dawn.jpg">
+      <source src="assets/video-app.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-foot"></div>
+
+  <nav class="nav">
+    <div class="brand">Earnit</div>
+    <div class="nav-links">
+      <a href="#how">How it Works</a>
+      <a href="#why">Why Earnit</a>
+      <a href="#progress">Progress</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="liquid-glass nav-cta">Get Earnit</div>
+    <div class="nav-menu"><span></span><span></span></div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="eyebrow animate-fade-rise">Screen time, reconsidered</div>
+    <h1 class="hero-title animate-fade-rise">Earn your screen time.</h1>
+    <p class="hero-sub animate-fade-rise-delay">Walk through the real world. Earn minutes. Spend them on the apps you choose.</p>
+    <div class="hero-actions animate-fade-rise-delay-2">
+      <div class="liquid-glass">Get Earnit</div>
+      <div class="btn-ghost">See how it works</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 2 · TAGLINE ============ -->
+<section class="tagline">
+  <h2><span class="serif">Your phone should fit into your life.</span> <span class="serif-i">Not the other way around.</span></h2>
+</section>
+
+<!-- ============ 3 · FEATURE SPLIT ============ -->
+<section class="split" id="how">
+  <div class="split-grid">
+
+    <div class="split-copy">
+      <div>
+        <div class="eyebrow">How Earnit works</div>
+        <h3>Move.
+Earn.
+Scroll.</h3>
+        <p>Your daily movement becomes screen time. When your balance reaches zero, your selected apps are blocked again.</p>
+      </div>
+
+      <div>
+        <div class="meter-head">
+          <div class="meter-value" id="meter-value">2,000 steps today</div>
+          <div class="meter-rule">1,000 steps = 5 min</div>
+        </div>
+        <div class="tickmeter" id="tickmeter" aria-hidden="true"></div>
+        <div class="steps" id="steps">
+          <button type="button" data-step="move" aria-pressed="true">Move</button>
+          <button type="button" data-step="earn" aria-pressed="false">Earn</button>
+          <button type="button" data-step="use" aria-pressed="false">Use</button>
+        </div>
+        <div class="liquid-glass">See how Earnit works</div>
+      </div>
+    </div>
+
+    <div class="split-scene">
+      <img src="assets/home-evening.jpg" alt="A man sitting under a large tree at dusk, his phone the only cold light in the frame" />
+      <div class="veil"></div>
+
+      <div class="phone">
+        <div class="phone-screen">
+          <img src="assets/home-evening.jpg" alt="" />
+          <div class="veil"></div>
+          <div class="phone-ui">
+            <div class="phone-head">
+              <div>Wednesday</div>
+              <div class="serif">Earnit</div>
+              <div>3-day streak</div>
+            </div>
+            <div class="phone-eyebrow">Available time</div>
+            <div class="phone-balance"><div class="n">10</div><div class="u">min</div></div>
+            <div class="phone-sub">to spend on your apps</div>
+            <div class="phone-pill">
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              Earn more time
+            </div>
+            <div class="phone-next">1,000 steps until your next 5 minutes</div>
+            <div class="phone-totals">2,000 steps today · <span>+10 min earned today</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 4 · BIG STATEMENT ============ -->
+<section class="scene" id="why">
+  <img src="assets/earn-path.jpg" alt="A man walking a path away from us, at dusk, into open ground" />
+  <div class="veil"></div>
+  <div class="scene-inner">
+    <div class="eyebrow">Not another app blocker</div>
+    <h2><span class="serif">Scrolling isn't forbidden.</span><br /><span class="serif-i">It's earned.</span></h2>
+    <p>Earnit doesn't ask you to disappear from the internet. It simply puts something real before the scroll.</p>
+    <div class="loop">
+      <div><div class="v">2,000</div><div class="l">steps</div></div>
+      <div><div class="v">+10 min</div><div class="l">earned</div></div>
+      <div><div class="v">10 min</div><div class="l">to spend</div></div>
+      <div><div class="v">0 min</div><div class="l">apps lock again</div></div>
+    </div>
+    <div class="liquid-glass">Why Earnit</div>
+  </div>
+</section>
+
+<!-- ============ 5 · CTA ============ -->
+<section class="scene" id="join">
+  <img src="assets/freedom-ridge.jpg" alt="A ridge above the city at dusk, the phone small in his hand" />
+  <div class="veil"></div>
+  <div class="scene-inner">
+    <div class="eyebrow">More life. Less autopilot.</div>
+    <h2><span class="serif">What would you do</span><br /><span class="serif-i">with an extra hour?</span></h2>
+    <p>Spend less time scrolling by accident and more time choosing what deserves your attention.</p>
+    <div class="join-actions">
+      <div class="liquid-glass">Download Earnit</div>
+      <div class="btn-ghost">See how it works</div>
+    </div>
+    <div class="join-note">Available for iPhone</div>
+  </div>
+</section>
+
+<!-- ============ 6 · FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <h3><span class="serif">Earn your time.</span><br /><span class="serif-i">Spend it intentionally.</span></h3>
+      <div class="footer-links">
+        <a href="#how">How it Works</a>
+        <a href="#why">Why Earnit</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+        <a href="#support">Support</a>
+      </div>
+      <div class="footer-say">
+        <p>Less scrolling.
+More living.</p>
+        <div class="liquid-glass">Get Earnit</div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="l">
+        <div class="brand serif">Earnit</div>
+        <div>© 2026 Earnit</div>
+      </div>
+      <div class="r">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// The app's TickMeter: 46 hairline ticks, cobalt for the part you own.
+var TICKS = 46;
+var meter = document.getElementById('tickmeter');
+for (var i = 0; i < TICKS; i++) meter.appendChild(document.createElement('i'));
+
+var STEPS = {
+  move: { progress: 0.33, value: '2,000 steps today' },
+  earn: { progress: 0.66, value: '+10 min earned today' },
+  use:  { progress: 1,    value: '10 min ready to spend' }
+};
+
+function select(step) {
+  var s = STEPS[step];
+  var ticks = meter.children;
+  for (var i = 0; i < ticks.length; i++) {
+    ticks[i].classList.toggle('on', i / TICKS < s.progress);
+  }
+  document.getElementById('meter-value').textContent = s.value;
+  var buttons = document.querySelectorAll('#steps button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].setAttribute('aria-pressed', String(buttons[j].dataset.step === step));
+  }
+}
+
+document.getElementById('steps').addEventListener('click', function (event) {
+  var button = event.target.closest('button[data-step]');
+  if (button) select(button.dataset.step);
+});
+
+select('move');
+
+// Some browsers refuse the initial autoplay until the video is ready; muted + playsinline
+// makes it allowed, this just retries if the first attempt was rejected.
+var hero = document.querySelector('.hero-video');
+function play() { var p = hero.play(); if (p && p.catch) p.catch(function () {}); }
+hero.addEventListener('canplay', play);
+play();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Terms — Earnit</title>
+<meta name="description" content="The terms of use for Earnit, the app that turns your steps into screen time." />
+<meta name="theme-color" content="#070E0D" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070E0D'/%3E%3Cg fill='%232E5CE6'%3E%3Crect x='7' y='18' width='3' height='7' rx='1.5'/%3E%3Crect x='14.5' y='12' width='3' height='13' rx='1.5'/%3E%3Crect x='22' y='7' width='3' height='18' rx='1.5'/%3E%3C/g%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Instrument+Serif&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ground: #070E0D; --panel: #0B1712; --cobalt-lift: #4674FF;
+  --text: #ECF3EE; --text-soft: #B9CCC2; --text-muted: #93A79D;
+  --line: rgba(236, 243, 238, 0.07);
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --s-75: 8px; --s-100: 12px; --s-200: 16px; --s-300: 24px;
+  --s-400: 32px; --s-600: 48px; --s-700: 64px; --s-900: 96px;
+  --font-display: 'Instrument Serif', 'Times New Roman', Times, serif;
+  --font-body: Figtree, system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ground); color: var(--text);
+  font-family: var(--font-body); -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--cobalt-lift); outline-offset: 3px; }
+a { color: var(--text); text-decoration: none; transition: color var(--ease) 0.25s; }
+h1, h2 { margin: 0; font-weight: 400; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+.wrap { max-width: 720px; margin: 0 auto; padding: var(--s-300) var(--s-300) var(--s-900); }
+.top { display: flex; align-items: center; justify-content: space-between; padding-bottom: var(--s-700); }
+.brand { font-family: var(--font-display); font-size: 30px; letter-spacing: -0.02em; }
+.back { font-size: 14px; font-weight: 600; color: var(--text-muted); }
+.back:hover { color: var(--text); }
+.eyebrow {
+  font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--text-muted);
+}
+h1 { font-family: var(--font-display); font-size: clamp(36px, 6vw, 60px); line-height: 1.02; letter-spacing: -2px; margin-top: var(--s-200); }
+.lede { margin-top: var(--s-300); font-size: 18px; line-height: 28px; color: var(--text-soft); }
+h2 { font-size: 20px; line-height: 28px; font-weight: 600; font-family: var(--font-body); margin-top: var(--s-600); }
+section p { margin-top: var(--s-100); font-size: 16px; line-height: 24px; color: var(--text-muted); }
+.note { margin-top: var(--s-700); padding-top: var(--s-400); border-top: 1px solid var(--line); font-size: 12px; line-height: 16px; color: var(--text-muted); }
+.cta {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: var(--s-400); padding: var(--s-200) var(--s-600); border-radius: 999px;
+  background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
+  font-size: 16px; font-weight: 600; color: var(--text);
+  transition: transform 0.7s var(--ease);
+}
+.cta:hover { transform: scale(1.03); }
+.cta:active { transform: scale(0.98); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cta, .cta:hover, .cta:active { transition: none; transform: none; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top">
+    <a class="brand" href="index.html">Earnit</a>
+    <a class="back" href="index.html">Back to Earnit</a>
+  </header>
+  <p class="eyebrow">Terms of use</p>
+  <h1>The short version, in plain words.</h1>
+  <p class="lede">Earnit is a tool for changing a habit. It is not a medical device and it is not a fitness tracker you should rely on for anything that matters clinically.</p>
+
+  <section>
+    <h2>Using the app</h2>
+    <p>Earnit is licensed to you, not sold. You may use it on the devices tied to your Apple ID. You may not resell it, take it apart or ship your own version of it.</p>
+
+    <h2>Step counts are an estimate</h2>
+    <p>The figures come from your iPhone's motion sensor and are approximate. Do not treat them as a medical measurement or use them to make health decisions.</p>
+
+    <h2>App blocking is best effort</h2>
+    <p>Earnit uses Apple's Screen Time framework. If iOS changes how that framework behaves, or you disable the permission, blocking may stop working. We cannot guarantee an app stays locked.</p>
+
+    <h2>Walk sensibly</h2>
+    <p>You are responsible for your own safety while you move. Do not use the app in a way that puts you in traffic, in bad weather, or beyond what your body can do.</p>
+
+    <h2>Payment and refunds</h2>
+    <p>The paid tier costs $19.00 a year and renews unless you cancel. Apple processes the payment, so cancellations and refunds go through your Apple account rather than through us.</p>
+
+    <h2>Changes</h2>
+    <p>If these terms change in a way that affects you, the app will tell you before the change takes effect.</p>
+
+    <h2>Getting in touch</h2>
+    <p>Write to <a href="mailto:support@earnit.app">support@earnit.app</a>.</p>
+  </section>
+
+  <p class="note">DRAFT: this document has not been through legal review. Last updated 28 August 2026.</p>
+  <a class="cta" href="index.html#join">Get Earnit</a>
+</main>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 4340,
+      "title": "Earnit \u2014 Desktop",
+      "print": "flow",
+      "is_interactive": true
+    },
+    {
+      "file": "Mobile.dc.html",
+      "x": 1600,
+      "y": 0,
+      "w": 390,
+      "h": 4540,
+      "title": "Earnit \u2014 Mobile",
+      "print": "flow",
+      "is_interactive": true
+    },
+    {
+      "file": "AppHome.dc.html",
+      "x": 2110,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Earnit app \u2014 Home"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "notes",
+      "x": 2110,
+      "y": 1010,
+      "w": 390,
+      "text": "Built on the app's real v6 tokens: ground #070E0D, panel #0B1712, cobalt #2E5CE6, Instrument Serif + Figtree. The four backgrounds are the app's own illustrations, plus a still from the ambient loop in the hero (that one becomes the looping video in the build).\n\nProgress is the app's TickMeter, not a bar. The Move / Earn / Use pills are live on both page artboards."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

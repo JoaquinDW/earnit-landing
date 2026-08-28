@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" />
+  <style>
+    body { margin: 0; background: #070E0D; font-family: Figtree, system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #ECF3EE; text-decoration: none; }
+    a:hover { color: rgba(236,243,238,0.7); }
+    .serif { font-family: 'Instrument Serif', 'Times New Roman', Times, serif; font-weight: 400; }
+    .serif-i { font-family: 'Instrument Serif', 'Times New Roman', Times, serif; font-weight: 400; font-style: italic; }
+
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.45) 0%,
+        rgba(255,255,255,0.15) 20%,
+        rgba(255,255,255,0) 40%,
+        rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.15) 80%,
+        rgba(255,255,255,0.45) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    @keyframes fade-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
+    .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
+    .animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #070E0D; color: #ECF3EE; overflow: hidden;">
+
+  <!-- ============ 1 — HERO ============ -->
+  <div style="position: relative; height: 900px; overflow: hidden; border-radius: 0 0 28px 28px; background: #070E0D;">
+    <img src="hero-dawn.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; z-index: 0;" />
+    <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(7,14,13,0.58) 0%, rgba(7,14,13,0.40) 18%, rgba(7,14,13,0.22) 34%, rgba(7,14,13,0.08) 50%, rgba(7,14,13,0) 62%);"></div>
+    <div style="position: absolute; inset-inline: 0; bottom: 0; height: 24%; z-index: 1; background: linear-gradient(to top, rgba(7,14,13,0.62) 0%, rgba(7,14,13,0) 100%);"></div>
+
+    <div style="position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 24px 32px; max-width: 1280px; margin: 0 auto; width: 100%; box-sizing: border-box;">
+      <div class="serif" style="font-size: 30px; letter-spacing: -0.02em; color: #ECF3EE;">Earnit</div>
+      <div style="display: flex; align-items: center; gap: 40px; font-size: 14px; color: #ECF3EE;">
+        <a href="#how">How it Works</a>
+        <a href="#why">Why Earnit</a>
+        <a href="#progress">Progress</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="liquid-glass" style="border-radius: 999px; padding: 10px 24px; font-size: 14px; color: #ECF3EE; cursor: pointer;">Get Earnit</div>
+    </div>
+
+    <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 24px 0;">
+      <div class="animate-fade-rise" style="font-size: 11px; font-weight: 600; letter-spacing: 1.9px; text-transform: uppercase; color: rgba(236,243,238,0.72); margin-bottom: 24px;">Screen time, reconsidered</div>
+      <h1 class="serif animate-fade-rise" style="margin: 0; font-size: 96px; line-height: 0.95; letter-spacing: -2.46px; max-width: 1280px; color: #ECF3EE;">Earn your screen time.</h1>
+      <p class="animate-fade-rise-delay" style="margin: 24px 0 0; font-size: 18px; line-height: 1.6; color: rgba(236,243,238,0.84); max-width: 560px;">Walk through the real world. Earn minutes. Spend them on the apps you choose.</p>
+      <div class="animate-fade-rise-delay-2" style="display: flex; align-items: center; gap: 16px; margin-top: 32px;">
+        <div class="liquid-glass" style="border-radius: 999px; padding: 15px 44px; font-size: 15px; color: #ECF3EE; cursor: pointer;">Get Earnit</div>
+        <div style="border-radius: 999px; padding: 15px 36px; font-size: 15px; color: rgba(236,243,238,0.8); border: 1px solid rgba(236,243,238,0.22); cursor: pointer;">See how it works</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2 — TAGLINE ============ -->
+  <div style="display: flex; align-items: center; justify-content: center; min-height: 620px; padding: 0 24px; background: #070E0D;">
+    <h2 style="margin: 0; font-size: 72px; line-height: 1.06; letter-spacing: -1.5px; text-align: center; max-width: 900px; color: #ECF3EE; text-wrap: pretty;"><span class="serif">Your phone should fit into your life.</span> <span class="serif-i" style="color: rgba(236,243,238,0.66);">Not the other way around.</span></h2>
+  </div>
+
+  <!-- ============ 3 — FEATURE SPLIT ============ -->
+  <div id="how" style="padding: 0 48px 140px; max-width: 1280px; margin: 0 auto; box-sizing: border-box;">
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; min-height: 560px;">
+
+      <div style="background: #0B1712; border-radius: 18px; padding: 56px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 1.9px; text-transform: uppercase; color: #93A79D; margin-bottom: 30px;">How Earnit works</div>
+          <h3 class="serif" style="margin: 0 0 24px; font-size: 48px; line-height: 0.95; letter-spacing: -1px; color: #ECF3EE; white-space: pre-line;">Move.
+Earn.
+Scroll.</h3>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #93A79D; max-width: 390px;">Your daily movement becomes screen time. When your balance reaches zero, your selected apps are blocked again.</p>
+        </div>
+
+        <div>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px;">
+            <div style="font-size: 13px; color: rgba(236,243,238,0.82);">{{activeValue}}</div>
+            <div style="font-size: 12px; color: #4E6159;">1,000 steps = 5 min</div>
+          </div>
+          <div style="display: flex; align-items: stretch; height: 22px; margin-bottom: 26px;">
+            <sc-for list="{{ticks}}" as="t" hint-placeholder-count="46">
+              <div style="flex: 1 1 0; display: flex; justify-content: center;">
+                <div style="width: 1.5px; background: {{t.color}};"></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 32px;">
+            <button onClick="{{pickMove}}" style="font-size: 12px; padding: 9px 16px; border-radius: 999px; border: 1px solid {{s0.border}}; background: {{s0.bg}}; color: {{s0.color}}; cursor: pointer; font-family: inherit; transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;">Move</button>
+            <button onClick="{{pickEarn}}" style="font-size: 12px; padding: 9px 16px; border-radius: 999px; border: 1px solid {{s1.border}}; background: {{s1.bg}}; color: {{s1.color}}; cursor: pointer; font-family: inherit; transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;">Earn</button>
+            <button onClick="{{pickUse}}" style="font-size: 12px; padding: 9px 16px; border-radius: 999px; border: 1px solid {{s2.border}}; background: {{s2.bg}}; color: {{s2.color}}; cursor: pointer; font-family: inherit; transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;">Use</button>
+          </div>
+          <div class="liquid-glass" style="display: inline-block; border-radius: 999px; padding: 12px 32px; font-size: 14px; color: #ECF3EE; cursor: pointer;">See how Earnit works</div>
+        </div>
+      </div>
+
+      <div style="position: relative; border-radius: 18px; overflow: hidden; min-height: 400px; background: #070E0D;">
+        <img src="home-evening.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block;" />
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,14,13,0.55) 0%, rgba(7,14,13,0.18) 34%, rgba(7,14,13,0.10) 62%, rgba(7,14,13,0.42) 100%);"></div>
+
+        <div style="position: absolute; right: 46px; top: 30px; width: 250px; height: 500px; border-radius: 40px; padding: 5px; background: #0B1712; box-shadow: 0 0 90px -18px rgba(46,92,230,0.45), 0 30px 64px -26px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.14); box-sizing: border-box;">
+          <div style="position: relative; width: 100%; height: 100%; border-radius: 35px; overflow: hidden; background: #070E0D;">
+            <img src="home-evening.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block;" />
+            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,14,13,0.86) 0%, rgba(7,14,13,0.72) 40%, rgba(7,14,13,0.30) 72%, rgba(7,14,13,0.12) 100%);"></div>
+            <div style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 26px 18px 0; text-align: center;">
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; font-size: 8px; font-weight: 500; color: #93A79D;">
+                <div>Wednesday</div>
+                <div class="serif" style="font-size: 14px; color: #ECF3EE;">Earnit</div>
+                <div>3-day streak</div>
+              </div>
+              <div style="font-size: 7.5px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: #93A79D; margin-top: 26px;">Available time</div>
+              <div style="display: flex; align-items: last baseline; gap: 5px; margin-top: 6px;">
+                <div class="serif" style="font-size: 72px; line-height: 0.9; color: #ECF3EE;">10</div>
+                <div style="font-size: 12px; color: #93A79D;">min</div>
+              </div>
+              <div style="font-size: 9px; color: #93A79D; margin-top: 5px;">to spend on your apps</div>
+              <div style="display: flex; align-items: center; gap: 5px; margin-top: 18px; background: #2E5CE6; color: #FFFFFF; font-size: 9.5px; font-weight: 600; padding: 8px 14px; border-radius: 999px; box-shadow: 0 6px 14px -4px rgba(46,92,230,0.42);">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+                <div>Earn more time</div>
+              </div>
+              <div style="font-size: 8px; color: #61756B; margin-top: 11px;">1,000 steps until your next 5 minutes</div>
+              <div style="font-size: 8px; color: #4E6159; margin-top: 5px;">2,000 steps today · <span style="color: #8CBF6B;">+10 min earned today</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4 — BIG STATEMENT ============ -->
+  <div id="why" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 810px; padding: 0 24px; overflow: hidden;">
+    <img src="earn-path.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; display: block; z-index: 0;" />
+    <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, #070E0D 0%, rgba(7,14,13,0.82) 18%, rgba(7,14,13,0.62) 46%, rgba(7,14,13,0.70) 74%, #070E0D 100%);"></div>
+
+    <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 1024px; padding: 96px 0;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 1.9px; text-transform: uppercase; color: #93A79D; margin-bottom: 26px;">Not another app blocker</div>
+      <h2 style="margin: 0; font-size: 72px; line-height: 1.06; letter-spacing: -1.5px; color: #ECF3EE;"><span class="serif">Scrolling isn't forbidden.</span><br /><span class="serif-i">It's earned.</span></h2>
+      <p style="margin: 30px 0 0; font-size: 18px; line-height: 1.6; color: rgba(236,243,238,0.65); max-width: 660px;">Earnit doesn't ask you to disappear from the internet. It simply puts something real before the scroll.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px; margin-top: 56px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <div class="serif" style="font-size: 38px; color: #ECF3EE;">2,000</div>
+          <div style="font-size: 13px; color: #93A79D;">steps</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <div class="serif" style="font-size: 38px; color: #ECF3EE;">+10 min</div>
+          <div style="font-size: 13px; color: #93A79D;">earned</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <div class="serif" style="font-size: 38px; color: #ECF3EE;">10 min</div>
+          <div style="font-size: 13px; color: #93A79D;">to spend</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+          <div class="serif" style="font-size: 38px; color: #ECF3EE;">0 min</div>
+          <div style="font-size: 13px; color: #93A79D;">apps lock again</div>
+        </div>
+      </div>
+
+      <div class="liquid-glass" style="border-radius: 999px; padding: 16px 40px; font-size: 14px; color: #ECF3EE; margin-top: 48px; cursor: pointer;">Why Earnit</div>
+    </div>
+  </div>
+
+  <!-- ============ 5 — CTA ============ -->
+  <div style="position: relative; min-height: 810px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 24px; overflow: hidden;">
+    <img src="freedom-ridge.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 72%; display: block; z-index: 0;" />
+    <div style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, #070E0D 0%, rgba(7,14,13,0.74) 20%, rgba(7,14,13,0.46) 44%, rgba(7,14,13,0.66) 72%, #070E0D 100%);"></div>
+
+    <div style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; max-width: 900px; padding: 96px 0;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 1.9px; text-transform: uppercase; color: #93A79D; margin-bottom: 20px;">More life. Less autopilot.</div>
+      <h2 style="margin: 0; font-size: 96px; line-height: 0.95; letter-spacing: -2px; color: #ECF3EE;"><span class="serif">What would you do</span><br /><span class="serif-i">with an extra hour?</span></h2>
+      <p style="margin: 26px 0 0; font-size: 18px; line-height: 1.6; color: rgba(236,243,238,0.65); max-width: 560px;">Spend less time scrolling by accident and more time choosing what deserves your attention.</p>
+      <div style="display: flex; align-items: center; gap: 16px; margin-top: 40px;">
+        <div class="liquid-glass" style="border-radius: 999px; padding: 16px 40px; font-size: 14px; color: #ECF3EE; cursor: pointer;">Download Earnit</div>
+        <div style="border-radius: 999px; padding: 16px 40px; font-size: 14px; color: #93A79D; border: 1px solid rgba(236,243,238,0.09); cursor: pointer;">See how it works</div>
+      </div>
+      <div style="font-size: 12px; color: #93A79D; margin-top: 20px;">Available for iPhone</div>
+    </div>
+  </div>
+
+  <!-- ============ 6 — FOOTER ============ -->
+  <div style="background: #070E0D; border-top: 1px solid rgba(236,243,238,0.07); padding: 64px 48px;">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-bottom: 64px;">
+        <h3 style="margin: 0; font-size: 30px; line-height: 1.22; color: #ECF3EE;"><span class="serif">Earn your time.</span><br /><span class="serif-i" style="color: rgba(236,243,238,0.66);">Spend it intentionally.</span></h3>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+          <a href="#how" style="color: #93A79D;">How it Works</a>
+          <a href="#why" style="color: #93A79D;">Why Earnit</a>
+          <a href="#faq" style="color: #93A79D;">FAQ</a>
+          <a href="#privacy" style="color: #93A79D;">Privacy</a>
+          <a href="#terms" style="color: #93A79D;">Terms</a>
+          <a href="#support" style="color: #93A79D;">Support</a>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px;">
+          <div style="font-size: 14px; line-height: 1.55; color: #93A79D; white-space: pre-line;">Less scrolling.
+More living.</div>
+          <div class="liquid-glass" style="border-radius: 999px; padding: 10px 24px; font-size: 14px; color: #ECF3EE; cursor: pointer;">Get Earnit</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 32px; border-top: 1px solid rgba(236,243,238,0.07); font-size: 12px; color: #93A79D;">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div class="serif" style="font-size: 20px; letter-spacing: -0.02em; color: #ECF3EE;">Earnit</div>
+          <div>© 2026 Earnit</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 24px;">
+          <a href="#privacy" style="color: #93A79D;">Privacy Policy</a>
+          <a href="#terms" style="color: #93A79D;">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#2E5CE6","options":["#2E5CE6","#4674FF","#6E97FF","#8CBF6B"]},"$preview":{"width":1440,"height":4340}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'move' };
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#2E5CE6';
+    const on = (id) => ({
+      border: this.state.step === id ? accent + '99' : 'rgba(236,243,238,0.09)',
+      bg: this.state.step === id ? 'rgba(46,92,230,0.16)' : 'transparent',
+      color: this.state.step === id ? '#ECF3EE' : '#93A79D'
+    });
+    const values = {
+      move: '2,000 steps today',
+      earn: '+10 min earned today',
+      use: '10 min ready to spend'
+    };
+    const progress = { move: 0.33, earn: 0.66, use: 1 }[this.state.step];
+    const ticks = [];
+    for (let i = 0; i < 46; i++) {
+      ticks.push({ color: i / 46 < progress ? accent : 'rgba(236,243,238,0.16)' });
+    }
+    return {
+      accent: accent,
+      ticks: ticks,
+      s0: on('move'),
+      s1: on('earn'),
+      s2: on('use'),
+      activeValue: values[this.state.step],
+      pickMove: () => this.setState({ step: 'move' }),
+      pickEarn: () => this.setState({ step: 'earn' }),
+      pickUse: () => this.setState({ step: 'use' })
+    };
+  }
+}
+</script>
+</body>
+</html>
