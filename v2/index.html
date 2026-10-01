@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Earnit: earn your screen time</title>
+<meta name="description" content="Earnit keeps your most distracting apps locked until you walk, study or do pushups. Every effort turns into minutes you choose how to spend.">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Earnit">
+<meta property="og:title" content="Earnit: your phone shouldn't be free. Earn it.">
+<meta property="og:description" content="Walk, study or do pushups to unlock the apps that eat your day.">
+<meta property="og:image" content="https://www.earnitscreen.com/assets/video-hero-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/earnit-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="../assets/video-hero-poster.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+@property --min { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --left { syntax: '<integer>'; inherits: false; initial-value: 10; }
+@property --five { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --reps { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --studied { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --bad { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --good { syntax: '<integer>'; inherits: false; initial-value: 0; }
+body{margin:0;background:#000}
+a{color:inherit}a:hover{color:#fff}
+.ei{--accent:#2E5CE6;--accent-text:#86A6FF;--dawn:#F4B6C8;--line:rgba(255,255,255,.08);--text:#F5F5F4;--soft:#D4D4D4;--muted:#A3A3A3;--ease:cubic-bezier(.32,.72,0,1);--sine:cubic-bezier(.45,0,.55,1);background:#000;color:var(--text);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative}
+.ei *{box-sizing:border-box}
+.ei h1,.ei h2,.ei h3,.ei p{margin:0}
+.ei h1,.ei h2,.ei h3{text-wrap:balance;font-weight:600;letter-spacing:-.025em}
+.ei p{text-wrap:pretty}
+.ei a{text-decoration:none}
+.ei :focus-visible{outline:2px solid var(--accent-text);outline-offset:4px;border-radius:12px}
+.ei svg{display:block;flex:none}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-text)}
+.ei .h2{font-size:48px;line-height:1.05;margin-top:16px}
+.lead{font-size:18px;line-height:28px;color:var(--muted)}
+.grad{background:linear-gradient(90deg,#fff 0%,#9B9B9B 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sky{background:linear-gradient(90deg,#F4B6C8 0%,#B9A6F5 45%,#86A6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.skip{position:absolute;left:16px;top:16px;z-index:100;padding:12px 24px;border-radius:9999px;background:#181818;font-size:14px;font-weight:600;transform:translateY(-200%);transition:transform .7s var(--ease)}
+.skip:focus-visible{transform:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:9999px;font-size:16px;line-height:24px;font-weight:600;transition:transform .7s var(--ease),filter .7s var(--ease),box-shadow .7s var(--ease),background-color .7s var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 12px 40px -12px var(--accent)}
+.btn-primary:hover{color:#fff;transform:translateY(-2px);filter:brightness(1.12);box-shadow:0 20px 48px -12px var(--accent)}
+.btn-sm{min-height:44px;padding:8px 16px;font-size:14px;line-height:20px}
+
+/* nav: floating glass island */
+.nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:24px;width:max-content;padding:6px 6px 6px 16px;border-radius:9999px;background:rgba(24,24,24,.55);border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);animation:navin 1.2s var(--ease) .2s both}
+@keyframes navin{from{opacity:0;transform:translate(-50%,-24px)}to{opacity:1;transform:translate(-50%,0)}}
+.logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;letter-spacing:-.01em;color:#fff}
+.nav-links{display:flex;gap:4px}
+.nav-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--soft);transition:background-color .7s var(--ease),color .7s var(--ease)}
+.nav-links a:hover{background:rgba(255,255,255,.08);color:#fff}
+.burger{display:none;position:relative;width:44px;height:44px;border-radius:9999px;border:0;background:rgba(255,255,255,.08);cursor:pointer;color:#fff}
+.burger span{position:absolute;left:14px;width:16px;height:2px;border-radius:2px;background:currentColor;transition:transform .7s var(--ease)}
+.burger span:nth-child(1){top:18px}.burger span:nth-child(2){top:24px}
+.menu-open .burger span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.menu-open .burger span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:96px 24px;background:rgba(0,0,0,.8);-webkit-backdrop-filter:blur(64px);backdrop-filter:blur(64px);opacity:0;visibility:hidden;transition:opacity .7s var(--ease),visibility .7s var(--ease)}
+.menu-open .menu{opacity:1;visibility:visible}
+.menu a{font-size:36px;line-height:40px;font-weight:600;padding:8px 0;opacity:0;transform:translateY(48px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.menu-open .menu a{opacity:1;transform:none}
+.menu a:nth-child(2){transition-delay:.1s}.menu a:nth-child(3){transition-delay:.15s}.menu a:nth-child(4){transition-delay:.2s}.menu a:nth-child(5){transition-delay:.25s}
+
+/* hero */
+.hero{position:relative;min-height:900px;display:flex;align-items:center;overflow:hidden;padding:96px 0 96px}
+.hero-media{position:absolute;inset:0}
+.hero-media video,.final-media video{width:100%;height:100%;object-fit:cover;display:block;animation:kb 26s var(--sine) infinite alternate}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,1%)}}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.38) 42%,rgba(0,0,0,0) 72%),linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 24%,rgba(0,0,0,0) 62%,#000 100%)}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center}
+.hero h1{font-size:72px;line-height:1;max-width:680px;margin-top:24px}
+.hero h1 span{display:block;padding-bottom:4px}
+.hero .lead{max-width:560px;margin-top:24px;font-size:20px;line-height:28px;color:#E5E5E5}
+.hero-ctas{margin-top:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.proof{display:flex;gap:8px;align-items:center;font-size:14px;line-height:20px;color:var(--soft)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:9999px;background:rgba(24,24,24,.5);border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);font-size:14px;line-height:20px;color:var(--soft)}
+.badge b{padding:2px 8px;border-radius:9999px;background:var(--accent);color:#fff;font-size:12px;line-height:16px;font-weight:600}
+.rise{animation:rise 1.4s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(48px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+.cue{position:absolute;left:50%;bottom:32px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.cue i{position:relative;width:1px;height:48px;background:rgba(255,255,255,.16);overflow:hidden}
+.cue i::after{content:"";position:absolute;left:0;top:-16px;width:1px;height:16px;background:#fff;animation:cue 2.4s var(--ease) infinite}
+@keyframes cue{to{transform:translateY(64px)}}
+
+/* device */
+.device{position:relative;display:flex;justify-content:center;padding:24px 0}
+.phone{position:relative;width:300px;height:620px;flex:none;border-radius:52px;padding:10px;background:#0A0A0A;border:1px solid rgba(255,255,255,.14);box-shadow:0 48px 120px -24px rgba(46,92,230,.55),0 24px 48px -12px rgba(0,0,0,.8),inset 0 0 0 2px #000}
+.screen{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#070E0D;color:#ECF3EE}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:9999px;background:#000;z-index:3}
+.scene{position:absolute;inset:0;padding:64px 20px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;animation:scene 15s var(--ease) infinite both}
+.scene-b{animation-delay:-10s}.scene-c{animation-delay:-5s}
+@keyframes scene{0%{opacity:0;transform:translateY(16px) scale(.98);filter:blur(8px)}5%{opacity:1;transform:none;filter:blur(0)}30%{opacity:1;transform:none;filter:blur(0)}34%{opacity:0;transform:translateY(-16px) scale(.98);filter:blur(8px)}100%{opacity:0;transform:translateY(16px);filter:blur(8px)}}
+.sc-app{display:flex;align-items:center;gap:12px;align-self:stretch;padding:8px;border-radius:16px;background:#0B1712;border:1px solid rgba(236,243,238,.08);text-align:left}
+.tile{position:relative;display:grid;place-items:center;width:32px;height:32px;border-radius:8px;color:rgba(0,0,0,.55)}
+.sc-k{font-size:14px;line-height:20px;font-weight:600}
+.sc-s{font-size:12px;line-height:16px;color:#93A79D}
+.sc-title{font-size:20px;line-height:28px;font-weight:600}
+.sc-body{font-size:14px;line-height:20px;color:#93A79D;max-width:220px}
+.sc-btn{align-self:stretch;padding:12px;border-radius:9999px;font-size:14px;line-height:20px;font-weight:600}
+.sc-btn.primary{margin-top:auto;background:var(--accent);color:#fff}
+.sc-btn.ghost{color:#B9CCC2;border:1px solid rgba(236,243,238,.12)}
+.sc-eyebrow{align-self:stretch;display:flex;justify-content:space-between;align-items:center;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#93A79D}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:9999px;background:rgba(46,92,230,.16);color:#86A6FF;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0;text-transform:none}
+
+/* breathing pause */
+.breath{position:relative;display:grid;place-items:center;width:180px;height:180px;margin:4px 0}
+.breath .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(134,166,255,.4);animation:ripple 8s var(--ease) infinite}
+.breath .ring:nth-child(2){animation-delay:-2s}.breath .ring:nth-child(3){animation-delay:-4s}.breath .ring:nth-child(4){animation-delay:-6s}
+@keyframes ripple{0%{transform:scale(.5);opacity:0}25%{opacity:1}100%{transform:scale(1.2);opacity:0}}
+.core{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#FCE3EB 0%,#F4B6C8 22%,#8EA6FF 62%,#2E5CE6 100%);box-shadow:0 0 64px rgba(134,166,255,.55),0 0 24px rgba(244,182,200,.35);animation:breathe 8s var(--sine) infinite}
+@keyframes breathe{0%,100%{transform:scale(.7)}50%{transform:scale(1)}}
+.btxt{position:absolute;bottom:-8px;left:0;right:0;text-align:center;font-size:12px;line-height:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B9CCC2}
+.bt-in{animation:btin 8s var(--sine) infinite}.bt-out{animation:btout 8s var(--sine) infinite}
+@keyframes btin{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+@keyframes btout{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+
+/* earning scene */
+.earn-num{display:flex;align-items:baseline;gap:4px;margin-top:24px;font-size:72px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.earn-num small{font-size:20px;line-height:28px;color:#93A79D;font-weight:500;letter-spacing:0;margin-left:4px}
+.c-min{counter-reset:m var(--min);animation:cmin 15s var(--ease) infinite;animation-delay:-10s}
+.c-min::after{content:counter(m)}
+@keyframes cmin{0%,6%{--min:0}26%,100%{--min:10}}
+.ticks{align-self:stretch;display:flex;justify-content:center;align-items:flex-end;gap:5px;height:72px;margin-top:8px}
+.ticks span{width:6px;border-radius:9999px;background:rgba(236,243,238,.1);height:calc(24px + var(--i) * 2.4px);animation:tick 15s var(--ease) infinite;animation-delay:calc(-10s + var(--i) * .16s)}
+@keyframes tick{0%,6%{background:rgba(236,243,238,.1)}9%,30%{background:#86A6FF}34%,100%{background:rgba(236,243,238,.1)}}
+.row{align-self:stretch;display:flex;justify-content:space-between;font-size:14px;line-height:20px;color:#93A79D;margin-top:auto}
+.row b{color:#ECF3EE;font-weight:600;font-variant-numeric:tabular-nums}
+.bar{align-self:stretch;height:8px;border-radius:9999px;background:rgba(236,243,238,.08);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:inherit;background:var(--accent);transform-origin:left;animation:bar 15s var(--ease) infinite -10s}
+@keyframes bar{0%,6%{transform:scaleX(.05)}26%,100%{transform:scaleX(1)}}
+
+/* session scene */
+.pills{display:flex;gap:4px;padding:4px;border-radius:9999px;background:#0B1712;border:1px solid rgba(236,243,238,.08)}
+.pills span{padding:8px 16px;border-radius:9999px;font-size:14px;line-height:20px;font-weight:600;color:#93A79D}
+.pills .on{background:var(--accent);color:#fff}
+.dial{position:relative;width:196px;height:196px;margin:8px 0}
+.dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dial .trk{fill:none;stroke:rgba(236,243,238,.08);stroke-width:8}
+.dial .prg{fill:none;stroke:#86A6FF;stroke-width:8;stroke-linecap:round;stroke-dasharray:327;animation:drain 15s linear infinite -5s}
+@keyframes drain{0%,5%{stroke-dashoffset:0}30%,100%{stroke-dashoffset:229}}
+.dial-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.c-left{counter-reset:l var(--left);font-size:48px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;animation:cleft 15s linear infinite -5s}
+.c-left::after{content:counter(l)}
+@keyframes cleft{0%,5%{--left:10}30%,100%{--left:3}}
+.dial-c small{font-size:12px;line-height:16px;color:#93A79D;margin-top:4px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+
+/* floating notifications around the phone */
+.float{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;padding:12px 16px 12px 12px;border-radius:16px;background:rgba(24,24,24,.62);border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);box-shadow:0 24px 48px -16px rgba(0,0,0,.7);font-size:14px;line-height:20px;text-align:left;animation:bob 7s var(--sine) infinite}
+.float b{display:block;font-weight:600;color:#fff}
+.float span{color:var(--muted);font-size:12px;line-height:16px}
+.float .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:var(--accent);color:#fff}
+.f1{left:-40px;top:3%}.f2{right:-40px;bottom:3%;animation-delay:-3.5s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* sections */
+.sec{position:relative;padding:96px 0}
+.head{max-width:720px}
+.head .lead{margin-top:24px}
+.ei .center{text-align:center;margin-left:auto;margin-right:auto}
+
+/* the pause */
+.pause-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.stage{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;margin:0 auto;display:grid;place-items:center}
+.stage .breath{width:78%;height:78%}
+.stage .core{width:44%;height:44%}
+.stage .btxt{bottom:2%;font-size:14px;line-height:20px;color:var(--soft)}
+.halo{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle,rgba(46,92,230,.28) 0%,rgba(46,92,230,0) 70%);filter:blur(24px)}
+.orbit{position:absolute;inset:0;animation:spin 60s linear infinite}
+.slot{position:absolute;transform:translate(-50%,-50%)}
+.slot .pchip{animation:spin 60s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pchip{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 8px;border-radius:9999px;background:rgba(24,24,24,.8);border:1px solid rgba(255,255,255,.1);font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.pchip .ic{display:grid;place-items:center;width:28px;height:28px;border-radius:9999px;background:rgba(46,92,230,.2);color:var(--accent-text)}
+.checks{display:flex;flex-direction:column;gap:16px;margin-top:40px;padding:0;list-style:none}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:24px;color:var(--soft)}
+.checks .ic{display:grid;place-items:center;width:24px;height:24px;border-radius:9999px;background:rgba(46,92,230,.2);color:var(--accent-text);flex:none}
+
+/* one evening, two ways: a timeline that plays itself */
+.eve{margin-top:64px;padding:32px;border-radius:24px;background:#181818;border:1px solid var(--line)}
+.eve-row+.eve-row{margin-top:48px}
+.eve-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:16px}
+.eve-head b{display:flex;align-items:center;gap:8px;font-size:20px;line-height:28px;font-weight:600}
+.eve-head b i{width:8px;height:8px;border-radius:50%}
+.eve-head b+span{display:block;margin-top:4px;font-size:14px;line-height:20px;color:var(--muted)}
+.eve-total{text-align:right;flex:none}
+.eve-total small{display:block;margin-top:8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.c-bad,.c-good{font-size:48px;line-height:1;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.c-bad{counter-reset:b var(--bad);color:var(--dawn);animation:cbad 14s linear infinite}
+.c-bad::after{content:counter(b) " min"}
+.c-good{counter-reset:g var(--good);color:var(--accent-text);animation:cgood 14s linear infinite}
+.c-good::after{content:counter(g) " min"}
+@keyframes cbad{0%,7.3%{--bad:0}68%,96%{--bad:91}100%{--bad:0}}
+@keyframes cgood{0%,21.3%{--good:0}29.3%,96%{--good:10}100%{--good:0}}
+.track{position:relative;height:64px;border-radius:16px;background:#000;border:1px solid var(--line)}
+.fill{position:absolute;inset:0;animation:wipe 14s linear infinite}
+@keyframes wipe{0%{clip-path:inset(0 100% 0 0)}80%,96%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 100% 0 0)}}
+.sg{position:absolute;top:8px;bottom:8px;display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:8px;font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;overflow:hidden}
+.sg.scroll{background:rgba(244,182,200,.14);border:1px solid rgba(244,182,200,.36);color:#F4B6C8}
+.sg.walk{background:rgba(140,191,107,.16);border:1px solid rgba(140,191,107,.42);color:#B5DB98}
+.sg.sess{background:var(--accent);color:#fff;justify-content:center}
+.sg.free{border:1px dashed rgba(255,255,255,.22);color:var(--muted)}
+.wave{display:flex;align-items:center;gap:3px;height:20px}
+.wave i{width:3px;border-radius:2px;background:currentColor;opacity:.6;animation:wav 1.2s var(--sine) infinite;animation-delay:calc(var(--i) * -.15s)}
+@keyframes wav{0%,100%{height:4px}50%{height:16px}}
+.mk{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:9999px;background:#fff;color:#000;box-shadow:0 0 0 4px #000}
+.playhead{position:absolute;top:-8px;bottom:-8px;left:0;z-index:3;width:2px;margin-left:-1px;border-radius:2px;background:#fff;box-shadow:0 0 16px rgba(255,255,255,.7);animation:play 14s linear infinite}
+@keyframes play{0%{left:0;opacity:1}80%{left:100%;opacity:1}86%,100%{left:100%;opacity:0}}
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding:0;list-style:none}
+.steps li{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:9999px;background:#000;border:1px solid var(--line);font-size:14px;line-height:20px;color:var(--soft)}
+.steps time{padding:2px 8px;border-radius:9999px;background:#272727;font-size:12px;line-height:16px;font-weight:600;color:#fff;font-variant-numeric:tabular-nums}
+.axis{position:relative;height:16px;margin-top:24px;font-size:12px;line-height:16px;color:var(--muted);font-variant-numeric:tabular-nums}
+.axis span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.axis span:first-child{transform:none}.axis span:last-child{transform:translateX(-100%)}
+.eve-note{margin-top:24px;font-size:14px;line-height:20px;color:var(--muted)}
+
+/* tagline reveal */
+.tag p{font-size:60px;line-height:1.08;font-weight:600;letter-spacing:-.03em;max-width:1040px;text-wrap:balance}
+.w{--c:var(--text);color:var(--c)}
+.w.k{--c:var(--accent-text)}
+
+/* cards */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+.card{display:flex;flex-direction:column;padding:8px;border-radius:24px;background:#181818;border:1px solid var(--line);transition:transform .9s var(--ease),border-color .9s var(--ease)}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16)}
+.vis{position:relative;height:280px;border-radius:16px;background:#000;overflow:hidden;display:grid;place-items:center}
+.ctext{padding:24px 16px 16px}
+.step{font-size:12px;line-height:16px;font-weight:700;letter-spacing:.16em;color:var(--accent-text)}
+.card h3{margin-top:8px;font-size:24px;line-height:32px}
+.card p{margin-top:8px;font-size:16px;line-height:24px;color:var(--muted)}
+
+.apps{display:grid;grid-template-columns:repeat(4,48px);gap:12px}
+.apps .tile{width:48px;height:48px;border-radius:12px}
+.apps .tile i{width:18px;height:18px;border-radius:6px;background:rgba(0,0,0,.28)}
+.lk{position:absolute;inset:0;border-radius:12px;display:grid;place-items:center;background:rgba(0,0,0,.62);color:#fff;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);animation:lockpop 7s var(--ease) infinite;animation-delay:calc(var(--i) * .22s)}
+@keyframes lockpop{0%,8%{opacity:0;transform:scale(.6)}16%,84%{opacity:1;transform:scale(1)}92%,100%{opacity:0;transform:scale(.6)}}
+
+.meter{display:flex;align-items:flex-end;gap:6px;height:112px}
+.meter span{width:6px;border-radius:9999px;background:rgba(255,255,255,.1);height:calc(32px + var(--i) * 3.4px);animation:mfill 6s var(--ease) infinite;animation-delay:calc(var(--i) * .07s)}
+@keyframes mfill{0%,6%{background:rgba(255,255,255,.1)}14%,80%{background:#86A6FF}92%,100%{background:rgba(255,255,255,.1)}}
+.meter-top{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:24px}
+.meter-top b{font-size:48px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums}
+.c-five{counter-reset:f var(--five);animation:cfive 6s var(--ease) infinite}
+.c-five::after{content:"+" counter(f)}
+@keyframes cfive{0%,8%{--five:0}50%,100%{--five:5}}
+.meter-top span{color:var(--muted);font-size:14px;line-height:20px}
+.vis-col{display:flex;flex-direction:column;align-items:center}
+.small-note{margin-top:16px;font-size:12px;line-height:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+.mini-dial{position:relative;width:148px;height:148px;margin-top:16px}
+.mini-dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.mini-dial .trk{fill:none;stroke:rgba(255,255,255,.08);stroke-width:8}
+.mini-dial .prg{fill:none;stroke:#86A6FF;stroke-width:8;stroke-linecap:round;stroke-dasharray:327;animation:mdrain 8s var(--ease) infinite}
+@keyframes mdrain{0%,6%{stroke-dashoffset:0}72%,100%{stroke-dashoffset:327}}
+.mini-dial .ml{position:absolute;inset:0;display:grid;place-items:center;color:#fff}
+.mini-dial .unl{animation:unl 8s var(--ease) infinite}
+.mini-dial .rel{animation:rel 8s var(--ease) infinite}
+.mini-dial .unl,.mini-dial .rel{position:absolute;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@keyframes unl{0%,70%{opacity:1;transform:none}76%,100%{opacity:0;transform:scale(.8)}}
+@keyframes rel{0%,72%{opacity:0;transform:scale(1.3)}80%,96%{opacity:1;transform:none}100%{opacity:0}}
+.mini-dial .rel svg{color:var(--accent-text)}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:64px}
+.bcard{position:relative;min-height:480px;padding:32px;border-radius:24px;background:#181818;border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
+.bcard h3{font-size:30px;line-height:36px}
+.bcard p{font-size:16px;line-height:24px;color:var(--muted);max-width:440px}
+.bcard .tagrow{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:9999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:14px;line-height:20px;font-weight:600;color:var(--soft)}
+.bvis{position:absolute;left:0;right:0;top:0;height:300px;display:grid;place-items:center}
+.bimg{position:absolute;inset:0}
+.bimg img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:transform 1.6s var(--ease)}
+.bcard:hover .bimg img{transform:scale(1.04)}
+.bimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.35) 40%,rgba(0,0,0,.92) 85%)}
+.walk-path{position:absolute;inset:0;width:100%;height:100%}
+.walk-path path{fill:none;stroke:#86A6FF;stroke-width:3;stroke-linecap:round;stroke-dasharray:2 14;animation:march 2.4s linear infinite}
+@keyframes march{to{stroke-dashoffset:-64}}
+.counter-big{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px}
+.study-dial{position:relative;width:220px;height:220px}
+.study-dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.study-dial .trk{fill:none;stroke:rgba(255,255,255,.08);stroke-width:6}
+.study-dial .prg{fill:none;stroke:url(#sweep);stroke-width:6;stroke-linecap:round;stroke-dasharray:597;animation:sweep 10s var(--ease) infinite}
+@keyframes sweep{0%,4%{stroke-dashoffset:597}80%,100%{stroke-dashoffset:0}}
+.study-dial .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.c-st{counter-reset:s var(--studied);font-size:60px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;animation:cst 10s var(--ease) infinite}
+.c-st::after{content:counter(s)}
+@keyframes cst{0%,4%{--studied:0}80%,100%{--studied:25}}
+.mid small{margin-top:8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cam{position:relative;width:300px;height:200px}
+.cam .cn{position:absolute;width:28px;height:28px;border:2px solid #86A6FF}
+.cam .c1{left:0;top:0;border-right:0;border-bottom:0;border-radius:12px 0 0 0}
+.cam .c2{right:0;top:0;border-left:0;border-bottom:0;border-radius:0 12px 0 0}
+.cam .c3{left:0;bottom:0;border-right:0;border-top:0;border-radius:0 0 0 12px}
+.cam .c4{right:0;bottom:0;border-left:0;border-top:0;border-radius:0 0 12px 0}
+.cam svg.fig{position:absolute;left:30px;right:30px;bottom:28px;width:240px;height:110px}
+.fig line,.fig polyline{stroke:#F5F5F4;stroke-width:5;stroke-linecap:round;fill:none}
+.fig circle.hd{fill:#F5F5F4}
+.fig .gnd{stroke:rgba(255,255,255,.14);stroke-width:2}
+.fig .jt{fill:#86A6FF}
+.reps{position:absolute;right:16px;top:16px;display:flex;flex-direction:column;align-items:flex-end}
+.c-reps{counter-reset:r var(--reps);font-size:48px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;animation:creps 24s steps(15,end) infinite}
+.c-reps::after{content:counter(r)}
+@keyframes creps{from{--reps:0}to{--reps:15}}
+.reps small{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rec{position:absolute;left:16px;top:16px;display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.rec i{width:8px;height:8px;border-radius:50%;background:#F4B6C8;animation:blink 1.6s var(--sine) infinite}
+@keyframes blink{50%{opacity:.25}}
+.seg{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:312px;padding:6px;border-radius:9999px;background:#000;border:1px solid rgba(255,255,255,.1)}
+.seg span{position:relative;z-index:1;padding:12px 0;text-align:center;font-size:16px;line-height:24px;font-weight:600;color:var(--muted)}
+.seg span b{color:#fff;font-weight:600}
+.seg .knob{position:absolute;z-index:0;top:6px;bottom:6px;left:6px;width:calc((100% - 12px) / 3);border-radius:9999px;background:var(--accent);box-shadow:0 8px 24px -8px var(--accent);animation:knob 9s var(--ease) infinite}
+@keyframes knob{0%,26%{transform:translateX(0)}33%,59%{transform:translateX(100%)}66%,92%{transform:translateX(200%)}100%{transform:translateX(0)}}
+.shield-line{display:flex;align-items:center;gap:8px;margin-top:24px;font-size:14px;line-height:20px;color:var(--muted)}
+
+/* progress */
+.prog-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center}
+.panel{padding:8px;border-radius:24px;background:#181818;border:1px solid var(--line)}
+.panel-in{padding:24px;border-radius:16px;background:#000}
+.ph{display:flex;justify-content:space-between;align-items:center;font-size:14px;line-height:20px;color:var(--muted);font-weight:600}
+.ph b{color:#fff}
+.dots{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:8px;margin-top:16px}
+.dots i{aspect-ratio:1/1;border-radius:50%;background:rgba(255,255,255,.08)}
+.dots i.d{animation:dot 9s var(--ease) infinite;animation-delay:calc(var(--i) * .14s)}
+@keyframes dot{0%,4%{background:rgba(255,255,255,.08);transform:scale(.7)}10%,86%{background:#86A6FF;transform:scale(1)}94%,100%{background:rgba(255,255,255,.08);transform:scale(.7)}}
+.dots i.t{box-shadow:0 0 0 2px #000,0 0 0 4px #F4B6C8}
+.ledger{display:flex;flex-direction:column;margin-top:8px}
+.lrow{display:flex;align-items:center;gap:12px;padding:12px 0}
+.lrow+.lrow{box-shadow:0 -1px 0 rgba(255,255,255,.06)}
+.lrow .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:#1F1F1F;color:var(--soft)}
+.lrow div{flex:1}
+.lrow b{display:block;font-size:14px;line-height:20px;font-weight:600}
+.lrow span{font-size:12px;line-height:16px;color:var(--muted)}
+.lrow em{font-style:normal;font-size:14px;line-height:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.lrow em.plus{color:var(--accent-text)}
+.lrow em.minus{color:var(--muted)}
+.bars{display:flex;align-items:flex-end;gap:16px;height:120px;margin-top:16px}
+.bars div{flex:1;display:flex;gap:4px;align-items:flex-end;height:100%}
+.bars i{flex:1;border-radius:6px 6px 2px 2px;transform-origin:bottom;animation:grow 9s var(--ease) infinite}
+.bars i.s{background:#313131}.bars i.e{background:var(--accent)}
+@keyframes grow{0%,4%{transform:scaleY(.08)}16%,88%{transform:scaleY(1)}96%,100%{transform:scaleY(.08)}}
+.legend{display:flex;gap:16px;margin-top:12px;font-size:12px;line-height:16px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:8px;height:8px;border-radius:2px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:8px}
+
+/* privacy */
+.shield-orb{position:relative;width:96px;height:96px;margin:0 auto 32px;display:grid;place-items:center;border-radius:50%;background:rgba(46,92,230,.18);color:var(--accent-text)}
+.shield-orb::before,.shield-orb::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(134,166,255,.4);animation:ripple 4s var(--ease) infinite}
+.shield-orb::after{animation-delay:-2s}
+.priv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px;text-align:left}
+.pv{padding:32px;border-radius:24px;background:#181818;border:1px solid var(--line)}
+.pv .ic{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(46,92,230,.18);color:var(--accent-text)}
+.pv h3{margin-top:24px;font-size:20px;line-height:28px}
+.pv p{margin-top:8px;font-size:16px;line-height:24px;color:var(--muted)}
+
+/* faq */
+.faq{max-width:800px;margin:64px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq details{border-radius:16px;background:#181818;border:1px solid var(--line);transition:background-color .7s var(--ease)}
+.faq details[open]{background:#1F1F1F}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:20px 24px;font-size:18px;line-height:28px;font-weight:600;cursor:pointer;border-radius:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pl{display:grid;place-items:center;width:32px;height:32px;border-radius:9999px;background:rgba(255,255,255,.06);transition:transform .7s var(--ease);flex:none}
+.faq details[open] .pl{transform:rotate(45deg)}
+.faq details p{padding:0 24px 24px;font-size:16px;line-height:24px;color:var(--muted);max-width:680px}
+
+/* final */
+.final{position:relative;min-height:760px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:96px 0}
+.final-media{position:absolute;inset:0}
+.final-scrim{position:absolute;inset:0;background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.25) 30%,rgba(0,0,0,.35) 70%,#000 100%)}
+.final h2{font-size:96px;line-height:1;letter-spacing:-.04em}
+.app-icon{display:block;width:112px;height:112px;margin:0 auto 40px;border-radius:26px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 32px 80px -16px rgba(46,92,230,.7);animation:bob 7s var(--sine) infinite}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+.final h2 span{display:block}
+.final .lead{margin:24px auto 0;color:#E5E5E5;max-width:520px;font-size:20px}
+.final .btn{margin-top:40px}
+.fine{margin-top:16px;font-size:12px;line-height:16px;color:var(--soft)}
+
+.foot{padding:48px 0;box-shadow:0 -1px 0 var(--line)}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px}
+.foot nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:9999px;font-size:14px;line-height:20px;color:var(--muted);transition:color .7s var(--ease),background-color .7s var(--ease)}
+.foot nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.foot small{font-size:14px;line-height:20px;color:var(--muted)}
+
+/* scroll-driven motion where supported; without support everything rests visible */
+@supports (animation-timeline: view()) {
+  .rv{animation:rv both var(--ease);animation-timeline:view();animation-range:entry 0% entry 75%}
+  .tag .w{animation:wordon both linear;animation-timeline:view();animation-range:cover calc(18% + var(--i) * 1.6%) cover calc(22% + var(--i) * 1.6%)}
+}
+@keyframes rv{from{opacity:0;transform:translateY(64px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+@keyframes wordon{from{color:rgba(245,245,244,.24)}to{color:var(--c)}}
+
+@media (max-width: 960px){
+  .nav-links{display:none}
+  .nav .btn-sm{display:none}
+  .burger{display:block}
+  .nav{gap:16px}
+  .hero{min-height:0;padding:128px 0 64px}
+  .hero-grid,.pause-grid,.prog-grid{grid-template-columns:minmax(0,1fr)}
+  .hero h1{font-size:48px}
+  .hero .lead{font-size:18px}
+  .cue{display:none}
+  .ei .h2{font-size:36px;line-height:40px}
+  .tag p{font-size:36px;line-height:40px}
+  .grid3,.bento,.priv{grid-template-columns:minmax(0,1fr)}
+  .eve{padding:16px}
+  .eve-head{align-items:flex-start}
+  .c-bad,.c-good{font-size:30px;line-height:36px}
+  .sg .lbl,.sg .wave,.sg svg{display:none}
+  .track{height:48px}
+  .mk{width:20px;height:20px;margin:-10px 0 0 -10px;box-shadow:0 0 0 2px #000}
+  .mk svg{width:11px;height:11px}
+  .axis span:nth-child(2),.axis span:nth-child(4){display:none}
+  .final h2{font-size:60px}
+  .final{min-height:640px}
+  .f1{left:0}.f2{right:0}
+  .hero-scrim{background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.48) 55%,#000 100%)}
+  .orbit{inset:14%}
+  .pchip{font-size:12px;line-height:16px;padding:4px 12px 4px 4px}
+}
+@media (max-width: 420px){
+  .phone{transform:scale(.88);margin:-36px 0}
+  .float{display:none}
+  .seg{width:100%}
+  .cam{width:260px}
+}
+@media (prefers-reduced-motion: reduce){
+  .ei *,.ei *::before,.ei *::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+
+<style>
+/* fallback for browsers without scroll-driven animations */
+.no-sda .rv{opacity:0;transform:translateY(64px);filter:blur(12px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}
+.no-sda .rv.in{opacity:1;transform:none;filter:none}
+.no-sda .tag .w{color:rgba(245,245,244,.24);transition:color .7s var(--ease)}
+.no-sda .tag .w.on{color:var(--c)}
+.paused,.paused *{animation-play-state:paused !important}
+</style>
+</head>
+<body>
+<div class="ei" style="--accent: #2E5CE6">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="eiBg" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="#15326E"></stop><stop offset="1" stop-color="#07132C"></stop></radialGradient>
+    <linearGradient id="eiSand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C8DFF"></stop><stop offset="1" stop-color="#1450F0"></stop></linearGradient>
+    <symbol id="ei-logo" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="23" fill="url(#eiBg)"></rect>
+      <path d="M34.1 41V32.6a15.5 15.5 0 0 1 31 0v1.2" fill="none" stroke="#F8F4EA" stroke-width="7.8" stroke-linecap="round"></path>
+      <rect x="23.7" y="40.2" width="52.6" height="45.6" rx="11" fill="#F8F4EA"></rect>
+      <path d="M39 49C39 55 44 58 48.4 61C49.4 61.7 49.4 62.7 48.4 63.4C43.5 66.6 37.5 70 37.5 77.5H62.5C62.5 70 56.5 66.6 51.6 63.4C50.6 62.7 50.6 61.7 51.6 61C56 58 61 55 61 49Z" fill="#0A1A3C"></path>
+      <path d="M38.7 77.5C39.3 72.4 44 70.3 48 68.6C49.4 68 50.6 68 52 68.6C56 70.3 60.7 72.4 61.3 77.5Z" fill="url(#eiSand)"></path>
+      <rect x="36.8" y="45.8" width="26.4" height="3.2" rx="1.6" fill="#0A1A3C"></rect>
+      <rect x="35.2" y="77.2" width="29.6" height="3.2" rx="1.6" fill="#0A1A3C"></rect>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav" aria-label="Primary">
+  <a class="logo" href="#top" aria-label="Earnit home">
+    <svg width="28" height="28" aria-hidden="true"><use href="#ei-logo"></use></svg>
+    Earnit
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#pause">The pause</a>
+    <a href="#how">How it works</a>
+    <a href="#earn">Ways to earn</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-primary btn-sm" href="https://apps.apple.com/app/earnit">Get the app</a>
+  <button class="burger" type="button" aria-label="Open menu"><span></span><span></span></button>
+</header>
+
+<div class="menu" aria-label="Menu">
+  <a href="#pause">The pause</a>
+  <a href="#how">How it works</a>
+  <a href="#earn">Ways to earn</a>
+  <a href="#privacy">Privacy</a>
+  <a href="#faq">FAQ</a>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top" aria-label="Earnit">
+  <div class="hero-media" aria-hidden="true">
+    <video src="../assets/video-hero.mp4" poster="../assets/video-hero-poster.jpg" autoplay="" muted="" loop="" playsinline="" preload="auto"></video>
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge rise" style="animation-delay:.1s"><b>New</b>Pushups now count, right from onboarding</div>
+      <h1>
+        <span class="grad rise" style="animation-delay:.2s">Your phone shouldn't be free.</span>
+        <span class="sky rise" style="animation-delay:.35s">Earn it.</span>
+      </h1>
+      <p class="lead rise" style="animation-delay:.5s">Earnit keeps the apps that eat your day locked until you walk, study or do pushups. Every effort turns into minutes you choose how to spend.</p>
+      <div class="hero-ctas rise" style="animation-delay:.65s">
+        <a class="btn btn-primary" href="https://apps.apple.com/app/earnit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg>
+          Download for iPhone
+        </a>
+        <span class="proof">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+          Health and motion data never leave your iPhone
+        </span>
+      </div>
+    </div>
+
+    <div class="device rise" style="animation-delay:.55s" aria-hidden="true">
+      <div class="float f1"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span><div><b>+5 minutes earned</b><span>1,000 steps from Apple Health</span></div></div>
+      <div class="float f2"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span><div><b>Shield is back on</b><span>Session ended at 10:52 pm</span></div></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="island"></div>
+
+          <div class="scene scene-a">
+            <div class="sc-app">
+              <span class="tile" style="background:#F4B6C8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="5"></rect><circle cx="12" cy="12" r="3.5"></circle></svg></span>
+              <div><div class="sc-k">Social</div><div class="sc-s">Shielded by Earnit</div></div>
+            </div>
+            <div class="breath">
+              <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+              <span class="core"></span>
+              <span class="btxt bt-in">Breathe in</span>
+              <span class="btxt bt-out">Breathe out</span>
+            </div>
+            <div class="sc-title">This one is resting.</div>
+            <div class="sc-body">You have 0 minutes left. A short walk earns you ten.</div>
+            <span class="sc-btn primary">Earn 10 minutes</span>
+            <span class="sc-btn ghost">Close app</span>
+          </div>
+
+          <div class="scene scene-b">
+            <div class="sc-eyebrow"><span>Walking</span><span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>Health</span></div>
+            <div class="earn-num">+<span class="c-min"></span><small>min</small></div>
+            <div class="sc-body">2,000 steps turned into time you can spend.</div>
+            <div class="ticks">
+              <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span><span style="--i:12"></span><span style="--i:13"></span><span style="--i:14"></span><span style="--i:15"></span><span style="--i:16"></span><span style="--i:17"></span><span style="--i:18"></span><span style="--i:19"></span><span style="--i:20"></span><span style="--i:21"></span><span style="--i:22"></span>
+            </div>
+            <div class="row"><span>Steps today</span><b>6,214</b></div>
+            <div class="bar"><i></i></div>
+            <div class="row" style="margin-top:0"><span>Balance</span><b>10 min</b></div>
+          </div>
+
+          <div class="scene scene-c">
+            <div class="sc-eyebrow"><span>Session</span><span class="chip">Social</span></div>
+            <div class="pills"><span>5</span><span class="on">10</span><span>15</span></div>
+            <div class="dial">
+              <svg viewBox="0 0 120 120"><circle class="trk" cx="60" cy="60" r="52"></circle><circle class="prg" cx="60" cy="60" r="52"></circle></svg>
+              <div class="dial-c"><span class="c-left"></span><small>min left</small></div>
+            </div>
+            <div class="sc-title">Social is open.</div>
+            <div class="sc-body">When the time is up, the shield comes back on its own.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cue" aria-hidden="true">Scroll<i></i></div>
+</section>
+
+<!-- THE PAUSE -->
+<section class="sec" id="pause" aria-labelledby="pause-h">
+  <div class="wrap pause-grid">
+    <div class="stage rv" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="breath">
+        <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+        <span class="core"></span>
+        <span class="btxt bt-in">Breathe in</span>
+        <span class="btxt bt-out">Breathe out</span>
+      </div>
+      <div class="orbit">
+        <div class="slot" style="left:50%;top:4%"><div class="pchip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg></span>Take a walk</div></div>
+        <div class="slot" style="left:92%;top:70%"><div class="pchip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h5a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4zM20 5h-5a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h6z"></path></svg></span>Study session</div></div>
+        <div class="slot" style="left:8%;top:70%"><div class="pchip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"></path></svg></span>Pushup set</div></div>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="eyebrow">The pause</div>
+      <h2 class="h2" id="pause-h">A timer asks you to stop. Earnit asks you to trade.</h2>
+      <p class="lead" style="margin-top:24px">When your thumb lands on a locked app, Earnit doesn't nag or argue. It gives you one slow breath and one honest question: what will you do to earn it?</p>
+      <ul class="checks">
+        <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>No snooze button, no fifteen more minutes</li>
+        <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>No guilt, streak shaming or red warning screens</li>
+        <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>The only way through is effort you actually did</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ONE EVENING, TWO WAYS -->
+<section class="sec" id="evening" aria-labelledby="eve-h">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">One evening, two ways</div>
+      <h2 class="h2" id="eve-h">Same evening. Very different endings.</h2>
+      <p class="lead">At 9:41 your thumb lands on the same app. Watch where the next ninety minutes go when opening it is free, and when it has to be earned.</p>
+    </div>
+
+    <div class="eve rv">
+      <div class="eve-row">
+        <div class="eve-head">
+          <div><b><i style="background:#F4B6C8"></i>Without Earnit</b><span>Just one video. Then another.</span></div>
+          <div class="eve-total"><span class="c-bad"></span><small>on social</small></div>
+        </div>
+        <div class="track" aria-hidden="true">
+          <div class="fill">
+            <span class="sg scroll" style="left:9.17%;width:75.83%"><span class="wave"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></span><span class="lbl">Scrolling, one more video at a time</span></span>
+          </div>
+          <i class="playhead"></i>
+        </div>
+      </div>
+
+      <div class="eve-row">
+        <div class="eve-head">
+          <div><b><i style="background:var(--accent-text)"></i>With Earnit</b><span>A walk first. Then ten minutes, on purpose.</span></div>
+          <div class="eve-total"><span class="c-good"></span><small>on social, earned</small></div>
+        </div>
+        <div class="track" aria-hidden="true">
+          <div class="fill">
+            <span class="mk" style="left:9.17%"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+            <span class="sg walk" style="left:12.2%;width:14.47%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg><span class="lbl">2,000 steps</span></span>
+            <span class="sg sess" style="left:27.2%;width:8.93%"><span class="lbl">10 min</span></span>
+            <span class="mk" style="left:37.4%"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+            <span class="sg free" style="left:40%;width:45%"><span class="lbl">The rest of the evening is yours</span></span>
+          </div>
+          <i class="playhead"></i>
+        </div>
+        <ol class="steps">
+          <li><time>9:41</time>The pause asks for a walk</li>
+          <li><time>9:44</time>2,000 steps earn 10 minutes</li>
+          <li><time>10:02</time>Ten minutes on social</li>
+          <li><time>10:12</time>The shield comes back on its own</li>
+        </ol>
+      </div>
+
+      <div class="axis" aria-hidden="true"><span style="left:0">9:30 pm</span><span style="left:25%">10:00</span><span style="left:50%">10:30</span><span style="left:75%">11:00</span><span style="left:100%">11:30 pm</span></div>
+    </div>
+    <p class="eve-note">An example evening at a rate of 1,000 steps for 5 minutes. You choose your own rate.</p>
+  </div>
+</section>
+
+<!-- TAGLINE REVEAL -->
+<section class="sec tag" aria-label="Move first. Scroll later.">
+  <div class="wrap">
+    <p><span class="w k" style="--i:0">Move</span> <span class="w k" style="--i:1">first.</span> <span class="w k" style="--i:2">Scroll</span> <span class="w k" style="--i:3">later.</span> <span class="w" style="--i:4">Every</span> <span class="w" style="--i:5">minute</span> <span class="w" style="--i:6">on</span> <span class="w" style="--i:7">your</span> <span class="w" style="--i:8">screen</span> <span class="w" style="--i:9">is</span> <span class="w" style="--i:10">a</span> <span class="w" style="--i:11">minute</span> <span class="w" style="--i:12">you</span> <span class="w" style="--i:13">earned</span> <span class="w" style="--i:14">on</span> <span class="w" style="--i:15">your</span> <span class="w" style="--i:16">feet,</span> <span class="w" style="--i:17">at</span> <span class="w" style="--i:18">your</span> <span class="w" style="--i:19">desk</span> <span class="w" style="--i:20">or</span> <span class="w" style="--i:21">on</span> <span class="w" style="--i:22">the</span> <span class="w" style="--i:23">floor.</span></p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">How it works</div>
+      <h2 class="h2" id="how-h">Set it up once. Then it runs on its own.</h2>
+    </div>
+    <div class="grid3">
+      <article class="card rv">
+        <div class="vis" aria-hidden="true">
+          <div class="apps">
+            <span class="tile" style="background:#F4B6C8"><i></i><span class="lk" style="--i:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#86A6FF"><i></i></span>
+            <span class="tile" style="background:#F2C46D"><i></i><span class="lk" style="--i:1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#8CBF6B"><i></i></span>
+            <span class="tile" style="background:#B9A6F5"><i></i></span>
+            <span class="tile" style="background:#F08A7E"><i></i><span class="lk" style="--i:2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#6FD3C9"><i></i></span>
+            <span class="tile" style="background:#E7E5E4"><i></i><span class="lk" style="--i:3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#9DB7FF"><i></i><span class="lk" style="--i:4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#F6D6A8"><i></i></span>
+            <span class="tile" style="background:#C8E6A0"><i></i></span>
+            <span class="tile" style="background:#F4B6C8"><i></i><span class="lk" style="--i:5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+          </div>
+        </div>
+        <div class="ctext">
+          <div class="step">01</div>
+          <h3>Pick the apps that eat your day</h3>
+          <p>Choose them once with Apple's Screen Time picker. They stay shielded by default, all day.</p>
+        </div>
+      </article>
+      <article class="card rv">
+        <div class="vis" aria-hidden="true">
+          <div class="vis-col">
+            <div class="meter-top"><b class="c-five"></b><span>minutes</span></div>
+            <div class="meter">
+              <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span><span style="--i:12"></span><span style="--i:13"></span><span style="--i:14"></span><span style="--i:15"></span><span style="--i:16"></span><span style="--i:17"></span><span style="--i:18"></span><span style="--i:19"></span><span style="--i:20"></span><span style="--i:21"></span>
+            </div>
+            <div class="small-note">1,000 steps walked</div>
+          </div>
+        </div>
+        <div class="ctext">
+          <div class="step">02</div>
+          <h3>Earn minutes by doing something</h3>
+          <p>Steps from Apple Health, a focused study session or a set of pushups counted on device.</p>
+        </div>
+      </article>
+      <article class="card rv">
+        <div class="vis" aria-hidden="true">
+          <div class="vis-col">
+            <div class="pills" style="background:#181818"><span>5</span><span class="on">10</span><span>15</span></div>
+            <div class="mini-dial">
+              <svg viewBox="0 0 120 120"><circle class="trk" cx="60" cy="60" r="52"></circle><circle class="prg" cx="60" cy="60" r="52"></circle></svg>
+              <div class="ml">
+                <span class="unl"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 7.5-2"></path></svg>Open</span>
+                <span class="rel"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Shielded</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ctext">
+          <div class="step">03</div>
+          <h3>Spend them on purpose</h3>
+          <p>Start a 5, 10 or 15 minute session. When it ends, the shield returns without you lifting a finger.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WAYS TO EARN -->
+<section class="sec" id="earn" aria-labelledby="earn-h">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">Ways to earn</div>
+      <h2 class="h2" id="earn-h">Three honest ways to earn it.</h2>
+      <p class="lead">Pick whatever fits your day. Every one of them turns real effort into real minutes.</p>
+    </div>
+    <div class="bento">
+      <article class="bcard rv">
+        <div class="bimg" aria-hidden="true"><img src="../assets/earn-path.jpg" alt=""></div>
+        <svg class="walk-path" viewBox="0 0 560 480" preserveAspectRatio="none" aria-hidden="true"><path d="M40 420 C 160 380, 140 300, 260 290 S 420 250, 430 170 S 500 80, 540 40"></path></svg>
+        <div class="tagrow" style="position:relative"><span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F4B6C8"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>Apple Health</span><span class="pill">1,000 steps = 5 min</span></div>
+        <h3 style="position:relative">Walk to unlock</h3>
+        <p style="position:relative;color:var(--soft)">Steps come straight from Apple Health. Set a rate that suits you and every walk quietly refills your balance.</p>
+      </article>
+      <article class="bcard rv">
+        <div class="bvis" aria-hidden="true">
+          <div class="study-dial">
+            <svg viewBox="0 0 220 220"><defs><linearGradient id="sweep" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4B6C8"></stop><stop offset="1" stop-color="#86A6FF"></stop></linearGradient></defs><circle class="trk" cx="110" cy="110" r="95"></circle><circle class="prg" cx="110" cy="110" r="95"></circle></svg>
+            <div class="mid"><span class="c-st"></span><small>min focused</small></div>
+          </div>
+        </div>
+        <h3>Study to unlock</h3>
+        <p>Run a focused session and bank the time you put in. Built for students who need the phone out of reach until the work is done.</p>
+      </article>
+      <article class="bcard rv">
+        <div class="bvis" aria-hidden="true">
+          <div class="cam">
+            <span class="cn c1"></span><span class="cn c2"></span><span class="cn c3"></span><span class="cn c4"></span>
+            <div class="rec"><i></i>On device</div>
+            <div class="reps"><span class="c-reps"></span><small>reps</small></div>
+            <svg class="fig" viewBox="0 0 240 110">
+              <line class="gnd" x1="0" y1="104" x2="240" y2="104"></line>
+              <polyline points="70,104 71,83 72,62">
+                <animate attributeName="points" values="70,104 71,83 72,62;70,104 89,98 68.6,89.3;70,104 71,83 72,62" keyTimes="0;0.5;1" dur="1.6s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"></animate>
+              </polyline>
+              <g>
+                <animateTransform attributeName="transform" type="rotate" values="0 200 92;-12 200 92;0 200 92" keyTimes="0;0.5;1" dur="1.6s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"></animateTransform>
+                <line x1="200" y1="92" x2="72" y2="62"></line>
+                <circle class="hd" cx="54" cy="55" r="11"></circle>
+                <circle class="jt" cx="72" cy="62" r="4"></circle>
+              </g>
+              <circle class="jt" cx="200" cy="92" r="4"></circle>
+              <circle class="jt" cx="70" cy="104" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+        <h3>Pushups to unlock</h3>
+        <p>The camera counts every rep on your iPhone. No wearable needed, and the video is never saved.</p>
+      </article>
+      <article class="bcard rv">
+        <div class="bvis" aria-hidden="true">
+          <div class="vis-col">
+            <div class="seg"><span class="knob"></span><span><b>5</b> min</span><span><b>10</b> min</span><span><b>15</b> min</span></div>
+            <div class="shield-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Shield returns when the session ends</div>
+          </div>
+        </div>
+        <h3>Spend it deliberately</h3>
+        <p>Minutes don't leak away in the background. You open a session on purpose, and you know exactly when it ends.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<section class="sec" id="progress" aria-labelledby="prog-h">
+  <div class="wrap prog-grid">
+    <div class="rv">
+      <div class="eyebrow">See what changes</div>
+      <h2 class="h2" id="prog-h">Screen time goes down. Effort goes up.</h2>
+      <p class="lead" style="margin-top:24px">A 30 day journey, a daily ledger and monthly totals show the trade adding up. Calm numbers, no lectures.</p>
+    </div>
+    <div class="panel rv" aria-label="Example of the Earnit progress view">
+      <div class="panel-in">
+        <div class="ph"><span>30 day journey</span><b>Day 18</b></div>
+        <div class="dots" aria-hidden="true">
+          <i class="d" style="--i:0"></i><i class="d" style="--i:1"></i><i class="d" style="--i:2"></i><i class="d" style="--i:3"></i><i class="d" style="--i:4"></i><i class="d" style="--i:5"></i><i class="d" style="--i:6"></i><i class="d" style="--i:7"></i><i class="d" style="--i:8"></i><i class="d" style="--i:9"></i><i class="d" style="--i:10"></i><i class="d" style="--i:11"></i><i class="d" style="--i:12"></i><i class="d" style="--i:13"></i><i class="d" style="--i:14"></i><i class="d" style="--i:15"></i><i class="d" style="--i:16"></i><i class="d t" style="--i:17"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <div class="two">
+        <div class="panel-in">
+          <div class="ph"><span>Today</span></div>
+          <div class="ledger">
+            <div class="lrow"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg></span><div><b>Walk</b><span>2,000 steps</span></div><em class="plus">+10 min</em></div>
+            <div class="lrow"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 7.5-2"></path></svg></span><div><b>Session</b><span>Social</span></div><em class="minus">−10 min</em></div>
+            <div class="lrow"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg></span><div><b>Walk</b><span>1,000 steps</span></div><em class="plus">+5 min</em></div>
+          </div>
+        </div>
+        <div class="panel-in">
+          <div class="ph"><span>This month</span></div>
+          <div class="bars" aria-hidden="true">
+            <div><i class="s" style="height:92%;animation-delay:0s"></i><i class="e" style="height:28%;animation-delay:.1s"></i></div>
+            <div><i class="s" style="height:74%;animation-delay:.2s"></i><i class="e" style="height:46%;animation-delay:.3s"></i></div>
+            <div><i class="s" style="height:58%;animation-delay:.4s"></i><i class="e" style="height:63%;animation-delay:.5s"></i></div>
+            <div><i class="s" style="height:41%;animation-delay:.6s"></i><i class="e" style="height:81%;animation-delay:.7s"></i></div>
+          </div>
+          <div class="legend"><span><i style="background:#313131"></i>Screen time</span><span><i style="background:var(--accent)"></i>Effort</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="sec" id="privacy" aria-labelledby="priv-h">
+  <div class="wrap center" style="text-align:center">
+    <div class="rv">
+      <div class="shield-orb" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+      <div class="eyebrow">Built private</div>
+      <h2 class="h2 center" id="priv-h" style="max-width:720px">What you do stays on your iPhone.</h2>
+      <p class="lead center" style="margin-top:24px;max-width:600px">Earnit runs on Apple's Screen Time framework, so it can block apps without ever seeing which apps you picked.</p>
+    </div>
+    <div class="priv">
+      <article class="pv rv">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg></span>
+        <h3>Health data stays local</h3>
+        <p>Steps and motion are read on device. They never travel to a server.</p>
+      </article>
+      <article class="pv rv">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"></path><path d="M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.6 6.6C4.3 8.1 3 12 3 12s4 6 9 6a9 9 0 0 0 4.1-1"></path></svg></span>
+        <h3>Camera video is never saved</h3>
+        <p>Pushups are counted frame by frame on your iPhone, then the frames are gone.</p>
+      </article>
+      <article class="pv rv">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+        <h3>Hidden even from us</h3>
+        <p>iOS keeps the list of apps you blocked private, even from Earnit.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="head center rv" style="text-align:center">
+      <div class="eyebrow">Questions</div>
+      <h2 class="h2" id="faq-h">Good questions, straight answers.</h2>
+    </div>
+    <div class="faq">
+      <details class="rv" open="">
+        <summary>How does Earnit block apps?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>It uses Apple's Screen Time framework. The apps you choose stay shielded until you start a session with minutes you earned. When the session ends, the shield comes back automatically.</p>
+      </details>
+      <details class="rv">
+        <summary>What counts as effort?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>Three things today: steps from Apple Health, focused study sessions, and pushups counted by your iPhone camera.</p>
+      </details>
+      <details class="rv">
+        <summary>How many minutes do I earn?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>You set the rate. A common starting point is 1,000 steps for 5 minutes, and you can make it stricter or gentler whenever you like.</p>
+      </details>
+      <details class="rv">
+        <summary>Can I just skip the block?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>There is no snooze and no one more minute button. Earnit adds honest friction rather than a cage, so the way through is always a walk, a study session or a few reps.</p>
+      </details>
+      <details class="rv">
+        <summary>Is the pushup camera recording me?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>No. Reps are counted on device and the video is never saved or uploaded.</p>
+      </details>
+      <details class="rv">
+        <summary>What does it cost?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>App blocking and time earning are part of an Earnit subscription. You'll see the current price in the App Store, and you can cancel anytime in your Apple Account settings.</p>
+      </details>
+      <details class="rv">
+        <summary>Which devices does it support?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>Earnit is built for iPhone.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" aria-labelledby="final-h">
+  <div class="final-media" aria-hidden="true">
+    <video src="../assets/video-hero.mp4" poster="../assets/video-hero-poster.jpg" autoplay="" muted="" loop="" playsinline="" preload="metadata"></video>
+  </div>
+  <div class="final-scrim" aria-hidden="true"></div>
+  <div class="wrap rv" style="position:relative">
+    <span class="app-icon"><svg width="112" height="112" role="img" aria-label="Earnit app icon"><use href="#ei-logo"></use></svg></span>
+    <h2 id="final-h"><span class="grad">Move first.</span><span class="sky">Scroll later.</span></h2>
+    <p class="lead">Your phone shouldn't be free. Give it a reason, and give yourself the evening back.</p>
+    <a class="btn btn-primary" href="https://apps.apple.com/app/earnit">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg>
+      Download for iPhone
+    </a>
+    <p class="fine">Subscription required. Cancel anytime in your Apple Account.</p>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:16px">
+      <span class="logo"><svg width="28" height="28" aria-hidden="true"><use href="#ei-logo"></use></svg>Earnit</span>
+      <small>© 2026 Earnit</small>
+    </div>
+    <nav aria-label="Legal">
+      <a href="../privacy.html">Privacy</a>
+      <a href="../terms.html">Terms</a>
+      <a href="../support/">Support</a>
+    </nav>
+  </div>
+</footer>
+</div>
+
+<script>
+(() => {
+  const root = document.querySelector('.ei');
+  const burger = document.querySelector('.burger');
+  const setMenu = (open) => {
+    root.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  burger.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+  document.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
+  // Videos only play while on screen.
+  const vio = new IntersectionObserver((entries) => entries.forEach((en) => {
+    const v = en.target;
+    if (en.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); } else v.pause();
+  }), { threshold: 0.05 });
+  document.querySelectorAll('video').forEach((v) => { v.muted = true; vio.observe(v); });
+
+  // Pause looping CSS motion in sections that are off screen.
+  const sio = new IntersectionObserver((entries) => entries.forEach((en) =>
+    en.target.classList.toggle('paused', !en.isIntersecting)), { rootMargin: '200px' });
+  document.querySelectorAll('main > section').forEach((s) => sio.observe(s));
+
+  if (CSS.supports('animation-timeline: view()')) return;
+  document.documentElement.classList.add('no-sda');
+
+  const rio = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); }
+  }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((el) => rio.observe(el));
+
+  // Tagline: words light up one at a time as the block crosses the viewport.
+  const tag = document.querySelector('.tag p');
+  const words = [...tag.querySelectorAll('.w')];
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const r = tag.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
+    const lit = Math.round(progress * words.length);
+    words.forEach((w, i) => w.classList.toggle('on', i < lit));
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>
