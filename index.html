@@ -1,1538 +1,988 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Earnit — Earn your screen time</title>
-<meta name="description" data-i18n-content="meta.description" content="Earnit turns your daily steps into screen time. Walk 1,000 steps, earn 5 minutes, spend them on the apps you choose. Free on iPhone." />
-<link rel="canonical" href="https://earnit.app/" />
-<meta name="theme-color" content="#070E0D" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070E0D'/%3E%3Cg fill='%232E5CE6'%3E%3Crect x='7' y='18' width='3' height='7' rx='1.5'/%3E%3Crect x='14.5' y='12' width='3' height='13' rx='1.5'/%3E%3Crect x='22' y='7' width='3' height='18' rx='1.5'/%3E%3C/g%3E%3C/svg%3E" />
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070E0D'/%3E%3Cg fill='%232E5CE6'%3E%3Crect x='7' y='18' width='3' height='7' rx='1.5'/%3E%3Crect x='14.5' y='12' width='3' height='13' rx='1.5'/%3E%3Crect x='22' y='7' width='3' height='18' rx='1.5'/%3E%3C/g%3E%3C/svg%3E" />
-
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Earnit" />
-<meta property="og:url" content="https://earnit.app/" />
-<meta property="og:title" data-i18n-content="meta.title" content="Earnit — Earn your screen time" />
-<meta property="og:description" data-i18n-content="meta.socialDescription" content="Walk 1,000 steps, earn 5 minutes. Spend them on the apps you choose." />
-<meta property="og:image" content="https://earnit.app/assets/hero-dawn.jpg" />
-<meta property="og:image:alt" data-i18n-content="meta.imageAlt" content="A walker on a ridge at dawn, phone small in hand" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" data-i18n-content="meta.title" content="Earnit — Earn your screen time" />
-<meta name="twitter:description" data-i18n-content="meta.socialDescription" content="Walk 1,000 steps, earn 5 minutes. Spend them on the apps you choose." />
-<meta name="twitter:image" content="https://earnit.app/assets/hero-dawn.jpg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<script>document.documentElement.className += ' js';</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Earnit: earn your screen time</title>
+<meta name="description" content="Earnit keeps your most distracting apps locked until you walk, study or do pushups. Every effort turns into minutes you choose how to spend.">
+<link rel="canonical" href="https://www.earnitscreen.com/">
+<meta name="theme-color" content="#000000">
+<meta property="og:url" content="https://www.earnitscreen.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Earnit">
+<meta property="og:title" content="Earnit: your phone shouldn't be free. Earn it.">
+<meta property="og:description" content="Walk, study or do pushups to unlock the apps that eat your day.">
+<meta property="og:image" content="https://www.earnitscreen.com/assets/video-hero-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/assets/earnit-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="/assets/video-hero-poster.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
-:root {
-  /* Earnit design v6 — App/DesignSystem/NightTheme.swift */
-  --ground: #070E0D;
-  --ground-deep: #05100C;
-  --panel: #0B1712;
-  --forest-lift: #1B2A24;
-  --cobalt: #2E5CE6;
-  --cobalt-lift: #4674FF;
-  --cobalt-text: #6E97FF;
-  --cobalt-wash: rgba(46, 92, 230, 0.16);
-  --moss: #8CBF6B;
-  --text: #ECF3EE;
-  --text-soft: #B9CCC2;
-  --text-muted: #93A79D;
-  --text-faint: #61756B;
-  --text-ghost: #4E6159;
-  --line: rgba(236, 243, 238, 0.07);
-  --edge: rgba(236, 243, 238, 0.09);
-  --radius: 18px;
-  --sheet-radius: 28px;
-  --font-display: 'Instrument Serif', 'Times New Roman', Times, serif;
-  --font-body: Figtree, system-ui, -apple-system, sans-serif;
+@property --min { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --left { syntax: '<integer>'; inherits: false; initial-value: 10; }
+@property --five { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --reps { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --studied { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --bad { syntax: '<integer>'; inherits: false; initial-value: 0; }
+@property --good { syntax: '<integer>'; inherits: false; initial-value: 0; }
+body{margin:0;background:#000}
+a{color:inherit}a:hover{color:#fff}
+.ei{--accent:#2E5CE6;--accent-text:#86A6FF;--dawn:#F4B6C8;--line:rgba(255,255,255,.08);--text:#F5F5F4;--soft:#D4D4D4;--muted:#A3A3A3;--ease:cubic-bezier(.32,.72,0,1);--sine:cubic-bezier(.45,0,.55,1);background:#000;color:var(--text);font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip;position:relative}
+.ei *{box-sizing:border-box}
+.ei h1,.ei h2,.ei h3,.ei p{margin:0}
+.ei h1,.ei h2,.ei h3{text-wrap:balance;font-weight:600;letter-spacing:-.025em}
+.ei p{text-wrap:pretty}
+.ei a{text-decoration:none}
+.ei :focus-visible{outline:2px solid var(--accent-text);outline-offset:4px;border-radius:12px}
+.ei svg{display:block;flex:none}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-text)}
+.ei .h2{font-size:48px;line-height:1.05;margin-top:16px}
+.lead{font-size:18px;line-height:28px;color:var(--muted)}
+.grad{background:linear-gradient(90deg,#fff 0%,#9B9B9B 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sky{background:linear-gradient(90deg,#F4B6C8 0%,#B9A6F5 45%,#86A6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.skip{position:absolute;left:16px;top:16px;z-index:100;padding:12px 24px;border-radius:9999px;background:#181818;font-size:14px;font-weight:600;transform:translateY(-200%);transition:transform .7s var(--ease)}
+.skip:focus-visible{transform:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:9999px;font-size:16px;line-height:24px;font-weight:600;transition:transform .7s var(--ease),filter .7s var(--ease),box-shadow .7s var(--ease),background-color .7s var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 12px 40px -12px var(--accent)}
+.btn-primary:hover{color:#fff;transform:translateY(-2px);filter:brightness(1.12);box-shadow:0 20px 48px -12px var(--accent)}
+.btn-sm{min-height:44px;padding:8px 16px;font-size:14px;line-height:20px}
 
-  /* motion — one curve, real mass */
-  --ease: cubic-bezier(0.32, 0.72, 0, 1);
-  --dur: 0.7s;
-  --dur-micro: 0.25s;
+/* nav: floating glass island */
+.nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:24px;width:max-content;padding:6px 6px 6px 16px;border-radius:9999px;background:rgba(24,24,24,.55);border:1px solid rgba(255,255,255,.1);-webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);animation:navin 1.2s var(--ease) .2s both}
+@keyframes navin{from{opacity:0;transform:translate(-50%,-24px)}to{opacity:1;transform:translate(-50%,0)}}
+.logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:700;letter-spacing:-.01em;color:#fff}
+.nav-links{display:flex;gap:4px}
+.nav-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:9999px;font-size:14px;font-weight:500;color:var(--soft);transition:background-color .7s var(--ease),color .7s var(--ease)}
+.nav-links a:hover{background:rgba(255,255,255,.08);color:#fff}
+.burger{display:none;position:relative;width:44px;height:44px;border-radius:9999px;border:0;background:rgba(255,255,255,.08);cursor:pointer;color:#fff}
+.burger span{position:absolute;left:14px;width:16px;height:2px;border-radius:2px;background:currentColor;transition:transform .7s var(--ease)}
+.burger span:nth-child(1){top:18px}.burger span:nth-child(2){top:24px}
+.menu-open .burger span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.menu-open .burger span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:96px 24px;background:rgba(0,0,0,.8);-webkit-backdrop-filter:blur(64px);backdrop-filter:blur(64px);opacity:0;visibility:hidden;transition:opacity .7s var(--ease),visibility .7s var(--ease)}
+.menu-open .menu{opacity:1;visibility:visible}
+.menu a{font-size:36px;line-height:40px;font-weight:600;padding:8px 0;opacity:0;transform:translateY(48px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.menu-open .menu a{opacity:1;transform:none}
+.menu a:nth-child(2){transition-delay:.1s}.menu a:nth-child(3){transition-delay:.15s}.menu a:nth-child(4){transition-delay:.2s}.menu a:nth-child(5){transition-delay:.25s}
 
-  /* spacing scale */
-  --s-25: 2px;  --s-50: 4px;  --s-75: 8px;  --s-100: 12px; --s-200: 16px;
-  --s-300: 24px; --s-400: 32px; --s-500: 40px; --s-600: 48px;
-  --s-700: 64px; --s-800: 80px; --s-900: 96px;
-}
+/* hero */
+.hero{position:relative;min-height:900px;display:flex;align-items:center;overflow:hidden;padding:96px 0 96px}
+.hero-media{position:absolute;inset:0}
+.hero-media video,.final-media video{width:100%;height:100%;object-fit:cover;display:block;animation:kb 26s var(--sine) infinite alternate}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.14) translate(-1.5%,1%)}}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.38) 42%,rgba(0,0,0,0) 72%),linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,0) 24%,rgba(0,0,0,0) 62%,#000 100%)}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center}
+.hero h1{font-size:72px;line-height:1;max-width:680px;margin-top:24px}
+.hero h1 span{display:block;padding-bottom:4px}
+.hero .lead{max-width:560px;margin-top:24px;font-size:20px;line-height:28px;color:#E5E5E5}
+.hero-ctas{margin-top:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.proof{display:flex;gap:8px;align-items:center;font-size:14px;line-height:20px;color:var(--soft)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:9999px;background:rgba(24,24,24,.5);border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);font-size:14px;line-height:20px;color:var(--soft)}
+.badge b{padding:2px 8px;border-radius:9999px;background:var(--accent);color:#fff;font-size:12px;line-height:16px;font-weight:600}
+.rise{animation:rise 1.4s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(48px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+.cue{position:absolute;left:50%;bottom:32px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.cue i{position:relative;width:1px;height:48px;background:rgba(255,255,255,.16);overflow:hidden}
+.cue i::after{content:"";position:absolute;left:0;top:-16px;width:1px;height:16px;background:#fff;animation:cue 2.4s var(--ease) infinite}
+@keyframes cue{to{transform:translateY(64px)}}
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--ground);
-  color: var(--text);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a { color: var(--text); text-decoration: none; transition: color var(--dur-micro) var(--ease); }
-a:hover { color: rgba(236, 243, 238, 0.7); }
-h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
-p { margin: 0; text-wrap: pretty; }
-button { font-family: inherit; }
+/* device */
+.device{position:relative;display:flex;justify-content:center;padding:24px 0}
+.phone{position:relative;width:300px;height:620px;flex:none;border-radius:52px;padding:10px;background:#0A0A0A;border:1px solid rgba(255,255,255,.14);box-shadow:0 48px 120px -24px rgba(46,92,230,.55),0 24px 48px -12px rgba(0,0,0,.8),inset 0 0 0 2px #000}
+.screen{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#070E0D;color:#ECF3EE}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:9999px;background:#000;z-index:3}
+.scene{position:absolute;inset:0;padding:64px 20px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;animation:scene 15s var(--ease) infinite both}
+.scene-b{animation-delay:-10s}.scene-c{animation-delay:-5s}
+@keyframes scene{0%{opacity:0;transform:translateY(16px) scale(.98);filter:blur(8px)}5%{opacity:1;transform:none;filter:blur(0)}30%{opacity:1;transform:none;filter:blur(0)}34%{opacity:0;transform:translateY(-16px) scale(.98);filter:blur(8px)}100%{opacity:0;transform:translateY(16px);filter:blur(8px)}}
+.sc-app{display:flex;align-items:center;gap:12px;align-self:stretch;padding:8px;border-radius:16px;background:#0B1712;border:1px solid rgba(236,243,238,.08);text-align:left}
+.tile{position:relative;display:grid;place-items:center;width:32px;height:32px;border-radius:8px;color:rgba(0,0,0,.55)}
+.sc-k{font-size:14px;line-height:20px;font-weight:600}
+.sc-s{font-size:12px;line-height:16px;color:#93A79D}
+.sc-title{font-size:20px;line-height:28px;font-weight:600}
+.sc-body{font-size:14px;line-height:20px;color:#93A79D;max-width:220px}
+.sc-btn{align-self:stretch;padding:12px;border-radius:9999px;font-size:14px;line-height:20px;font-weight:600}
+.sc-btn.primary{margin-top:auto;background:var(--accent);color:#fff}
+.sc-btn.ghost{color:#B9CCC2;border:1px solid rgba(236,243,238,.12)}
+.sc-eyebrow{align-self:stretch;display:flex;justify-content:space-between;align-items:center;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#93A79D}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:9999px;background:rgba(46,92,230,.16);color:#86A6FF;font-size:12px;line-height:16px;font-weight:600;letter-spacing:0;text-transform:none}
 
-/* one visible focus ring, everywhere */
-:focus-visible {
-  outline: 2px solid var(--cobalt-lift);
-  outline-offset: 3px;
-}
+/* breathing pause */
+.breath{position:relative;display:grid;place-items:center;width:180px;height:180px;margin:4px 0}
+.breath .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(134,166,255,.4);animation:ripple 8s var(--ease) infinite}
+.breath .ring:nth-child(2){animation-delay:-2s}.breath .ring:nth-child(3){animation-delay:-4s}.breath .ring:nth-child(4){animation-delay:-6s}
+@keyframes ripple{0%{transform:scale(.5);opacity:0}25%{opacity:1}100%{transform:scale(1.2);opacity:0}}
+.core{width:96px;height:96px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#FCE3EB 0%,#F4B6C8 22%,#8EA6FF 62%,#2E5CE6 100%);box-shadow:0 0 64px rgba(134,166,255,.55),0 0 24px rgba(244,182,200,.35);animation:breathe 8s var(--sine) infinite}
+@keyframes breathe{0%,100%{transform:scale(.7)}50%{transform:scale(1)}}
+.btxt{position:absolute;bottom:-8px;left:0;right:0;text-align:center;font-size:12px;line-height:16px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B9CCC2}
+.bt-in{animation:btin 8s var(--sine) infinite}.bt-out{animation:btout 8s var(--sine) infinite}
+@keyframes btin{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+@keyframes btout{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
 
-.skip-link {
-  position: absolute;
-  left: var(--s-200);
-  top: var(--s-200);
-  z-index: 100;
-  padding: var(--s-100) var(--s-300);
-  border-radius: 999px;
-  background: var(--panel);
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 600;
-  transform: translateY(-200%);
-  transition: transform var(--dur) var(--ease);
-}
-.skip-link:focus-visible { transform: translateY(0); }
+/* earning scene */
+.earn-num{display:flex;align-items:baseline;gap:4px;margin-top:24px;font-size:72px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.earn-num small{font-size:20px;line-height:28px;color:#93A79D;font-weight:500;letter-spacing:0;margin-left:4px}
+.c-min{counter-reset:m var(--min);animation:cmin 15s var(--ease) infinite;animation-delay:-10s}
+.c-min::after{content:counter(m)}
+@keyframes cmin{0%,6%{--min:0}26%,100%{--min:10}}
+.ticks{align-self:stretch;display:flex;justify-content:center;align-items:flex-end;gap:5px;height:72px;margin-top:8px}
+.ticks span{width:6px;border-radius:9999px;background:rgba(236,243,238,.1);height:calc(24px + var(--i) * 2.4px);animation:tick 15s var(--ease) infinite;animation-delay:calc(-10s + var(--i) * .16s)}
+@keyframes tick{0%,6%{background:rgba(236,243,238,.1)}9%,30%{background:#86A6FF}34%,100%{background:rgba(236,243,238,.1)}}
+.row{align-self:stretch;display:flex;justify-content:space-between;font-size:14px;line-height:20px;color:#93A79D;margin-top:auto}
+.row b{color:#ECF3EE;font-weight:600;font-variant-numeric:tabular-nums}
+.bar{align-self:stretch;height:8px;border-radius:9999px;background:rgba(236,243,238,.08);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:inherit;background:var(--accent);transform-origin:left;animation:bar 15s var(--ease) infinite -10s}
+@keyframes bar{0%,6%{transform:scaleX(.05)}26%,100%{transform:scaleX(1)}}
 
-.serif { font-family: var(--font-display); font-weight: 400; }
-.serif-i { font-family: var(--font-display); font-weight: 400; font-style: italic; }
+/* session scene */
+.pills{display:flex;gap:4px;padding:4px;border-radius:9999px;background:#0B1712;border:1px solid rgba(236,243,238,.08)}
+.pills span{padding:8px 16px;border-radius:9999px;font-size:14px;line-height:20px;font-weight:600;color:#93A79D}
+.pills .on{background:var(--accent);color:#fff}
+.dial{position:relative;width:196px;height:196px;margin:8px 0}
+.dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.dial .trk{fill:none;stroke:rgba(236,243,238,.08);stroke-width:8}
+.dial .prg{fill:none;stroke:#86A6FF;stroke-width:8;stroke-linecap:round;stroke-dasharray:327;animation:drain 15s linear infinite -5s}
+@keyframes drain{0%,5%{stroke-dashoffset:0}30%,100%{stroke-dashoffset:229}}
+.dial-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.c-left{counter-reset:l var(--left);font-size:48px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;animation:cleft 15s linear infinite -5s}
+.c-left::after{content:counter(l)}
+@keyframes cleft{0%,5%{--left:10}30%,100%{--left:3}}
+.dial-c small{font-size:12px;line-height:16px;color:#93A79D;margin-top:4px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
 
-.eyebrow {
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 600;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
+/* floating notifications around the phone */
+.float{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;padding:12px 16px 12px 12px;border-radius:16px;background:rgba(24,24,24,.62);border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);box-shadow:0 24px 48px -16px rgba(0,0,0,.7);font-size:14px;line-height:20px;text-align:left;animation:bob 7s var(--sine) infinite}
+.float b{display:block;font-weight:600;color:#fff}
+.float span{color:var(--muted);font-size:12px;line-height:16px}
+.float .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:var(--accent);color:#fff}
+.f1{left:-40px;top:3%}.f2{right:-40px;bottom:3%;animation-delay:-3.5s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
-/* ---- liquid glass ---- */
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.01);
-  background-blend-mode: luminosity;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
-  color: var(--text);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: inherit;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-}
-.liquid-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.4px;
-  background: linear-gradient(180deg,
-    rgba(255,255,255,0.45) 0%,
-    rgba(255,255,255,0.15) 20%,
-    rgba(255,255,255,0) 40%,
-    rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.15) 80%,
-    rgba(255,255,255,0.45) 100%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
-}
-.liquid-glass:hover { transform: scale(1.03); }
-.liquid-glass:active { transform: scale(0.98); }
+/* sections */
+.sec{position:relative;padding:96px 0}
+.head{max-width:720px}
+.head .lead{margin-top:24px}
+.ei .center{text-align:center;margin-left:auto;margin-right:auto}
 
-/* the single primary action — cobalt is the app's one accent, and it earns it here */
-.btn-primary {
-  border-radius: 999px;
-  border: none;
-  background: var(--cobalt);
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: inherit;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.22),
-    0 16px 32px -12px rgba(46, 92, 230, 0.55);
-  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.btn-primary:hover { background: var(--cobalt-lift); transform: scale(1.03); }
-.btn-primary:active { transform: scale(0.98); }
+/* the pause */
+.pause-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.stage{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;margin:0 auto;display:grid;place-items:center}
+.stage .breath{width:78%;height:78%}
+.stage .core{width:44%;height:44%}
+.stage .btxt{bottom:2%;font-size:14px;line-height:20px;color:var(--soft)}
+.halo{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle,rgba(46,92,230,.28) 0%,rgba(46,92,230,0) 70%);filter:blur(24px)}
+.orbit{position:absolute;inset:0;animation:spin 60s linear infinite}
+.slot{position:absolute;transform:translate(-50%,-50%)}
+.slot .pchip{animation:spin 60s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pchip{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 8px;border-radius:9999px;background:rgba(24,24,24,.8);border:1px solid rgba(255,255,255,.1);font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.pchip .ic{display:grid;place-items:center;width:28px;height:28px;border-radius:9999px;background:rgba(46,92,230,.2);color:var(--accent-text)}
+.checks{display:flex;flex-direction:column;gap:16px;margin-top:40px;padding:0;list-style:none}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:24px;color:var(--soft)}
+.checks .ic{display:grid;place-items:center;width:24px;height:24px;border-radius:9999px;background:rgba(46,92,230,.2);color:var(--accent-text);flex:none}
 
-.btn-ghost {
-  border-radius: 999px;
-  border: 1px solid rgba(236, 243, 238, 0.38);
-  color: var(--text);
-  cursor: pointer;
-  background: transparent;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: inherit;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color var(--dur-micro) var(--ease), border-color var(--dur-micro) var(--ease), transform var(--dur) var(--ease);
-}
-.btn-ghost:hover { border-color: rgba(236, 243, 238, 0.65); background: rgba(236, 243, 238, 0.08); }
-.btn-ghost:active { transform: scale(0.98); }
+/* one evening, two ways: a timeline that plays itself */
+.eve{margin-top:64px;padding:32px;border-radius:24px;background:#181818;border:1px solid var(--line)}
+.eve-row+.eve-row{margin-top:48px}
+.eve-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:16px}
+.eve-head b{display:flex;align-items:center;gap:8px;font-size:20px;line-height:28px;font-weight:600}
+.eve-head b i{width:8px;height:8px;border-radius:50%}
+.eve-head b+span{display:block;margin-top:4px;font-size:14px;line-height:20px;color:var(--muted)}
+.eve-total{text-align:right;flex:none}
+.eve-total small{display:block;margin-top:8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.c-bad,.c-good{font-size:48px;line-height:1;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.c-bad{counter-reset:b var(--bad);color:var(--dawn);animation:cbad 14s linear infinite}
+.c-bad::after{content:counter(b) " min"}
+.c-good{counter-reset:g var(--good);color:var(--accent-text);animation:cgood 14s linear infinite}
+.c-good::after{content:counter(g) " min"}
+@keyframes cbad{0%,7.3%{--bad:0}68%,96%{--bad:91}100%{--bad:0}}
+@keyframes cgood{0%,21.3%{--good:0}29.3%,96%{--good:10}100%{--good:0}}
+.track{position:relative;height:64px;border-radius:16px;background:#000;border:1px solid var(--line)}
+.fill{position:absolute;inset:0;animation:wipe 14s linear infinite}
+@keyframes wipe{0%{clip-path:inset(0 100% 0 0)}80%,96%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 100% 0 0)}}
+.sg{position:absolute;top:8px;bottom:8px;display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:8px;font-size:14px;line-height:20px;font-weight:600;white-space:nowrap;overflow:hidden}
+.sg.scroll{background:rgba(244,182,200,.14);border:1px solid rgba(244,182,200,.36);color:#F4B6C8}
+.sg.walk{background:rgba(140,191,107,.16);border:1px solid rgba(140,191,107,.42);color:#B5DB98}
+.sg.sess{background:var(--accent);color:#fff;justify-content:center}
+.sg.free{border:1px dashed rgba(255,255,255,.22);color:var(--muted)}
+.wave{display:flex;align-items:center;gap:3px;height:20px}
+.wave i{width:3px;border-radius:2px;background:currentColor;opacity:.6;animation:wav 1.2s var(--sine) infinite;animation-delay:calc(var(--i) * -.15s)}
+@keyframes wav{0%,100%{height:4px}50%{height:16px}}
+.mk{position:absolute;top:50%;z-index:2;display:grid;place-items:center;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:9999px;background:#fff;color:#000;box-shadow:0 0 0 4px #000}
+.playhead{position:absolute;top:-8px;bottom:-8px;left:0;z-index:3;width:2px;margin-left:-1px;border-radius:2px;background:#fff;box-shadow:0 0 16px rgba(255,255,255,.7);animation:play 14s linear infinite}
+@keyframes play{0%{left:0;opacity:1}80%{left:100%;opacity:1}86%,100%{left:100%;opacity:0}}
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding:0;list-style:none}
+.steps li{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:9999px;background:#000;border:1px solid var(--line);font-size:14px;line-height:20px;color:var(--soft)}
+.steps time{padding:2px 8px;border-radius:9999px;background:#272727;font-size:12px;line-height:16px;font-weight:600;color:#fff;font-variant-numeric:tabular-nums}
+.axis{position:relative;height:16px;margin-top:24px;font-size:12px;line-height:16px;color:var(--muted);font-variant-numeric:tabular-nums}
+.axis span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.axis span:first-child{transform:none}.axis span:last-child{transform:translateX(-100%)}
+.eve-note{margin-top:24px;font-size:14px;line-height:20px;color:var(--muted)}
 
-/* ---- animations ---- */
-@keyframes fade-rise {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
-.animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
-.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-rise, .animate-fade-rise-delay, .animate-fade-rise-delay-2 { animation: none; }
-  .js .reveal { opacity: 1; transform: none; filter: none; transition: none; }
-  .menu-panel a { transition: opacity 0.01ms; }
-  .liquid-glass, .liquid-glass:hover, .liquid-glass:active,
-  .btn-primary, .btn-primary:hover, .btn-primary:active,
-  .btn-ghost, .btn-ghost:active { transition: none; transform: none; }
-  html { scroll-behavior: auto; }
-}
+/* tagline reveal */
+.tag p{font-size:60px;line-height:1.08;font-weight:600;letter-spacing:-.03em;max-width:1040px;text-wrap:balance}
+.w{--c:var(--text);color:var(--c)}
+.w.k{--c:var(--accent-text)}
 
-/* =================== 1 · HERO =================== */
-.hero {
-  position: relative;
-  /* height follows the width so the video keeps its own aspect: no vertical crop,
-     the whole composition reads, and the figure lands just under the headline */
-  height: clamp(620px, 62vw, 1200px);
-  overflow: hidden;
-  border-radius: 0 0 var(--sheet-radius) var(--sheet-radius);
-  background: var(--ground);
-}
-/* the media column extends the video's own sky upward, so the figure sits below the headline */
-.hero-media { position: absolute; inset: 0; display: flex; flex-direction: column; z-index: 0; }
-.hero-sky { flex: 0 0 6%; background: #406EB4; }
-.hero-video {
-  flex: 1 1 auto;
-  min-height: 0;
-  width: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
-.hero-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg,
-    rgba(7,14,13,0.58) 0%,
-    rgba(7,14,13,0.40) 18%,
-    rgba(7,14,13,0.22) 34%,
-    rgba(7,14,13,0.08) 50%,
-    rgba(7,14,13,0) 62%);
-}
-.hero-foot {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  height: 24%;
-  z-index: 1;
-  background: linear-gradient(to top, rgba(7,14,13,0.62) 0%, rgba(7,14,13,0) 100%);
-}
+/* cards */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+.card{display:flex;flex-direction:column;padding:8px;border-radius:24px;background:#181818;border:1px solid var(--line);transition:transform .9s var(--ease),border-color .9s var(--ease)}
+.card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16)}
+.vis{position:relative;height:280px;border-radius:16px;background:#000;overflow:hidden;display:grid;place-items:center}
+.ctext{padding:24px 16px 16px}
+.step{font-size:12px;line-height:16px;font-weight:700;letter-spacing:.16em;color:var(--accent-text)}
+.card h3{margin-top:8px;font-size:24px;line-height:32px}
+.card p{margin-top:8px;font-size:16px;line-height:24px;color:var(--muted)}
 
-/* B7 fluid island nav — a detached glass pill, not a docked bar */
-.nav {
-  position: relative;
-  z-index: 20;
-  display: flex;
-  justify-content: center;
-  padding: var(--s-300);
-}
-.nav-island {
-  display: flex;
-  align-items: center;
-  gap: var(--s-500);
-  width: max-content;
-  max-width: 100%;
-  padding: var(--s-75) var(--s-75) var(--s-75) var(--s-300);
-  border-radius: 999px;
-  background: rgba(11, 23, 18, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.10),
-    0 20px 40px -24px rgba(7, 14, 13, 0.9);
-}
-.brand { font-family: var(--font-display); font-size: 30px; letter-spacing: -0.02em; }
-.nav-links { display: flex; align-items: center; gap: 40px; font-size: 14px; }
-.nav-cta { border-radius: 999px; padding: 12px 24px; font-size: 14px; }
-.nav-menu { display: none; flex-direction: column; justify-content: center; align-items: flex-end; gap: 4px; width: 44px; height: 44px; }
-.nav-menu span { display: block; width: 20px; height: 1px; background: rgba(236,243,238,0.8); }
+.apps{display:grid;grid-template-columns:repeat(4,48px);gap:12px}
+.apps .tile{width:48px;height:48px;border-radius:12px}
+.apps .tile i{width:18px;height:18px;border-radius:6px;background:rgba(0,0,0,.28)}
+.lk{position:absolute;inset:0;border-radius:12px;display:grid;place-items:center;background:rgba(0,0,0,.62);color:#fff;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);animation:lockpop 7s var(--ease) infinite;animation-delay:calc(var(--i) * .22s)}
+@keyframes lockpop{0%,8%{opacity:0;transform:scale(.6)}16%,84%{opacity:1;transform:scale(1)}92%,100%{opacity:0;transform:scale(.6)}}
 
-.language-switcher {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-25);
-  padding: var(--s-50);
-  border-radius: 999px;
-  background: rgba(7, 14, 13, 0.42);
-  box-shadow: inset 0 0 0 1px rgba(236, 243, 238, 0.08);
-}
-.language-switcher button {
-  min-width: 32px;
-  padding: var(--s-50) var(--s-75);
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 600;
-  transition: color var(--dur-micro) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.language-switcher button:hover { color: var(--text); }
-.language-switcher button:active { transform: scale(0.98); }
-.language-switcher button[aria-pressed="true"] { background: rgba(236, 243, 238, 0.12); color: var(--text); }
-.language-switcher--menu { display: none; }
+.meter{display:flex;align-items:flex-end;gap:6px;height:112px}
+.meter span{width:6px;border-radius:9999px;background:rgba(255,255,255,.1);height:calc(32px + var(--i) * 3.4px);animation:mfill 6s var(--ease) infinite;animation-delay:calc(var(--i) * .07s)}
+@keyframes mfill{0%,6%{background:rgba(255,255,255,.1)}14%,80%{background:#86A6FF}92%,100%{background:rgba(255,255,255,.1)}}
+.meter-top{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:24px}
+.meter-top b{font-size:48px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums}
+.c-five{counter-reset:f var(--five);animation:cfive 6s var(--ease) infinite}
+.c-five::after{content:"+" counter(f)}
+@keyframes cfive{0%,8%{--five:0}50%,100%{--five:5}}
+.meter-top span{color:var(--muted);font-size:14px;line-height:20px}
+.vis-col{display:flex;flex-direction:column;align-items:center}
+.small-note{margin-top:16px;font-size:12px;line-height:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
 
-.hero-content {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: var(--s-400) var(--s-300) 0;
-}
-.hero-content .eyebrow { color: rgba(236, 243, 238, 0.72); margin-bottom: 24px; }
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 6.7vw, 96px);
-  line-height: 0.95;
-  letter-spacing: -2px;
-  max-width: 680px;
-  /* B5: the one permitted gradient — text only, dark theme */
-  background: linear-gradient(90deg, #FFFFFF 0%, #9B9B9B 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.hero-sub {
-  margin-top: var(--s-300);
-  font-size: clamp(16px, 1.3vw, 18px);
-  line-height: 1.6;
-  color: var(--text);
-  text-shadow: 0 1px 12px rgba(7, 14, 13, 0.8);
-  max-width: 560px;
-  text-wrap: balance;
-}
-.hero-actions { display: flex; align-items: center; gap: 16px; margin-top: 32px; }
-.hero-actions > * { border-radius: 999px; padding: var(--s-200) var(--s-500); font-size: 16px; }
-.hero-actions .btn-ghost { padding: var(--s-200) var(--s-400); }
+.mini-dial{position:relative;width:148px;height:148px;margin-top:16px}
+.mini-dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.mini-dial .trk{fill:none;stroke:rgba(255,255,255,.08);stroke-width:8}
+.mini-dial .prg{fill:none;stroke:#86A6FF;stroke-width:8;stroke-linecap:round;stroke-dasharray:327;animation:mdrain 8s var(--ease) infinite}
+@keyframes mdrain{0%,6%{stroke-dashoffset:0}72%,100%{stroke-dashoffset:327}}
+.mini-dial .ml{position:absolute;inset:0;display:grid;place-items:center;color:#fff}
+.mini-dial .unl{animation:unl 8s var(--ease) infinite}
+.mini-dial .rel{animation:rel 8s var(--ease) infinite}
+.mini-dial .unl,.mini-dial .rel{position:absolute;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@keyframes unl{0%,70%{opacity:1;transform:none}76%,100%{opacity:0;transform:scale(.8)}}
+@keyframes rel{0%,72%{opacity:0;transform:scale(1.3)}80%,96%{opacity:1;transform:none}100%{opacity:0}}
+.mini-dial .rel svg{color:var(--accent-text)}
 
-/* =================== 2 · SCROLL STORY =================== */
-.story {
-  position: relative;
-  height: 300dvh;
-  background: var(--ground);
-}
-.story-sticky {
-  position: sticky;
-  top: 0;
-  display: grid;
-  place-items: center;
-  min-height: 100dvh;
-  padding: var(--s-900) var(--s-300);
-  overflow: hidden;
-}
-.story-messages {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 100%;
-}
-.story-message {
-  grid-area: 1 / 1;
-  width: 100%;
-  margin: 0;
-  font-size: clamp(36px, 5vw, 72px);
-  line-height: 1.06;
-  letter-spacing: -1.5px;
-  text-align: center;
-  max-width: 900px;
-  color: var(--text);
-  text-wrap: balance;
-}
-.story-message:not(:first-child) { opacity: 0; }
-.story-message .w {
-  opacity: 0.28;
-  will-change: opacity;
-}
-.js .story-message {
-  will-change: opacity, transform, filter;
-}
-@media (prefers-reduced-motion: reduce) {
-  .story { height: auto; }
-  .story-sticky {
-    position: relative;
-    min-height: 0;
-    padding-block: var(--s-900);
-    overflow: visible;
-  }
-  .story-messages { gap: var(--s-700); }
-  .js .story-message {
-    grid-area: auto;
-    position: relative;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    transition: none;
-  }
-  .js .story-message .w { opacity: 1 !important; }
-}
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:64px}
+.bcard{position:relative;min-height:480px;padding:32px;border-radius:24px;background:#181818;border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:16px}
+.bcard h3{font-size:30px;line-height:36px}
+.bcard p{font-size:16px;line-height:24px;color:var(--muted);max-width:440px}
+.bcard .tagrow{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:9999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:14px;line-height:20px;font-weight:600;color:var(--soft)}
+.bvis{position:absolute;left:0;right:0;top:0;height:300px;display:grid;place-items:center}
+.bimg{position:absolute;inset:0}
+.bimg img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;transition:transform 1.6s var(--ease)}
+.bcard:hover .bimg img{transform:scale(1.04)}
+.bimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.35) 40%,rgba(0,0,0,.92) 85%)}
+.walk-path{position:absolute;inset:0;width:100%;height:100%}
+.walk-path path{fill:none;stroke:#86A6FF;stroke-width:3;stroke-linecap:round;stroke-dasharray:2 14;animation:march 2.4s linear infinite}
+@keyframes march{to{stroke-dashoffset:-64}}
+.counter-big{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px}
+.study-dial{position:relative;width:220px;height:220px}
+.study-dial svg{width:100%;height:100%;transform:rotate(-90deg)}
+.study-dial .trk{fill:none;stroke:rgba(255,255,255,.08);stroke-width:6}
+.study-dial .prg{fill:none;stroke:url(#sweep);stroke-width:6;stroke-linecap:round;stroke-dasharray:597;animation:sweep 10s var(--ease) infinite}
+@keyframes sweep{0%,4%{stroke-dashoffset:597}80%,100%{stroke-dashoffset:0}}
+.study-dial .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.c-st{counter-reset:s var(--studied);font-size:60px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;animation:cst 10s var(--ease) infinite}
+.c-st::after{content:counter(s)}
+@keyframes cst{0%,4%{--studied:0}80%,100%{--studied:25}}
+.mid small{margin-top:8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cam{position:relative;width:300px;height:200px}
+.cam .cn{position:absolute;width:28px;height:28px;border:2px solid #86A6FF}
+.cam .c1{left:0;top:0;border-right:0;border-bottom:0;border-radius:12px 0 0 0}
+.cam .c2{right:0;top:0;border-left:0;border-bottom:0;border-radius:0 12px 0 0}
+.cam .c3{left:0;bottom:0;border-right:0;border-top:0;border-radius:0 0 0 12px}
+.cam .c4{right:0;bottom:0;border-left:0;border-top:0;border-radius:0 0 12px 0}
+.cam svg.fig{position:absolute;left:30px;right:30px;bottom:28px;width:240px;height:110px}
+.fig line,.fig polyline{stroke:#F5F5F4;stroke-width:5;stroke-linecap:round;fill:none}
+.fig circle.hd{fill:#F5F5F4}
+.fig .gnd{stroke:rgba(255,255,255,.14);stroke-width:2}
+.fig .jt{fill:#86A6FF}
+.reps{position:absolute;right:16px;top:16px;display:flex;flex-direction:column;align-items:flex-end}
+.c-reps{counter-reset:r var(--reps);font-size:48px;line-height:1;font-weight:600;font-variant-numeric:tabular-nums;animation:creps 24s steps(15,end) infinite}
+.c-reps::after{content:counter(r)}
+@keyframes creps{from{--reps:0}to{--reps:15}}
+.reps small{font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rec{position:absolute;left:16px;top:16px;display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.rec i{width:8px;height:8px;border-radius:50%;background:#F4B6C8;animation:blink 1.6s var(--sine) infinite}
+@keyframes blink{50%{opacity:.25}}
+.seg{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:312px;padding:6px;border-radius:9999px;background:#000;border:1px solid rgba(255,255,255,.1)}
+.seg span{position:relative;z-index:1;padding:12px 0;text-align:center;font-size:16px;line-height:24px;font-weight:600;color:var(--muted)}
+.seg span b{color:#fff;font-weight:600}
+.seg .knob{position:absolute;z-index:0;top:6px;bottom:6px;left:6px;width:calc((100% - 12px) / 3);border-radius:9999px;background:var(--accent);box-shadow:0 8px 24px -8px var(--accent);animation:knob 9s var(--ease) infinite}
+@keyframes knob{0%,26%{transform:translateX(0)}33%,59%{transform:translateX(100%)}66%,92%{transform:translateX(200%)}100%{transform:translateX(0)}}
+.shield-line{display:flex;align-items:center;gap:8px;margin-top:24px;font-size:14px;line-height:20px;color:var(--muted)}
 
-/* =================== 3 · FEATURE SPLIT =================== */
-.split { padding: 0 var(--s-600) var(--s-900); max-width: 1280px; margin: 0 auto; }
-.split-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  min-height: 560px;
-}
-.split-copy {
-  background: var(--panel);
-  border-radius: var(--radius);
-  padding: var(--s-600);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 48px;
-}
-.split-copy h3 {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 3.4vw, 48px);
-  line-height: 0.95;
-  letter-spacing: -1px;
-  margin: var(--s-400) 0 var(--s-300);
-  white-space: pre-line;
-}
-.split-copy p { font-size: 16px; line-height: 1.6; color: var(--text-muted); max-width: 390px; }
+/* progress */
+.prog-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center}
+.panel{padding:8px;border-radius:24px;background:#181818;border:1px solid var(--line)}
+.panel-in{padding:24px;border-radius:16px;background:#000}
+.ph{display:flex;justify-content:space-between;align-items:center;font-size:14px;line-height:20px;color:var(--muted);font-weight:600}
+.ph b{color:#fff}
+.dots{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:8px;margin-top:16px}
+.dots i{aspect-ratio:1/1;border-radius:50%;background:rgba(255,255,255,.08)}
+.dots i.d{animation:dot 9s var(--ease) infinite;animation-delay:calc(var(--i) * .14s)}
+@keyframes dot{0%,4%{background:rgba(255,255,255,.08);transform:scale(.7)}10%,86%{background:#86A6FF;transform:scale(1)}94%,100%{background:rgba(255,255,255,.08);transform:scale(.7)}}
+.dots i.t{box-shadow:0 0 0 2px #000,0 0 0 4px #F4B6C8}
+.ledger{display:flex;flex-direction:column;margin-top:8px}
+.lrow{display:flex;align-items:center;gap:12px;padding:12px 0}
+.lrow+.lrow{box-shadow:0 -1px 0 rgba(255,255,255,.06)}
+.lrow .ic{display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:#1F1F1F;color:var(--soft)}
+.lrow div{flex:1}
+.lrow b{display:block;font-size:14px;line-height:20px;font-weight:600}
+.lrow span{font-size:12px;line-height:16px;color:var(--muted)}
+.lrow em{font-style:normal;font-size:14px;line-height:20px;font-weight:600;font-variant-numeric:tabular-nums}
+.lrow em.plus{color:var(--accent-text)}
+.lrow em.minus{color:var(--muted)}
+.bars{display:flex;align-items:flex-end;gap:16px;height:120px;margin-top:16px}
+.bars div{flex:1;display:flex;gap:4px;align-items:flex-end;height:100%}
+.bars i{flex:1;border-radius:6px 6px 2px 2px;transform-origin:bottom;animation:grow 9s var(--ease) infinite}
+.bars i.s{background:#313131}.bars i.e{background:var(--accent)}
+@keyframes grow{0%,4%{transform:scaleY(.08)}16%,88%{transform:scaleY(1)}96%,100%{transform:scaleY(.08)}}
+.legend{display:flex;gap:16px;margin-top:12px;font-size:12px;line-height:16px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:8px;height:8px;border-radius:2px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-top:8px}
 
-.meter-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--s-100); }
-.meter-value { font-size: 12px; color: rgba(236, 243, 238, 0.82); }
-.meter-rule { font-size: 12px; color: var(--text-ghost); }
-/* the app's TickMeter — a rule of hairline ticks, deliberately not a bar and not a ring */
-.tickmeter { display: flex; align-items: stretch; height: 22px; margin-bottom: var(--s-300); }
-.tickmeter i { flex: 1 1 0; display: flex; justify-content: center; }
-.tickmeter i::before {
-  content: "";
-  width: 1.5px;
-  background: rgba(236, 243, 238, 0.16);
-  transition: background var(--dur) var(--ease);
-}
-.tickmeter i.on::before { background: var(--cobalt); }
+/* privacy */
+.shield-orb{position:relative;width:96px;height:96px;margin:0 auto 32px;display:grid;place-items:center;border-radius:50%;background:rgba(46,92,230,.18);color:var(--accent-text)}
+.shield-orb::before,.shield-orb::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(134,166,255,.4);animation:ripple 4s var(--ease) infinite}
+.shield-orb::after{animation-delay:-2s}
+.priv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px;text-align:left}
+.pv{padding:32px;border-radius:24px;background:#181818;border:1px solid var(--line)}
+.pv .ic{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:rgba(46,92,230,.18);color:var(--accent-text)}
+.pv h3{margin-top:24px;font-size:20px;line-height:28px}
+.pv p{margin-top:8px;font-size:16px;line-height:24px;color:var(--muted)}
 
-.steps { display: flex; align-items: center; gap: 8px; margin-bottom: 32px; }
-.steps button {
-  font-size: 12px;
-  padding: var(--s-100) var(--s-200);
-  border-radius: 999px;
-  border: 1px solid var(--edge);
-  background: transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: color var(--dur-micro) var(--ease), border-color var(--dur-micro) var(--ease), background var(--dur-micro) var(--ease);
-}
-.steps button:hover { color: var(--text); }
-.steps button[aria-pressed="true"] {
-  border-color: rgba(46, 92, 230, 0.6);
-  background: var(--cobalt-wash);
-  color: var(--text);
-}
-.split-copy .liquid-glass { display: inline-block; border-radius: 999px; padding: 12px 32px; font-size: 14px; }
+/* faq */
+.faq{max-width:800px;margin:64px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq details{border-radius:16px;background:#181818;border:1px solid var(--line);transition:background-color .7s var(--ease)}
+.faq details[open]{background:#1F1F1F}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:20px 24px;font-size:18px;line-height:28px;font-weight:600;cursor:pointer;border-radius:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq .pl{display:grid;place-items:center;width:32px;height:32px;border-radius:9999px;background:rgba(255,255,255,.06);transition:transform .7s var(--ease);flex:none}
+.faq details[open] .pl{transform:rotate(45deg)}
+.faq details p{padding:0 24px 24px;font-size:16px;line-height:24px;color:var(--muted);max-width:680px}
 
-.split-scene {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  min-height: 400px;
-  background: var(--ground);
-}
-.split-scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
-.split-scene .veil {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(7,14,13,0.55) 0%, rgba(7,14,13,0.18) 34%, rgba(7,14,13,0.10) 62%, rgba(7,14,13,0.42) 100%);
-}
+/* final */
+.final{position:relative;min-height:760px;display:grid;place-items:center;text-align:center;overflow:hidden;padding:96px 0}
+.final-media{position:absolute;inset:0}
+.final-scrim{position:absolute;inset:0;background:linear-gradient(180deg,#000 0%,rgba(0,0,0,.25) 30%,rgba(0,0,0,.35) 70%,#000 100%)}
+.final h2{font-size:96px;line-height:1;letter-spacing:-.04em}
+.app-icon{display:block;width:112px;height:112px;margin:0 auto 40px;border-radius:26px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 32px 80px -16px rgba(46,92,230,.7);animation:bob 7s var(--sine) infinite}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+.final h2 span{display:block}
+.final .lead{margin:24px auto 0;color:#E5E5E5;max-width:520px;font-size:20px}
+.final .btn{margin-top:40px}
+.fine{margin-top:16px;font-size:12px;line-height:16px;color:var(--soft)}
 
-/* --- the phone, holding the real Home screen --- */
-.phone {
-  position: absolute;
-  right: var(--s-600);
-  top: var(--s-400);
-  width: 250px;
-  height: 500px;
-  border-radius: 40px;
-  padding: var(--s-50);
-  background: var(--panel);
-  box-shadow:
-    0 0 90px -18px rgba(46, 92, 230, 0.45),
-    0 30px 64px -26px rgba(0, 0, 0, 0.9),
-    inset 0 1px 1px rgba(255, 255, 255, 0.14);
-}
-.phone-screen { position: relative; width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: var(--ground); }
-.phone-screen > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
-.phone-screen .veil {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(7,14,13,0.86) 0%, rgba(7,14,13,0.72) 40%, rgba(7,14,13,0.30) 72%, rgba(7,14,13,0.12) 100%);
-}
-.phone-ui { position: relative; display: flex; flex-direction: column; align-items: center; padding: var(--s-300) var(--s-200) 0; text-align: center; }
-.phone-head { display: flex; align-items: center; justify-content: space-between; width: 100%; font-size: 8px; font-weight: 500; color: var(--text-muted); }
-.phone-head .serif { font-size: 14px; color: var(--text); }
-.phone-eyebrow { font-size: 7.5px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-top: var(--s-300); }
-.phone-balance { display: flex; align-items: last baseline; gap: var(--s-50); margin-top: var(--s-50); }
-.phone-balance .n { font-family: var(--font-display); font-size: 72px; line-height: 0.9; }
-.phone-balance .u { font-size: 12px; color: var(--text-muted); }
-.phone-sub { font-size: 9px; color: var(--text-muted); margin-top: var(--s-50); }
-.phone-pill {
-  display: flex; align-items: center; gap: var(--s-50); margin-top: var(--s-200);
-  background: var(--cobalt); color: #fff; font-size: 9.5px; font-weight: 600;
-  padding: var(--s-75) var(--s-100); border-radius: 999px;
-  box-shadow: 0 6px 14px -4px rgba(46, 92, 230, 0.42);
-}
-.phone-next { font-size: 8px; color: var(--text-faint); margin-top: var(--s-100); }
-.phone-totals { font-size: 8px; color: var(--text-ghost); margin-top: var(--s-50); }
-.phone-totals span { color: var(--moss); }
+.foot{padding:48px 0;box-shadow:0 -1px 0 var(--line)}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px}
+.foot nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:9999px;font-size:14px;line-height:20px;color:var(--muted);transition:color .7s var(--ease),background-color .7s var(--ease)}
+.foot nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.foot small{font-size:14px;line-height:20px;color:var(--muted)}
 
-/* =================== 4 & 5 · SCENE SECTIONS =================== */
-.scene {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 90dvh;
-  padding: 0 var(--s-300);
-  overflow: hidden;
+/* scroll-driven motion where supported; without support everything rests visible */
+@supports (animation-timeline: view()) {
+  .rv{animation:rv both var(--ease);animation-timeline:view();animation-range:entry 0% entry 75%}
+  .tag .w{animation:wordon both linear;animation-timeline:view();animation-range:cover calc(18% + var(--i) * 1.6%) cover calc(22% + var(--i) * 1.6%)}
 }
-.scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-.scene .veil { position: absolute; inset: 0; z-index: 1; }
-.scene-inner {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 96px 0;
+@keyframes rv{from{opacity:0;transform:translateY(64px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
+@keyframes wordon{from{color:rgba(245,245,244,.24)}to{color:var(--c)}}
+
+@media (max-width: 960px){
+  .nav-links{display:none}
+  .nav .btn-sm{display:none}
+  .burger{display:block}
+  .nav{gap:16px}
+  .hero{min-height:0;padding:128px 0 64px}
+  .hero-grid,.pause-grid,.prog-grid{grid-template-columns:minmax(0,1fr)}
+  .hero h1{font-size:48px}
+  .hero .lead{font-size:18px}
+  .cue{display:none}
+  .ei .h2{font-size:36px;line-height:40px}
+  .tag p{font-size:36px;line-height:40px}
+  .grid3,.bento,.priv{grid-template-columns:minmax(0,1fr)}
+  .eve{padding:16px}
+  .eve-head{align-items:flex-start}
+  .c-bad,.c-good{font-size:30px;line-height:36px}
+  .sg .lbl,.sg .wave,.sg svg{display:none}
+  .track{height:48px}
+  .mk{width:20px;height:20px;margin:-10px 0 0 -10px;box-shadow:0 0 0 2px #000}
+  .mk svg{width:11px;height:11px}
+  .axis span:nth-child(2),.axis span:nth-child(4){display:none}
+  .final h2{font-size:60px}
+  .final{min-height:640px}
+  .f1{left:0}.f2{right:0}
+  .hero-scrim{background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.48) 55%,#000 100%)}
+  .orbit{inset:14%}
+  .pchip{font-size:12px;line-height:16px;padding:4px 12px 4px 4px}
 }
-
-#why > img { object-position: center 55%; }
-#why .veil { background: linear-gradient(180deg, var(--ground) 0%, rgba(7,14,13,0.82) 18%, rgba(7,14,13,0.62) 46%, rgba(7,14,13,0.70) 74%, var(--ground) 100%); }
-#why .scene-inner { max-width: 1024px; }
-#why h2 { font-size: clamp(36px, 5vw, 72px); line-height: 1.06; letter-spacing: -1.5px; margin-top: var(--s-300); }
-#why p { margin-top: var(--s-400); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.6; color: rgba(236,243,238,0.65); max-width: 660px; }
-
-.loop {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--s-600);
-  margin-top: var(--s-600);
+@media (max-width: 420px){
+  .phone{transform:scale(.88);margin:-36px 0}
+  .float{display:none}
+  .seg{width:100%}
+  .cam{width:260px}
 }
-.loop div { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.loop .v { font-family: var(--font-display); font-size: clamp(30px, 2.6vw, 36px); }
-.loop .l { font-size: 12px; color: var(--text-muted); }
-
-#join > img { object-position: center 72%; }
-#join .veil { background: linear-gradient(180deg, var(--ground) 0%, rgba(7,14,13,0.74) 20%, rgba(7,14,13,0.46) 44%, rgba(7,14,13,0.66) 72%, var(--ground) 100%); }
-#join .scene-inner { max-width: 900px; }
-#join h2 { font-size: clamp(48px, 6.7vw, 96px); line-height: 0.95; letter-spacing: -2px; }
-#join p { margin-top: var(--s-300); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.6; color: rgba(236,243,238,0.65); max-width: 560px; }
-.join-actions { display: flex; align-items: center; gap: 16px; margin-top: 40px; }
-.join-actions > * { border-radius: 999px; padding: var(--s-200) var(--s-500); font-size: 16px; }
-.join-note { font-size: 12px; color: var(--text-muted); margin-top: var(--s-200); }
-
-.scene .liquid-glass { border-radius: 999px; padding: var(--s-200) var(--s-500); font-size: 16px; margin-top: var(--s-600); }
-
-/* =================== 6 · FOOTER =================== */
-.footer { background: var(--ground); border-top: 1px solid var(--line); padding: 64px 48px; }
-.footer-inner { max-width: 1280px; margin: 0 auto; }
-.footer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; margin-bottom: 64px; }
-.footer-grid h3 { font-size: clamp(24px, 2.2vw, 30px); line-height: 1.22; }
-.footer-grid h3 .serif-i { color: rgba(236, 243, 238, 0.66); }
-.footer-links { display: flex; flex-direction: column; gap: 12px; font-size: 14px; }
-.footer-links a { color: var(--text-muted); }
-.footer-links a:hover { color: var(--text); }
-.footer-say { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-.footer-say p { font-size: 14px; line-height: 1.55; color: var(--text-muted); white-space: pre-line; }
-.footer-say .liquid-glass { border-radius: 999px; padding: var(--s-100) var(--s-300); font-size: 14px; }
-.footer-bar {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding-top: 32px; border-top: 1px solid var(--line);
-  font-size: 12px; color: var(--text-muted);
-}
-.footer-bar .l, .footer-bar .r { display: flex; align-items: center; gap: var(--s-300); }
-.footer-bar .r { gap: 24px; }
-.footer-bar a { color: var(--text-muted); }
-.footer-bar a:hover { color: var(--text); }
-.footer-bar .brand { font-size: 20px; color: var(--text); }
-
-.hero-note { margin-top: var(--s-200); font-size: 12px; line-height: 16px; color: var(--text); text-shadow: 0 1px 8px rgba(7, 14, 13, 0.85); }
-
-/* ---- mobile menu overlay ---- */
-.nav-menu { background: transparent; border: none; cursor: pointer; padding: 0; position: relative; }
-.nav-menu span {
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: rgba(236, 243, 238, 0.8);
-  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
-}
-/* the two lines rotate and translate into a true X, they never simply vanish */
-.nav-menu[aria-expanded="true"] span:first-child { transform: translateY(2.5px) rotate(45deg); }
-.nav-menu[aria-expanded="true"] span:last-child { transform: translateY(-2.5px) rotate(-45deg); }
-
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(7, 14, 13, 0.8);
-  backdrop-filter: blur(48px);
-  -webkit-backdrop-filter: blur(48px);
-  opacity: 0;
-  transition: opacity var(--dur) var(--ease);
-}
-.menu-overlay[hidden] { display: none; }
-.menu-overlay.open { opacity: 1; }
-.menu-panel { display: flex; flex-direction: column; align-items: center; gap: var(--s-500); }
-.menu-panel a {
-  font-family: var(--font-display);
-  font-size: 36px;
-  line-height: 40px;
-  letter-spacing: -1px;
-  opacity: 0;
-  transform: translateY(48px);
-  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.menu-overlay.open .menu-panel a { opacity: 1; transform: translateY(0); }
-.menu-panel a:nth-child(1) { transition-delay: 0.10s; }
-.menu-panel a:nth-child(2) { transition-delay: 0.15s; }
-.menu-panel a:nth-child(3) { transition-delay: 0.20s; }
-.menu-panel a:nth-child(4) { transition-delay: 0.25s; }
-.menu-panel a:nth-child(5) { transition-delay: 0.30s; }
-.menu-cta {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0;
-  border-radius: 999px;
-  padding: var(--s-200) var(--s-500);
-  margin-top: var(--s-200);
-}
-
-/* ---- current section indicator ---- */
-.nav-links a { position: relative; color: var(--text-muted); }
-.nav-links a:hover { color: var(--text); }
-.nav-links a[aria-current="true"] { color: var(--text); }
-.nav-links a[aria-current="true"]::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -8px;
-  width: 3px;
-  height: 3px;
-  margin-left: -1.5px;
-  border-radius: 999px;
-  background: var(--cobalt-lift);
-}
-
-/* ---- B7 scroll reveal ---- */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(64px);
-  filter: blur(12px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease);
-}
-.js .reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
-
-/* =================== 5 · PROOF =================== */
-.proof { padding: var(--s-900) var(--s-600); max-width: 1280px; margin: 0 auto; }
-.proof-head { max-width: 680px; margin-bottom: var(--s-700); }
-.proof-head h2 {
-  font-size: clamp(36px, 4vw, 60px);
-  line-height: 1.06;
-  letter-spacing: -1.5px;
-  margin-top: var(--s-300);
-}
-.proof-rating { display: flex; align-items: baseline; gap: var(--s-100); margin-top: var(--s-300); font-size: 14px; color: var(--text-muted); }
-.proof-rating .n { font-family: var(--font-display); font-size: 30px; line-height: 36px; color: var(--text); }
-.proof-wall { columns: 2; column-gap: var(--s-200); }
-.quote {
-  break-inside: avoid;
-  background: var(--panel);
-  border-radius: var(--radius);
-  padding: var(--s-500);
-  margin-bottom: var(--s-200);
-}
-.quote p { font-size: 18px; line-height: 28px; color: var(--text-soft); }
-.quote footer { display: flex; align-items: center; gap: var(--s-100); margin-top: var(--s-300); }
-.quote .who { font-size: 14px; font-weight: 600; color: var(--text); }
-.quote .role { font-size: 12px; color: var(--text-faint); }
-/* the mark is initials, never a stock portrait, and a squircle rather than a circle */
-.quote .mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: var(--cobalt-wash);
-  color: var(--cobalt-text);
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* =================== 6 · FAQ =================== */
-/* deliberately a plain side by side list, not an accordion */
-.faq { padding: 0 var(--s-600) var(--s-900); max-width: 1280px; margin: 0 auto; }
-.faq-head { max-width: 680px; margin-bottom: var(--s-700); }
-.faq-head h2 {
-  font-size: clamp(36px, 4vw, 60px);
-  line-height: 1.06;
-  letter-spacing: -1.5px;
-  margin-top: var(--s-300);
-}
-.faq-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-700) var(--s-600); }
-.faq-grid h3 { font-size: 18px; line-height: 28px; font-weight: 600; font-family: var(--font-body); }
-.faq-grid p { margin-top: var(--s-100); font-size: 16px; line-height: 24px; color: var(--text-muted); max-width: 46ch; }
-
-/* =================== responsive =================== */
-@media (max-width: 900px) {
-  .nav { padding: var(--s-300); }
-  .nav-links { display: none; }
-  .language-switcher--nav { display: none; }
-  .language-switcher--menu { display: inline-flex; margin-top: var(--s-200); }
-  .nav-menu { display: flex; }
-  .brand { font-size: 26px; }
-  .nav-island { gap: var(--s-200); padding: var(--s-75) var(--s-75) var(--s-75) var(--s-200); }
-  .menu-panel a { font-size: 30px; line-height: 36px; }
-  .proof { padding: var(--s-800) var(--s-300); }
-  .proof-head, .faq-head { margin-bottom: var(--s-600); }
-  .proof-wall { columns: 1; }
-  .quote { padding: var(--s-400); }
-  .faq { padding: 0 var(--s-300) var(--s-800); }
-  .faq-grid { grid-template-columns: minmax(0, 1fr); gap: var(--s-500); }
-  .hero { height: 700px; border-radius: 0 0 24px 24px; }
-  /* portrait crops the sides hard, so the sky band does the work of lowering the figure */
-  .hero-sky { flex: 0 0 24%; }
-  .hero-content { padding: var(--s-200) var(--s-300) 0; }
-  .hero-title { letter-spacing: -1.4px; }
-  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 290px; margin-top: var(--s-300); }
-  .hero-actions > * { padding: var(--s-200) var(--s-400); text-align: center; }
-
-  .story-sticky { padding-inline: var(--s-300); }
-  .story-message { letter-spacing: -1px; }
-  .split { padding: 0 var(--s-300) var(--s-900); }
-  .split-grid { grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .split-copy { padding: var(--s-400) var(--s-300); gap: var(--s-400); }
-  .split-scene { height: 460px; }
-  .phone { right: var(--s-300); top: var(--s-300); width: 196px; height: 396px; border-radius: 32px; padding: 4px; }
-  .phone-screen { border-radius: 28px; }
-  .phone-ui { padding: var(--s-200) var(--s-100) 0; }
-  .phone-head { font-size: 7px; }
-  .phone-head .serif { font-size: 11px; }
-  .phone-eyebrow { font-size: 6.5px; margin-top: var(--s-200); }
-  .phone-balance .n { font-size: 56px; }
-  .phone-balance .u { font-size: 10px; }
-  .phone-sub { font-size: 8px; }
-  .phone-pill { font-size: 8px; padding: var(--s-75) var(--s-100); margin-top: var(--s-100); }
-  .phone-next, .phone-totals { font-size: 7px; }
-  .steps button { padding: var(--s-200) var(--s-300); }
-
-  .scene { min-height: 0; }
-  .scene-inner { padding: var(--s-700) 0; }
-  .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; width: 100%; max-width: 300px; }
-  .join-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 300px; }
-  .join-actions > * { text-align: center; }
-
-  .footer { padding: var(--s-600) var(--s-300); }
-  .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; margin-bottom: 48px; }
-  .footer-links a { padding: 8px 0; }
-  .footer-bar { flex-direction: column; align-items: flex-start; }
+@media (prefers-reduced-motion: reduce){
+  .ei *,.ei *::before,.ei *::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
 }
 </style>
+
+<style>
+/* fallback for browsers without scroll-driven animations */
+.no-sda .rv{opacity:0;transform:translateY(64px);filter:blur(12px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}
+.no-sda .rv.in{opacity:1;transform:none;filter:none}
+.no-sda .tag .w{color:rgba(245,245,244,.24);transition:color .7s var(--ease)}
+.no-sda .tag .w.on{color:var(--c)}
+.paused,.paused *{animation-play-state:paused !important}
+</style>
 </head>
-<body id="top">
+<body>
+<div class="ei" style="--accent: #2E5CE6">
+<a class="skip" href="#main">Skip to content</a>
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="eiBg" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="#15326E"></stop><stop offset="1" stop-color="#07132C"></stop></radialGradient>
+    <linearGradient id="eiSand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4C8DFF"></stop><stop offset="1" stop-color="#1450F0"></stop></linearGradient>
+    <symbol id="ei-logo" viewBox="0 0 100 100">
+      <rect width="100" height="100" rx="23" fill="url(#eiBg)"></rect>
+      <path d="M34.1 41V32.6a15.5 15.5 0 0 1 31 0v1.2" fill="none" stroke="#F8F4EA" stroke-width="7.8" stroke-linecap="round"></path>
+      <rect x="23.7" y="40.2" width="52.6" height="45.6" rx="11" fill="#F8F4EA"></rect>
+      <path d="M39 49C39 55 44 58 48.4 61C49.4 61.7 49.4 62.7 48.4 63.4C43.5 66.6 37.5 70 37.5 77.5H62.5C62.5 70 56.5 66.6 51.6 63.4C50.6 62.7 50.6 61.7 51.6 61C56 58 61 55 61 49Z" fill="#0A1A3C"></path>
+      <path d="M38.7 77.5C39.3 72.4 44 70.3 48 68.6C49.4 68 50.6 68 52 68.6C56 70.3 60.7 72.4 61.3 77.5Z" fill="url(#eiSand)"></path>
+      <rect x="36.8" y="45.8" width="26.4" height="3.2" rx="1.6" fill="#0A1A3C"></rect>
+      <rect x="35.2" y="77.2" width="29.6" height="3.2" rx="1.6" fill="#0A1A3C"></rect>
+    </symbol>
+  </defs>
+</svg>
 
-<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
-
-<!-- ============ 1 · HERO ============ -->
-<header class="hero">
-  <div class="hero-media">
-    <div class="hero-sky"></div>
-    <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="assets/hero-dawn.jpg">
-      <source src="assets/video-app.mp4" type="video/mp4" />
-    </video>
-  </div>
-  <div class="hero-scrim"></div>
-  <div class="hero-foot"></div>
-
-  <nav class="nav" aria-label="Main" data-i18n-aria-label="a11y.mainNav">
-    <div class="nav-island">
-      <a class="brand" href="#top">Earnit</a>
-      <div class="nav-links">
-        <a href="#how" data-spy="how" data-i18n="nav.how">How it works</a>
-        <a href="#why" data-spy="why" data-i18n="nav.why">Why Earnit</a>
-        <a href="#proof" data-spy="proof" data-i18n="nav.reviews">Reviews</a>
-        <a href="#faq" data-spy="faq">FAQ</a>
-      </div>
-      <div class="language-switcher language-switcher--nav" role="group" aria-label="Language" data-i18n-aria-label="a11y.language">
-        <button type="button" data-language="en" aria-label="English" aria-pressed="true">EN</button>
-        <button type="button" data-language="es" aria-label="Español" aria-pressed="false">ES</button>
-      </div>
-      <a class="liquid-glass nav-cta" href="#join" data-i18n="common.get">Get Earnit</a>
-      <button class="nav-menu" type="button" aria-label="Open menu" data-i18n-aria-label="a11y.openMenu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span>
-      </button>
-    </div>
+<header class="nav" aria-label="Primary">
+  <a class="logo" href="#top" aria-label="Earnit home">
+    <svg width="28" height="28" aria-hidden="true"><use href="#ei-logo"></use></svg>
+    Earnit
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#pause">The pause</a>
+    <a href="#how">How it works</a>
+    <a href="#earn">Ways to earn</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#faq">FAQ</a>
   </nav>
-
-  <div class="hero-content">
-    <p class="eyebrow animate-fade-rise" data-i18n="hero.eyebrow">Screen time, reconsidered</p>
-    <h1 class="hero-title animate-fade-rise" data-i18n="hero.title">Earn your screen time.</h1>
-    <p class="hero-sub animate-fade-rise-delay" data-i18n-html="hero.subtitle">Walk 1,000 steps, earn 5 minutes.<br />Spend them on the apps you choose.</p>
-    <div class="hero-actions animate-fade-rise-delay-2">
-      <a class="btn-primary" href="#join" data-i18n="common.get">Get Earnit</a>
-      <a class="btn-ghost" href="#how" data-i18n="common.seeHow">See how it works</a>
-    </div>
-    <p class="hero-note animate-fade-rise-delay-2" data-i18n="hero.note">Free to start. No account, no card.</p>
-  </div>
+  <a class="btn btn-primary btn-sm" href="https://apps.apple.com/app/earnit">Get the app</a>
+  <button class="burger" type="button" aria-label="Open menu"><span></span><span></span></button>
 </header>
 
-<!-- mobile menu -->
-<div class="menu-overlay" id="mobile-menu" hidden>
-  <nav class="menu-panel" aria-label="Mobile" data-i18n-aria-label="a11y.mobileNav">
-    <a href="#how" data-i18n="nav.how">How it works</a>
-    <a href="#why" data-i18n="nav.why">Why Earnit</a>
-    <a href="#proof" data-i18n="nav.reviews">Reviews</a>
-    <a href="#faq">FAQ</a>
-    <a class="liquid-glass menu-cta" href="#join" data-i18n="common.get">Get Earnit</a>
-    <div class="language-switcher language-switcher--menu" role="group" aria-label="Language" data-i18n-aria-label="a11y.language">
-      <button type="button" data-language="en" aria-label="English" aria-pressed="true">EN</button>
-      <button type="button" data-language="es" aria-label="Español" aria-pressed="false">ES</button>
-    </div>
-  </nav>
+<div class="menu" aria-label="Menu">
+  <a href="#pause">The pause</a>
+  <a href="#how">How it works</a>
+  <a href="#earn">Ways to earn</a>
+  <a href="#privacy">Privacy</a>
+  <a href="#faq">FAQ</a>
 </div>
 
 <main id="main">
 
-<!-- ============ 2 · SCROLL STORY ============ -->
-<section class="story" aria-label="Why Earnit" data-i18n-aria-label="nav.why">
-  <div class="story-sticky">
-    <div class="story-messages">
-      <h2 class="story-message serif" data-i18n="story.one">One quick check becomes another. The scroll starts before you choose it.</h2>
-      <h2 class="story-message serif" data-i18n="story.two">Earnit breaks the reflex by putting movement before the scroll.</h2>
-      <h2 class="story-message serif" data-i18n="story.three">You move. You earn time. You decide where it goes.</h2>
-    </div>
+<!-- HERO -->
+<section class="hero" id="top" aria-label="Earnit">
+  <div class="hero-media" aria-hidden="true">
+    <video src="/assets/video-hero.mp4" poster="/assets/video-hero-poster.jpg" autoplay="" muted="" loop="" playsinline="" preload="auto"></video>
   </div>
-</section>
-
-<!-- ============ 3 · FEATURE SPLIT ============ -->
-<section class="split" id="how">
-  <div class="split-grid">
-
-    <div class="split-copy reveal">
-      <div>
-        <p class="eyebrow" data-i18n="how.eyebrow">How Earnit works</p>
-        <h3 data-i18n="how.title">Move.
-Earn.
-Scroll.</h3>
-        <p data-i18n="how.body">Your daily movement becomes screen time. When your balance reaches zero, your selected apps are blocked again.</p>
-      </div>
-
-      <div>
-        <div class="meter-head">
-          <div class="meter-value" id="meter-value" aria-live="polite">2,000 steps today</div>
-          <div class="meter-rule" data-i18n="how.rate">1,000 steps = 5 min</div>
-        </div>
-        <div class="tickmeter" id="tickmeter" aria-hidden="true"></div>
-        <div class="steps" id="steps">
-          <button type="button" data-step="move" aria-pressed="true" data-i18n="how.move">Move</button>
-          <button type="button" data-step="earn" aria-pressed="false" data-i18n="how.earn">Earn</button>
-          <button type="button" data-step="use" aria-pressed="false" data-i18n="how.use">Use</button>
-        </div>
-        <a class="liquid-glass" href="#why" data-i18n="common.seeHowEarnit">See how Earnit works</a>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge rise" style="animation-delay:.1s"><b>New</b>Pushups now count, right from onboarding</div>
+      <h1>
+        <span class="grad rise" style="animation-delay:.2s">Your phone shouldn't be free.</span>
+        <span class="sky rise" style="animation-delay:.35s">Earn it.</span>
+      </h1>
+      <p class="lead rise" style="animation-delay:.5s">Earnit keeps the apps that eat your day locked until you walk, study or do pushups. Every effort turns into minutes you choose how to spend.</p>
+      <div class="hero-ctas rise" style="animation-delay:.65s">
+        <a class="btn btn-primary" href="https://apps.apple.com/app/earnit">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg>
+          Download for iPhone
+        </a>
+        <span class="proof">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+          Health and motion data never leave your iPhone
+        </span>
       </div>
     </div>
 
-    <div class="split-scene reveal">
-      <img src="assets/home-evening.jpg" alt="A man sitting under a large tree at dusk, his phone the only cold light in the frame" data-i18n-alt="alt.home" />
-      <div class="veil"></div>
-
+    <div class="device rise" style="animation-delay:.55s" aria-hidden="true">
+      <div class="float f1"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg></span><div><b>+5 minutes earned</b><span>1,000 steps from Apple Health</span></div></div>
+      <div class="float f2"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span><div><b>Shield is back on</b><span>Session ended at 10:52 pm</span></div></div>
       <div class="phone">
-        <div class="phone-screen">
-          <img src="assets/home-evening.jpg" alt="" />
-          <div class="veil"></div>
-          <div class="phone-ui">
-            <div class="phone-head">
-              <div data-i18n="phone.day">Wednesday</div>
-              <div class="serif">Earnit</div>
-              <div data-i18n="phone.streak">Day 3 streak</div>
+        <div class="screen">
+          <div class="island"></div>
+
+          <div class="scene scene-a">
+            <div class="sc-app">
+              <span class="tile" style="background:#F4B6C8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="5"></rect><circle cx="12" cy="12" r="3.5"></circle></svg></span>
+              <div><div class="sc-k">Social</div><div class="sc-s">Shielded by Earnit</div></div>
             </div>
-            <div class="phone-eyebrow" data-i18n="phone.available">Available time</div>
-            <div class="phone-balance"><div class="n">10</div><div class="u">min</div></div>
-            <div class="phone-sub" data-i18n="phone.spend">to spend on your apps</div>
-            <div class="phone-pill">
-              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-              <span data-i18n="phone.earnMore">Earn more time</span>
+            <div class="breath">
+              <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+              <span class="core"></span>
+              <span class="btxt bt-in">Breathe in</span>
+              <span class="btxt bt-out">Breathe out</span>
             </div>
-            <div class="phone-next" data-i18n="phone.next">1,000 steps until your next 5 minutes</div>
-            <div class="phone-totals" data-i18n-html="phone.totals">2,000 steps today · <span>+10 min earned today</span></div>
+            <div class="sc-title">This one is resting.</div>
+            <div class="sc-body">You have 0 minutes left. A short walk earns you ten.</div>
+            <span class="sc-btn primary">Earn 10 minutes</span>
+            <span class="sc-btn ghost">Close app</span>
+          </div>
+
+          <div class="scene scene-b">
+            <div class="sc-eyebrow"><span>Walking</span><span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>Health</span></div>
+            <div class="earn-num">+<span class="c-min"></span><small>min</small></div>
+            <div class="sc-body">2,000 steps turned into time you can spend.</div>
+            <div class="ticks">
+              <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span><span style="--i:12"></span><span style="--i:13"></span><span style="--i:14"></span><span style="--i:15"></span><span style="--i:16"></span><span style="--i:17"></span><span style="--i:18"></span><span style="--i:19"></span><span style="--i:20"></span><span style="--i:21"></span><span style="--i:22"></span>
+            </div>
+            <div class="row"><span>Steps today</span><b>6,214</b></div>
+            <div class="bar"><i></i></div>
+            <div class="row" style="margin-top:0"><span>Balance</span><b>10 min</b></div>
+          </div>
+
+          <div class="scene scene-c">
+            <div class="sc-eyebrow"><span>Session</span><span class="chip">Social</span></div>
+            <div class="pills"><span>5</span><span class="on">10</span><span>15</span></div>
+            <div class="dial">
+              <svg viewBox="0 0 120 120"><circle class="trk" cx="60" cy="60" r="52"></circle><circle class="prg" cx="60" cy="60" r="52"></circle></svg>
+              <div class="dial-c"><span class="c-left"></span><small>min left</small></div>
+            </div>
+            <div class="sc-title">Social is open.</div>
+            <div class="sc-body">When the time is up, the shield comes back on its own.</div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+  <div class="cue" aria-hidden="true">Scroll<i></i></div>
 </section>
 
-<!-- ============ 4 · BIG STATEMENT ============ -->
-<section class="scene" id="why">
-  <img src="assets/earn-path.jpg" alt="A man walking a path away from us, at dusk, into open ground" data-i18n-alt="alt.path" />
-  <div class="veil"></div>
-  <div class="scene-inner reveal">
-    <p class="eyebrow" data-i18n="why.eyebrow">Not another app blocker</p>
-    <h2 data-i18n-html="why.title"><span class="serif">Scrolling isn't forbidden.</span><br /><span class="serif-i">It's earned.</span></h2>
-    <p data-i18n="why.body">Earnit doesn't ask you to disappear from the internet. It simply puts something real before the scroll.</p>
-    <div class="loop">
-      <div><div class="v">2,000</div><div class="l" data-i18n="why.steps">steps</div></div>
-      <div><div class="v">+10 min</div><div class="l" data-i18n="why.earned">earned</div></div>
-      <div><div class="v">10 min</div><div class="l" data-i18n="why.toSpend">to spend</div></div>
-      <div><div class="v">0 min</div><div class="l" data-i18n="why.locks">apps lock again</div></div>
+<!-- THE PAUSE -->
+<section class="sec" id="pause" aria-labelledby="pause-h">
+  <div class="wrap pause-grid">
+    <div class="stage rv" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="breath">
+        <span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="ring"></span>
+        <span class="core"></span>
+        <span class="btxt bt-in">Breathe in</span>
+        <span class="btxt bt-out">Breathe out</span>
+      </div>
+      <div class="orbit">
+        <div class="slot" style="left:50%;top:4%"><div class="pchip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg></span>Take a walk</div></div>
+        <div class="slot" style="left:92%;top:70%"><div class="pchip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h5a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4zM20 5h-5a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h6z"></path></svg></span>Study session</div></div>
+        <div class="slot" style="left:8%;top:70%"><div class="pchip"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"></path></svg></span>Pushup set</div></div>
+      </div>
     </div>
-    <a class="liquid-glass" href="#proof" data-i18n="why.cta">See what changes</a>
-  </div>
-</section>
-
-<!-- ============ 5 · PROOF ============ -->
-<!-- PLACEHOLDER: the four quotes and the rating below are draft copy.
-     Replace with real reviews and the live App Store figure before launch. -->
-<section class="proof" id="proof">
-  <div class="proof-head reveal">
-    <p class="eyebrow" data-i18n="proof.eyebrow">What changes</p>
-    <h2 data-i18n-html="proof.title"><span class="serif">The scroll stops being</span> <span class="serif-i">automatic.</span></h2>
-    <div class="proof-rating">
-      <span class="n">4.7</span>
-      <span data-i18n="proof.rating">average rating across 312 reviews on the App Store</span>
+    <div class="rv">
+      <div class="eyebrow">The pause</div>
+      <h2 class="h2" id="pause-h">A timer asks you to stop. Earnit asks you to trade.</h2>
+      <p class="lead" style="margin-top:24px">When your thumb lands on a locked app, Earnit doesn't nag or argue. It gives you one slow breath and one honest question: what will you do to earn it?</p>
+      <ul class="checks">
+        <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>No snooze button, no fifteen more minutes</li>
+        <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>No guilt, streak shaming or red warning screens</li>
+        <li><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>The only way through is effort you actually did</li>
+      </ul>
     </div>
   </div>
-
-  <div class="proof-wall reveal">
-    <article class="quote">
-      <p data-i18n="proof.quoteOne">I used to open Instagram before I got out of bed. Now it stays locked until I have been outside. Three weeks in, the reflex is mostly gone.</p>
-      <footer>
-        <span class="mark" aria-hidden="true">PR</span>
-        <span><span class="who">Priya Raghunathan</span><br /><span class="role" data-i18n="proof.roleOne">Product designer, Bristol</span></span>
-      </footer>
-    </article>
-
-    <article class="quote">
-      <p data-i18n="proof.quoteTwo">The exchange rate is the whole trick. Five minutes sounds cheap until you work out that it costs you a thousand steps.</p>
-      <footer>
-        <span class="mark" aria-hidden="true">MD</span>
-        <span><span class="who">Marcus Delaney</span><br /><span class="role" data-i18n="proof.roleTwo">Paramedic, Chicago</span></span>
-      </footer>
-    </article>
-
-    <article class="quote">
-      <p data-i18n="proof.quoteThree">My evening scrolling went from roughly two hours to under forty minutes. I never set that as a goal. Scrolling just quietly became inconvenient.</p>
-      <footer>
-        <span class="mark" aria-hidden="true">IB</span>
-        <span><span class="who">Ines Bakker</span><br /><span class="role" data-i18n="proof.roleThree">Nurse, Rotterdam</span></span>
-      </footer>
-    </article>
-
-    <article class="quote">
-      <p data-i18n="proof.quoteFour">It is the only thing I have tried that does not feel like a punishment. Nothing is forbidden. I just have to move first.</p>
-      <footer>
-        <span class="mark" aria-hidden="true">TL</span>
-        <span><span class="who">Tobias Lindqvist</span><br /><span class="role" data-i18n="proof.roleFour">Teacher, Malmo</span></span>
-      </footer>
-    </article>
-  </div>
 </section>
 
-<!-- ============ 6 · FAQ ============ -->
-<section class="faq" id="faq">
-  <div class="faq-head reveal">
-    <p class="eyebrow" data-i18n="faq.eyebrow">Before you download</p>
-    <h2 data-i18n-html="faq.title"><span class="serif">The questions</span> <span class="serif-i">people actually ask.</span></h2>
-  </div>
-
-  <div class="faq-grid reveal">
-    <article>
-      <h3 data-i18n="faq.q1">How does Earnit know I have walked?</h3>
-      <p data-i18n="faq.a1">It reads your step count from Apple Health, which your iPhone already records on the motion coprocessor. Earnit only ever reads that number. It never writes to your health record.</p>
-    </article>
-    <article>
-      <h3 data-i18n="faq.q2">Which apps get blocked?</h3>
-      <p data-i18n="faq.a2">The ones you pick, through Apple's Screen Time permission. Most people choose two or three. Messages, maps and calls are never touched.</p>
-    </article>
-    <article>
-      <h3 data-i18n="faq.q3">What is the exchange rate?</h3>
-      <p data-i18n="faq.a3">1,000 steps earns 5 minutes by default. You can make it harder if that feels too easy, and the app will suggest a rate based on how much you already walk.</p>
-    </article>
-    <article>
-      <h3 data-i18n="faq.q4">Will it drain my battery?</h3>
-      <p data-i18n="faq.a4">No. The step data comes from a sensor your phone already runs all day. Earnit reads it a few times an hour rather than tracking you continuously.</p>
-    </article>
-    <article>
-      <h3 data-i18n="faq.q5">Can I cheat by shaking my phone?</h3>
-      <p data-i18n="faq.a5">Not usefully. The motion coprocessor distinguishes walking from shaking, so the count stays flat. You would also have to shake it about a thousand times for 5 minutes.</p>
-    </article>
-    <article>
-      <h3 data-i18n="faq.q6">What happens when I reach zero?</h3>
-      <p data-i18n="faq.a6">Your chosen apps lock again and stay locked until you walk. There is no timer to wait out and no button that buys your way past it.</p>
-    </article>
-    <article>
-      <h3 data-i18n="faq.q7">Does my health data leave the phone?</h3>
-      <p data-i18n="faq.a7">Never. Step counts and app usage stay on your device. There is no account to create, so there is nothing on a server to leak.</p>
-    </article>
-    <article>
-      <h3 data-i18n="faq.q8">What does it cost?</h3>
-      <p data-i18n="faq.a8">The daily loop is free and stays free. A paid tier at $19.00 a year adds custom rates, multiple app groups and a full history of what you earned.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ============ 7 · CTA ============ -->
-<section class="scene" id="join">
-  <img src="assets/freedom-ridge.jpg" alt="A ridge above the city at dusk, the phone small in his hand" data-i18n-alt="alt.ridge" />
-  <div class="veil"></div>
-  <div class="scene-inner reveal">
-    <p class="eyebrow" data-i18n="join.eyebrow">More life. Less autopilot.</p>
-    <h2 data-i18n-html="join.title"><span class="serif">What would you do</span><br /><span class="serif-i">with an extra hour?</span></h2>
-    <p data-i18n="join.body">Spend less time scrolling by accident and more time choosing what deserves your attention.</p>
-    <div class="join-actions">
-      <a class="btn-primary" href="https://apps.apple.com/app/earnit" data-i18n="common.download">Download Earnit</a>
-      <a class="btn-ghost" href="#how" data-i18n="common.seeHow">See how it works</a>
+<!-- ONE EVENING, TWO WAYS -->
+<section class="sec" id="evening" aria-labelledby="eve-h">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">One evening, two ways</div>
+      <h2 class="h2" id="eve-h">Same evening. Very different endings.</h2>
+      <p class="lead">At 9:41 your thumb lands on the same app. Watch where the next ninety minutes go when opening it is free, and when it has to be earned.</p>
     </div>
-    <p class="join-note" data-i18n="join.note">Free on iPhone. No account, no card, delete it whenever you like.</p>
+
+    <div class="eve rv">
+      <div class="eve-row">
+        <div class="eve-head">
+          <div><b><i style="background:#F4B6C8"></i>Without Earnit</b><span>Just one video. Then another.</span></div>
+          <div class="eve-total"><span class="c-bad"></span><small>on social</small></div>
+        </div>
+        <div class="track" aria-hidden="true">
+          <div class="fill">
+            <span class="sg scroll" style="left:9.17%;width:75.83%"><span class="wave"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></span><span class="lbl">Scrolling, one more video at a time</span></span>
+          </div>
+          <i class="playhead"></i>
+        </div>
+      </div>
+
+      <div class="eve-row">
+        <div class="eve-head">
+          <div><b><i style="background:var(--accent-text)"></i>With Earnit</b><span>A walk first. Then ten minutes, on purpose.</span></div>
+          <div class="eve-total"><span class="c-good"></span><small>on social, earned</small></div>
+        </div>
+        <div class="track" aria-hidden="true">
+          <div class="fill">
+            <span class="mk" style="left:9.17%"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+            <span class="sg walk" style="left:12.2%;width:14.47%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg><span class="lbl">2,000 steps</span></span>
+            <span class="sg sess" style="left:27.2%;width:8.93%"><span class="lbl">10 min</span></span>
+            <span class="mk" style="left:37.4%"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+            <span class="sg free" style="left:40%;width:45%"><span class="lbl">The rest of the evening is yours</span></span>
+          </div>
+          <i class="playhead"></i>
+        </div>
+        <ol class="steps">
+          <li><time>9:41</time>The pause asks for a walk</li>
+          <li><time>9:44</time>2,000 steps earn 10 minutes</li>
+          <li><time>10:02</time>Ten minutes on social</li>
+          <li><time>10:12</time>The shield comes back on its own</li>
+        </ol>
+      </div>
+
+      <div class="axis" aria-hidden="true"><span style="left:0">9:30 pm</span><span style="left:25%">10:00</span><span style="left:50%">10:30</span><span style="left:75%">11:00</span><span style="left:100%">11:30 pm</span></div>
+    </div>
+    <p class="eve-note">An example evening at a rate of 1,000 steps for 5 minutes. You choose your own rate.</p>
   </div>
 </section>
 
+<!-- TAGLINE REVEAL -->
+<section class="sec tag" aria-label="Move first. Scroll later.">
+  <div class="wrap">
+    <p><span class="w k" style="--i:0">Move</span> <span class="w k" style="--i:1">first.</span> <span class="w k" style="--i:2">Scroll</span> <span class="w k" style="--i:3">later.</span> <span class="w" style="--i:4">Every</span> <span class="w" style="--i:5">minute</span> <span class="w" style="--i:6">on</span> <span class="w" style="--i:7">your</span> <span class="w" style="--i:8">screen</span> <span class="w" style="--i:9">is</span> <span class="w" style="--i:10">a</span> <span class="w" style="--i:11">minute</span> <span class="w" style="--i:12">you</span> <span class="w" style="--i:13">earned</span> <span class="w" style="--i:14">on</span> <span class="w" style="--i:15">your</span> <span class="w" style="--i:16">feet,</span> <span class="w" style="--i:17">at</span> <span class="w" style="--i:18">your</span> <span class="w" style="--i:19">desk</span> <span class="w" style="--i:20">or</span> <span class="w" style="--i:21">on</span> <span class="w" style="--i:22">the</span> <span class="w" style="--i:23">floor.</span></p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">How it works</div>
+      <h2 class="h2" id="how-h">Set it up once. Then it runs on its own.</h2>
+    </div>
+    <div class="grid3">
+      <article class="card rv">
+        <div class="vis" aria-hidden="true">
+          <div class="apps">
+            <span class="tile" style="background:#F4B6C8"><i></i><span class="lk" style="--i:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#86A6FF"><i></i></span>
+            <span class="tile" style="background:#F2C46D"><i></i><span class="lk" style="--i:1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#8CBF6B"><i></i></span>
+            <span class="tile" style="background:#B9A6F5"><i></i></span>
+            <span class="tile" style="background:#F08A7E"><i></i><span class="lk" style="--i:2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#6FD3C9"><i></i></span>
+            <span class="tile" style="background:#E7E5E4"><i></i><span class="lk" style="--i:3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#9DB7FF"><i></i><span class="lk" style="--i:4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+            <span class="tile" style="background:#F6D6A8"><i></i></span>
+            <span class="tile" style="background:#C8E6A0"><i></i></span>
+            <span class="tile" style="background:#F4B6C8"><i></i><span class="lk" style="--i:5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span></span>
+          </div>
+        </div>
+        <div class="ctext">
+          <div class="step">01</div>
+          <h3>Pick the apps that eat your day</h3>
+          <p>Choose them once with Apple's Screen Time picker. They stay shielded by default, all day.</p>
+        </div>
+      </article>
+      <article class="card rv">
+        <div class="vis" aria-hidden="true">
+          <div class="vis-col">
+            <div class="meter-top"><b class="c-five"></b><span>minutes</span></div>
+            <div class="meter">
+              <span style="--i:0"></span><span style="--i:1"></span><span style="--i:2"></span><span style="--i:3"></span><span style="--i:4"></span><span style="--i:5"></span><span style="--i:6"></span><span style="--i:7"></span><span style="--i:8"></span><span style="--i:9"></span><span style="--i:10"></span><span style="--i:11"></span><span style="--i:12"></span><span style="--i:13"></span><span style="--i:14"></span><span style="--i:15"></span><span style="--i:16"></span><span style="--i:17"></span><span style="--i:18"></span><span style="--i:19"></span><span style="--i:20"></span><span style="--i:21"></span>
+            </div>
+            <div class="small-note">1,000 steps walked</div>
+          </div>
+        </div>
+        <div class="ctext">
+          <div class="step">02</div>
+          <h3>Earn minutes by doing something</h3>
+          <p>Steps from Apple Health, a focused study session or a set of pushups counted on device.</p>
+        </div>
+      </article>
+      <article class="card rv">
+        <div class="vis" aria-hidden="true">
+          <div class="vis-col">
+            <div class="pills" style="background:#181818"><span>5</span><span class="on">10</span><span>15</span></div>
+            <div class="mini-dial">
+              <svg viewBox="0 0 120 120"><circle class="trk" cx="60" cy="60" r="52"></circle><circle class="prg" cx="60" cy="60" r="52"></circle></svg>
+              <div class="ml">
+                <span class="unl"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 7.5-2"></path></svg>Open</span>
+                <span class="rel"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Shielded</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ctext">
+          <div class="step">03</div>
+          <h3>Spend them on purpose</h3>
+          <p>Start a 5, 10 or 15 minute session. When it ends, the shield returns without you lifting a finger.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WAYS TO EARN -->
+<section class="sec" id="earn" aria-labelledby="earn-h">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">Ways to earn</div>
+      <h2 class="h2" id="earn-h">Three honest ways to earn it.</h2>
+      <p class="lead">Pick whatever fits your day. Every one of them turns real effort into real minutes.</p>
+    </div>
+    <div class="bento">
+      <article class="bcard rv">
+        <div class="bimg" aria-hidden="true"><img src="/assets/earn-path.jpg" alt=""></div>
+        <svg class="walk-path" viewBox="0 0 560 480" preserveAspectRatio="none" aria-hidden="true"><path d="M40 420 C 160 380, 140 300, 260 290 S 420 250, 430 170 S 500 80, 540 40"></path></svg>
+        <div class="tagrow" style="position:relative"><span class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="#F4B6C8"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg>Apple Health</span><span class="pill">1,000 steps = 5 min</span></div>
+        <h3 style="position:relative">Walk to unlock</h3>
+        <p style="position:relative;color:var(--soft)">Steps come straight from Apple Health. Set a rate that suits you and every walk quietly refills your balance.</p>
+      </article>
+      <article class="bcard rv">
+        <div class="bvis" aria-hidden="true">
+          <div class="study-dial">
+            <svg viewBox="0 0 220 220"><defs><linearGradient id="sweep" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F4B6C8"></stop><stop offset="1" stop-color="#86A6FF"></stop></linearGradient></defs><circle class="trk" cx="110" cy="110" r="95"></circle><circle class="prg" cx="110" cy="110" r="95"></circle></svg>
+            <div class="mid"><span class="c-st"></span><small>min focused</small></div>
+          </div>
+        </div>
+        <h3>Study to unlock</h3>
+        <p>Run a focused session and bank the time you put in. Built for students who need the phone out of reach until the work is done.</p>
+      </article>
+      <article class="bcard rv">
+        <div class="bvis" aria-hidden="true">
+          <div class="cam">
+            <span class="cn c1"></span><span class="cn c2"></span><span class="cn c3"></span><span class="cn c4"></span>
+            <div class="rec"><i></i>On device</div>
+            <div class="reps"><span class="c-reps"></span><small>reps</small></div>
+            <svg class="fig" viewBox="0 0 240 110">
+              <line class="gnd" x1="0" y1="104" x2="240" y2="104"></line>
+              <polyline points="70,104 71,83 72,62">
+                <animate attributeName="points" values="70,104 71,83 72,62;70,104 89,98 68.6,89.3;70,104 71,83 72,62" keyTimes="0;0.5;1" dur="1.6s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"></animate>
+              </polyline>
+              <g>
+                <animateTransform attributeName="transform" type="rotate" values="0 200 92;-12 200 92;0 200 92" keyTimes="0;0.5;1" dur="1.6s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"></animateTransform>
+                <line x1="200" y1="92" x2="72" y2="62"></line>
+                <circle class="hd" cx="54" cy="55" r="11"></circle>
+                <circle class="jt" cx="72" cy="62" r="4"></circle>
+              </g>
+              <circle class="jt" cx="200" cy="92" r="4"></circle>
+              <circle class="jt" cx="70" cy="104" r="4"></circle>
+            </svg>
+          </div>
+        </div>
+        <h3>Pushups to unlock</h3>
+        <p>The camera counts every rep on your iPhone. No wearable needed, and the video is never saved.</p>
+      </article>
+      <article class="bcard rv">
+        <div class="bvis" aria-hidden="true">
+          <div class="vis-col">
+            <div class="seg"><span class="knob"></span><span><b>5</b> min</span><span><b>10</b> min</span><span><b>15</b> min</span></div>
+            <div class="shield-line"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Shield returns when the session ends</div>
+          </div>
+        </div>
+        <h3>Spend it deliberately</h3>
+        <p>Minutes don't leak away in the background. You open a session on purpose, and you know exactly when it ends.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<section class="sec" id="progress" aria-labelledby="prog-h">
+  <div class="wrap prog-grid">
+    <div class="rv">
+      <div class="eyebrow">See what changes</div>
+      <h2 class="h2" id="prog-h">Screen time goes down. Effort goes up.</h2>
+      <p class="lead" style="margin-top:24px">A 30 day journey, a daily ledger and monthly totals show the trade adding up. Calm numbers, no lectures.</p>
+    </div>
+    <div class="panel rv" aria-label="Example of the Earnit progress view">
+      <div class="panel-in">
+        <div class="ph"><span>30 day journey</span><b>Day 18</b></div>
+        <div class="dots" aria-hidden="true">
+          <i class="d" style="--i:0"></i><i class="d" style="--i:1"></i><i class="d" style="--i:2"></i><i class="d" style="--i:3"></i><i class="d" style="--i:4"></i><i class="d" style="--i:5"></i><i class="d" style="--i:6"></i><i class="d" style="--i:7"></i><i class="d" style="--i:8"></i><i class="d" style="--i:9"></i><i class="d" style="--i:10"></i><i class="d" style="--i:11"></i><i class="d" style="--i:12"></i><i class="d" style="--i:13"></i><i class="d" style="--i:14"></i><i class="d" style="--i:15"></i><i class="d" style="--i:16"></i><i class="d t" style="--i:17"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <div class="two">
+        <div class="panel-in">
+          <div class="ph"><span>Today</span></div>
+          <div class="ledger">
+            <div class="lrow"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg></span><div><b>Walk</b><span>2,000 steps</span></div><em class="plus">+10 min</em></div>
+            <div class="lrow"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 7.5-2"></path></svg></span><div><b>Session</b><span>Social</span></div><em class="minus">−10 min</em></div>
+            <div class="lrow"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3c1.7 0 2.6 2 2.6 4.6S9.6 12 8 12 5.4 10.2 5.4 7.6 6.3 3 8 3zM16 10c1.7 0 2.6 2 2.6 4.6S17.6 19 16 19s-2.6-1.8-2.6-4.4S14.3 10 16 10z"></path></svg></span><div><b>Walk</b><span>1,000 steps</span></div><em class="plus">+5 min</em></div>
+          </div>
+        </div>
+        <div class="panel-in">
+          <div class="ph"><span>This month</span></div>
+          <div class="bars" aria-hidden="true">
+            <div><i class="s" style="height:92%;animation-delay:0s"></i><i class="e" style="height:28%;animation-delay:.1s"></i></div>
+            <div><i class="s" style="height:74%;animation-delay:.2s"></i><i class="e" style="height:46%;animation-delay:.3s"></i></div>
+            <div><i class="s" style="height:58%;animation-delay:.4s"></i><i class="e" style="height:63%;animation-delay:.5s"></i></div>
+            <div><i class="s" style="height:41%;animation-delay:.6s"></i><i class="e" style="height:81%;animation-delay:.7s"></i></div>
+          </div>
+          <div class="legend"><span><i style="background:#313131"></i>Screen time</span><span><i style="background:var(--accent)"></i>Effort</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="sec" id="privacy" aria-labelledby="priv-h">
+  <div class="wrap center" style="text-align:center">
+    <div class="rv">
+      <div class="shield-orb" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+      <div class="eyebrow">Built private</div>
+      <h2 class="h2 center" id="priv-h" style="max-width:720px">What you do stays on your iPhone.</h2>
+      <p class="lead center" style="margin-top:24px;max-width:600px">Earnit runs on Apple's Screen Time framework, so it can block apps without ever seeing which apps you picked.</p>
+    </div>
+    <div class="priv">
+      <article class="pv rv">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg></span>
+        <h3>Health data stays local</h3>
+        <p>Steps and motion are read on device. They never travel to a server.</p>
+      </article>
+      <article class="pv rv">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"></path><path d="M10.6 6.1A9.8 9.8 0 0 1 12 6c5 0 9 6 9 6a17 17 0 0 1-2.6 3.2M6.6 6.6C4.3 8.1 3 12 3 12s4 6 9 6a9 9 0 0 0 4.1-1"></path></svg></span>
+        <h3>Camera video is never saved</h3>
+        <p>Pushups are counted frame by frame on your iPhone, then the frames are gone.</p>
+      </article>
+      <article class="pv rv">
+        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+        <h3>Hidden even from us</h3>
+        <p>iOS keeps the list of apps you blocked private, even from Earnit.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="head center rv" style="text-align:center">
+      <div class="eyebrow">Questions</div>
+      <h2 class="h2" id="faq-h">Good questions, straight answers.</h2>
+    </div>
+    <div class="faq">
+      <details class="rv" open="">
+        <summary>How does Earnit block apps?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>It uses Apple's Screen Time framework. The apps you choose stay shielded until you start a session with minutes you earned. When the session ends, the shield comes back automatically.</p>
+      </details>
+      <details class="rv">
+        <summary>What counts as effort?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>Three things today: steps from Apple Health, focused study sessions, and pushups counted by your iPhone camera.</p>
+      </details>
+      <details class="rv">
+        <summary>How many minutes do I earn?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>You set the rate. A common starting point is 1,000 steps for 5 minutes, and you can make it stricter or gentler whenever you like.</p>
+      </details>
+      <details class="rv">
+        <summary>Can I just skip the block?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>There is no snooze and no one more minute button. Earnit adds honest friction rather than a cage, so the way through is always a walk, a study session or a few reps.</p>
+      </details>
+      <details class="rv">
+        <summary>Is the pushup camera recording me?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>No. Reps are counted on device and the video is never saved or uploaded.</p>
+      </details>
+      <details class="rv">
+        <summary>What does it cost?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>App blocking and time earning are part of an Earnit subscription. You'll see the current price in the App Store, and you can cancel anytime in your Apple Account settings.</p>
+      </details>
+      <details class="rv">
+        <summary>Which devices does it support?<span class="pl" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span></summary>
+        <p>Earnit is built for iPhone.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" aria-labelledby="final-h">
+  <div class="final-media" aria-hidden="true">
+    <video src="/assets/video-hero.mp4" poster="/assets/video-hero-poster.jpg" autoplay="" muted="" loop="" playsinline="" preload="metadata"></video>
+  </div>
+  <div class="final-scrim" aria-hidden="true"></div>
+  <div class="wrap rv" style="position:relative">
+    <span class="app-icon"><svg width="112" height="112" role="img" aria-label="Earnit app icon"><use href="#ei-logo"></use></svg></span>
+    <h2 id="final-h"><span class="grad">Move first.</span><span class="sky">Scroll later.</span></h2>
+    <p class="lead">Your phone shouldn't be free. Give it a reason, and give yourself the evening back.</p>
+    <a class="btn btn-primary" href="https://apps.apple.com/app/earnit">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg>
+      Download for iPhone
+    </a>
+    <p class="fine">Subscription required. Cancel anytime in your Apple Account.</p>
+  </div>
+</section>
 </main>
 
-<!-- ============ 8 · FOOTER ============ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <h3 data-i18n-html="footer.title"><span class="serif">Earn your time.</span><br /><span class="serif-i">Spend it intentionally.</span></h3>
-      <nav class="footer-links" aria-label="Footer" data-i18n-aria-label="a11y.footerNav">
-        <a href="#how" data-i18n="nav.how">How it works</a>
-        <a href="#why" data-i18n="nav.why">Why Earnit</a>
-        <a href="#proof" data-i18n="nav.reviews">Reviews</a>
-        <a href="#faq">FAQ</a>
-        <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
-        <a href="terms.html" data-i18n="footer.terms">Terms</a>
-        <a href="/support" data-i18n="footer.support">Support</a>
-      </nav>
-      <div class="footer-say">
-        <p data-i18n="footer.tagline">Less scrolling.
-More living.</p>
-        <a class="liquid-glass" href="#join" data-i18n="common.get">Get Earnit</a>
-      </div>
+<footer class="foot">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:16px">
+      <span class="logo"><svg width="28" height="28" aria-hidden="true"><use href="#ei-logo"></use></svg>Earnit</span>
+      <small>© 2026 Earnit</small>
     </div>
-    <div class="footer-bar">
-      <div class="l">
-        <div class="brand serif">Earnit</div>
-        <div>© 2026 Earnit</div>
-      </div>
-      <div class="r">
-        <a href="privacy.html" data-i18n="footer.privacyPolicy">Privacy policy</a>
-        <a href="terms.html" data-i18n="footer.termsUse">Terms of use</a>
-      </div>
-    </div>
+    <nav aria-label="Legal">
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/support/">Support</a>
+    </nav>
   </div>
 </footer>
+</div>
 
 <script>
-var COPY = {
-  en: {
-    "meta.title": "Earnit — Earn your screen time",
-    "meta.description": "Earnit turns your daily steps into screen time. Walk 1,000 steps, earn 5 minutes, spend them on the apps you choose. Free on iPhone.",
-    "meta.socialDescription": "Walk 1,000 steps, earn 5 minutes. Spend them on the apps you choose.",
-    "meta.imageAlt": "A walker on a ridge at dawn, phone small in hand",
-    "a11y.skip": "Skip to content",
-    "a11y.mainNav": "Main",
-    "a11y.mobileNav": "Mobile",
-    "a11y.footerNav": "Footer",
-    "a11y.language": "Language",
-    "a11y.openMenu": "Open menu",
-    "a11y.closeMenu": "Close menu",
-    "nav.how": "How it works",
-    "nav.why": "Why Earnit",
-    "nav.reviews": "Reviews",
-    "common.get": "Get Earnit",
-    "common.download": "Download Earnit",
-    "common.seeHow": "See how it works",
-    "common.seeHowEarnit": "See how Earnit works",
-    "hero.eyebrow": "Screen time, reconsidered",
-    "hero.title": "Earn your screen time.",
-    "hero.subtitle": "Walk 1,000 steps, earn 5 minutes.<br />Spend them on the apps you choose.",
-    "hero.note": "Free to start. No account, no card.",
-    "story.one": "One quick check becomes another. The scroll starts before you choose it.",
-    "story.two": "Earnit breaks the reflex by putting movement before the scroll.",
-    "story.three": "You move. You earn time. You decide where it goes.",
-    "how.eyebrow": "How Earnit works",
-    "how.title": "Move.\nEarn.\nScroll.",
-    "how.body": "Your daily movement becomes screen time. When your balance reaches zero, your selected apps are blocked again.",
-    "how.rate": "1,000 steps = 5 min",
-    "how.move": "Move",
-    "how.earn": "Earn",
-    "how.use": "Use",
-    "meter.move": "2,000 steps today",
-    "meter.earn": "+10 min earned today",
-    "meter.use": "10 min ready to spend",
-    "alt.home": "A man sitting under a large tree at dusk, his phone the only cold light in the frame",
-    "alt.path": "A man walking a path away from us, at dusk, into open ground",
-    "alt.ridge": "A ridge above the city at dusk, the phone small in his hand",
-    "phone.day": "Wednesday",
-    "phone.streak": "Day 3 streak",
-    "phone.available": "Available time",
-    "phone.spend": "to spend on your apps",
-    "phone.earnMore": "Earn more time",
-    "phone.next": "1,000 steps until your next 5 minutes",
-    "phone.totals": "2,000 steps today · <span>+10 min earned today</span>",
-    "why.eyebrow": "Not another app blocker",
-    "why.title": "<span class=\"serif\">Scrolling isn't forbidden.</span><br /><span class=\"serif-i\">It's earned.</span>",
-    "why.body": "Earnit doesn't ask you to disappear from the internet. It simply puts something real before the scroll.",
-    "why.steps": "steps",
-    "why.earned": "earned",
-    "why.toSpend": "to spend",
-    "why.locks": "apps lock again",
-    "why.cta": "See what changes",
-    "proof.eyebrow": "What changes",
-    "proof.title": "<span class=\"serif\">The scroll stops being</span> <span class=\"serif-i\">automatic.</span>",
-    "proof.rating": "average rating across 312 reviews on the App Store",
-    "proof.quoteOne": "I used to open Instagram before I got out of bed. Now it stays locked until I have been outside. Three weeks in, the reflex is mostly gone.",
-    "proof.roleOne": "Product designer, Bristol",
-    "proof.quoteTwo": "The exchange rate is the whole trick. Five minutes sounds cheap until you work out that it costs you a thousand steps.",
-    "proof.roleTwo": "Paramedic, Chicago",
-    "proof.quoteThree": "My evening scrolling went from roughly two hours to under forty minutes. I never set that as a goal. Scrolling just quietly became inconvenient.",
-    "proof.roleThree": "Nurse, Rotterdam",
-    "proof.quoteFour": "It is the only thing I have tried that does not feel like a punishment. Nothing is forbidden. I just have to move first.",
-    "proof.roleFour": "Teacher, Malmo",
-    "faq.eyebrow": "Before you download",
-    "faq.title": "<span class=\"serif\">The questions</span> <span class=\"serif-i\">people actually ask.</span>",
-    "faq.q1": "How does Earnit know I have walked?",
-    "faq.a1": "It reads your step count from Apple Health, which your iPhone already records on the motion coprocessor. Earnit only ever reads that number. It never writes to your health record.",
-    "faq.q2": "Which apps get blocked?",
-    "faq.a2": "The ones you pick, through Apple's Screen Time permission. Most people choose two or three. Messages, maps and calls are never touched.",
-    "faq.q3": "What is the exchange rate?",
-    "faq.a3": "1,000 steps earns 5 minutes by default. You can make it harder if that feels too easy, and the app will suggest a rate based on how much you already walk.",
-    "faq.q4": "Will it drain my battery?",
-    "faq.a4": "No. The step data comes from a sensor your phone already runs all day. Earnit reads it a few times an hour rather than tracking you continuously.",
-    "faq.q5": "Can I cheat by shaking my phone?",
-    "faq.a5": "Not usefully. The motion coprocessor distinguishes walking from shaking, so the count stays flat. You would also have to shake it about a thousand times for 5 minutes.",
-    "faq.q6": "What happens when I reach zero?",
-    "faq.a6": "Your chosen apps lock again and stay locked until you walk. There is no timer to wait out and no button that buys your way past it.",
-    "faq.q7": "Does my health data leave the phone?",
-    "faq.a7": "Never. Step counts and app usage stay on your device. There is no account to create, so there is nothing on a server to leak.",
-    "faq.q8": "What does it cost?",
-    "faq.a8": "The daily loop is free and stays free. A paid tier at $19.00 a year adds custom rates, multiple app groups and a full history of what you earned.",
-    "join.eyebrow": "More life. Less autopilot.",
-    "join.title": "<span class=\"serif\">What would you do</span><br /><span class=\"serif-i\">with an extra hour?</span>",
-    "join.body": "Spend less time scrolling by accident and more time choosing what deserves your attention.",
-    "join.note": "Free on iPhone. No account, no card, delete it whenever you like.",
-    "footer.title": "<span class=\"serif\">Earn your time.</span><br /><span class=\"serif-i\">Spend it intentionally.</span>",
-    "footer.privacy": "Privacy",
-    "footer.terms": "Terms",
-    "footer.support": "Support",
-    "footer.tagline": "Less scrolling.\nMore living.",
-    "footer.privacyPolicy": "Privacy policy",
-    "footer.termsUse": "Terms of use"
-  },
-  es: {
-    "meta.title": "Earnit — Gana tu tiempo de pantalla",
-    "meta.description": "Earnit convierte tus pasos diarios en tiempo de pantalla. Camina 1.000 pasos, gana 5 minutos y úsalos en las apps que elijas. Gratis para iPhone.",
-    "meta.socialDescription": "Camina 1.000 pasos y gana 5 minutos. Úsalos en las apps que elijas.",
-    "meta.imageAlt": "Una persona camina por una cresta al amanecer con el móvil en la mano",
-    "a11y.skip": "Saltar al contenido",
-    "a11y.mainNav": "Principal",
-    "a11y.mobileNav": "Móvil",
-    "a11y.footerNav": "Pie de página",
-    "a11y.language": "Idioma",
-    "a11y.openMenu": "Abrir menú",
-    "a11y.closeMenu": "Cerrar menú",
-    "nav.how": "Cómo funciona",
-    "nav.why": "Por qué Earnit",
-    "nav.reviews": "Opiniones",
-    "common.get": "Consigue Earnit",
-    "common.download": "Descarga Earnit",
-    "common.seeHow": "Descubre cómo funciona",
-    "common.seeHowEarnit": "Descubre cómo funciona Earnit",
-    "hero.eyebrow": "Otra forma de entender el tiempo de pantalla",
-    "hero.title": "Gana tu tiempo de pantalla.",
-    "hero.subtitle": "Camina 1.000 pasos y gana 5 minutos.<br />Úsalos en las apps que elijas.",
-    "hero.note": "Empieza gratis. Sin cuenta ni tarjeta.",
-    "story.one": "Una mirada rápida se convierte en otra. El scroll empieza antes de que lo decidas.",
-    "story.two": "Earnit rompe ese impulso al poner movimiento antes del scroll.",
-    "story.three": "Te mueves. Ganas tiempo. Tú decides en qué usarlo.",
-    "how.eyebrow": "Cómo funciona Earnit",
-    "how.title": "Muévete.\nGana.\nDisfruta.",
-    "how.body": "Tu movimiento diario se convierte en tiempo de pantalla. Cuando tu saldo llega a cero, las apps que elegiste vuelven a bloquearse.",
-    "how.rate": "1.000 pasos = 5 min",
-    "how.move": "Muévete",
-    "how.earn": "Gana",
-    "how.use": "Usa",
-    "meter.move": "2.000 pasos hoy",
-    "meter.earn": "+10 min ganados hoy",
-    "meter.use": "10 min listos para usar",
-    "alt.home": "Un hombre sentado bajo un gran árbol al anochecer, con el móvil como única luz fría de la escena",
-    "alt.path": "Un hombre camina por un sendero al anochecer hacia un espacio abierto",
-    "alt.ridge": "Una cresta sobre la ciudad al anochecer, con el móvil pequeño en su mano",
-    "phone.day": "Miércoles",
-    "phone.streak": "Racha de 3 días",
-    "phone.available": "Tiempo disponible",
-    "phone.spend": "para usar en tus apps",
-    "phone.earnMore": "Gana más tiempo",
-    "phone.next": "1.000 pasos para tus próximos 5 minutos",
-    "phone.totals": "2.000 pasos hoy · <span>+10 min ganados hoy</span>",
-    "why.eyebrow": "No es otro bloqueador de apps",
-    "why.title": "<span class=\"serif\">El scroll no está prohibido.</span><br /><span class=\"serif-i\">Te lo ganas.</span>",
-    "why.body": "Earnit no te pide que desaparezcas de internet. Solo pone algo real antes del scroll.",
-    "why.steps": "pasos",
-    "why.earned": "ganados",
-    "why.toSpend": "para usar",
-    "why.locks": "las apps se bloquean",
-    "why.cta": "Mira lo que cambia",
-    "proof.eyebrow": "Lo que cambia",
-    "proof.title": "<span class=\"serif\">El scroll deja de ser</span> <span class=\"serif-i\">automático.</span>",
-    "proof.rating": "valoración media de 312 opiniones en el App Store",
-    "proof.quoteOne": "Antes abría Instagram incluso antes de levantarme de la cama. Ahora sigue bloqueado hasta que salgo. Tres semanas después, ese impulso casi ha desaparecido.",
-    "proof.roleOne": "Diseñadora de producto, Bristol",
-    "proof.quoteTwo": "La clave está en el cambio. Cinco minutos parecen baratos hasta que recuerdas que cuestan mil pasos.",
-    "proof.roleTwo": "Paramédico, Chicago",
-    "proof.quoteThree": "Pasé de casi dos horas de scroll por la noche a menos de cuarenta minutos. Nunca me lo propuse como objetivo. Simplemente, hacer scroll dejó de ser tan fácil.",
-    "proof.roleThree": "Enfermera, Róterdam",
-    "proof.quoteFour": "Es lo único que he probado que no se siente como un castigo. Nada está prohibido. Solo tengo que moverme primero.",
-    "proof.roleFour": "Profesor, Malmö",
-    "faq.eyebrow": "Antes de descargar",
-    "faq.title": "<span class=\"serif\">Las preguntas</span> <span class=\"serif-i\">que de verdad nos hacen.</span>",
-    "faq.q1": "¿Cómo sabe Earnit que he caminado?",
-    "faq.a1": "Lee tu recuento de pasos de Apple Health, que tu iPhone ya registra mediante el coprocesador de movimiento. Earnit solo lee ese número y nunca escribe en tu historial de salud.",
-    "faq.q2": "¿Qué apps se bloquean?",
-    "faq.a2": "Las que tú elijas mediante el permiso de Tiempo de uso de Apple. La mayoría elige dos o tres. Mensajes, Mapas y las llamadas nunca se bloquean.",
-    "faq.q3": "¿Cuál es la equivalencia?",
-    "faq.a3": "Por defecto, 1.000 pasos te dan 5 minutos. Puedes subir la dificultad si te parece demasiado fácil y la app te sugerirá una equivalencia basada en cuánto caminas normalmente.",
-    "faq.q4": "¿Gastará la batería?",
-    "faq.a4": "No. Los pasos proceden de un sensor que el móvil ya usa durante todo el día. Earnit consulta sus datos varias veces por hora en lugar de seguirte continuamente.",
-    "faq.q5": "¿Puedo hacer trampa agitando el móvil?",
-    "faq.a5": "No de forma útil. El coprocesador de movimiento distingue entre caminar y agitar el móvil, así que el contador no avanza. Además, tendrías que agitarlo unas mil veces para conseguir 5 minutos.",
-    "faq.q6": "¿Qué ocurre cuando llego a cero?",
-    "faq.a6": "Las apps que elegiste se bloquean de nuevo y permanecen así hasta que camines. No hay un temporizador que puedas esperar ni un botón para saltarte el bloqueo.",
-    "faq.q7": "¿Mis datos de salud salen del móvil?",
-    "faq.a7": "Nunca. Tus pasos y el uso de las apps permanecen en tu dispositivo. No hay que crear una cuenta, así que no existe ningún dato tuyo en un servidor que pueda filtrarse.",
-    "faq.q8": "¿Cuánto cuesta?",
-    "faq.a8": "El ciclo diario es gratis y seguirá siéndolo. Un plan de pago de 19,00 $ al año añade equivalencias personalizadas, varios grupos de apps y el historial completo del tiempo que has ganado.",
-    "join.eyebrow": "Más vida. Menos piloto automático.",
-    "join.title": "<span class=\"serif\">¿Qué harías</span><br /><span class=\"serif-i\">con una hora más?</span>",
-    "join.body": "Dedica menos tiempo al scroll accidental y más a elegir lo que merece tu atención.",
-    "join.note": "Gratis para iPhone. Sin cuenta ni tarjeta. Bórrala cuando quieras.",
-    "footer.title": "<span class=\"serif\">Gana tu tiempo.</span><br /><span class=\"serif-i\">Úsalo con intención.</span>",
-    "footer.privacy": "Privacidad",
-    "footer.terms": "Condiciones",
-    "footer.support": "Soporte",
-    "footer.tagline": "Menos scroll.\nMás vida.",
-    "footer.privacyPolicy": "Política de privacidad",
-    "footer.termsUse": "Condiciones de uso"
-  }
-};
+(() => {
+  const root = document.querySelector('.ei');
+  const burger = document.querySelector('.burger');
+  const setMenu = (open) => {
+    root.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  burger.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+  document.querySelectorAll('.menu a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
 
-var currentLanguage = "en";
+  // Videos only play while on screen.
+  const vio = new IntersectionObserver((entries) => entries.forEach((en) => {
+    const v = en.target;
+    if (en.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); } else v.pause();
+  }), { threshold: 0.05 });
+  document.querySelectorAll('video').forEach((v) => { v.muted = true; vio.observe(v); });
 
-function getInitialLanguage() {
-  try {
-    var savedLanguage = window.localStorage.getItem("earnit-language");
-    if (savedLanguage === "en" || savedLanguage === "es") return savedLanguage;
-  } catch (error) {}
-  return (navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
-}
+  // Pause looping CSS motion in sections that are off screen.
+  const sio = new IntersectionObserver((entries) => entries.forEach((en) =>
+    en.target.classList.toggle('paused', !en.isIntersecting)), { rootMargin: '200px' });
+  document.querySelectorAll('main > section').forEach((s) => sio.observe(s));
 
-function setLanguage(language, persist) {
-  currentLanguage = language === "es" ? "es" : "en";
-  var copy = COPY[currentLanguage];
-  document.documentElement.lang = currentLanguage;
-  document.title = copy["meta.title"];
+  if (CSS.supports('animation-timeline: view()')) return;
+  document.documentElement.classList.add('no-sda');
 
-  var textNodes = document.querySelectorAll("[data-i18n]");
-  for (var i = 0; i < textNodes.length; i++) textNodes[i].textContent = copy[textNodes[i].dataset.i18n];
+  const rio = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); }
+  }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((el) => rio.observe(el));
 
-  var htmlNodes = document.querySelectorAll("[data-i18n-html]");
-  for (var j = 0; j < htmlNodes.length; j++) htmlNodes[j].innerHTML = copy[htmlNodes[j].dataset.i18nHtml];
-
-  var altNodes = document.querySelectorAll("[data-i18n-alt]");
-  for (var k = 0; k < altNodes.length; k++) altNodes[k].alt = copy[altNodes[k].dataset.i18nAlt];
-
-  var labelNodes = document.querySelectorAll("[data-i18n-aria-label]");
-  for (var l = 0; l < labelNodes.length; l++) labelNodes[l].setAttribute("aria-label", copy[labelNodes[l].dataset.i18nAriaLabel]);
-
-  var metaNodes = document.querySelectorAll("[data-i18n-content]");
-  for (var m = 0; m < metaNodes.length; m++) metaNodes[m].content = copy[metaNodes[m].dataset.i18nContent];
-
-  var languageButtons = document.querySelectorAll("[data-language]");
-  for (var n = 0; n < languageButtons.length; n++) {
-    languageButtons[n].setAttribute("aria-pressed", String(languageButtons[n].dataset.language === currentLanguage));
-  }
-
-  var activeStep = document.querySelector("#steps button[aria-pressed=\"true\"]");
-  select(activeStep ? activeStep.dataset.step : "move");
-  if (typeof storyMessages !== "undefined" && storyMessages) {
-    tokenizeStory();
-    if (typeof requestStoryFrame === "function" && storyActive) requestStoryFrame();
-  }
-
-  var activeMenuButton = document.querySelector(".nav-menu");
-  if (activeMenuButton) {
-    activeMenuButton.setAttribute("aria-label", copy[activeMenuButton.getAttribute("aria-expanded") === "true" ? "a11y.closeMenu" : "a11y.openMenu"]);
-  }
-
-  if (persist !== false) {
-    try { window.localStorage.setItem("earnit-language", currentLanguage); } catch (error) {}
-  }
-}
-
-// The app's TickMeter: 46 hairline ticks, cobalt for the part you own.
-var TICKS = 46;
-var meter = document.getElementById('tickmeter');
-for (var i = 0; i < TICKS; i++) meter.appendChild(document.createElement('i'));
-
-var STEPS = {
-  move: { progress: 0.33, valueKey: "meter.move" },
-  earn: { progress: 0.66, valueKey: "meter.earn" },
-  use:  { progress: 1,    valueKey: "meter.use" }
-};
-
-function select(step) {
-  var s = STEPS[step];
-  var ticks = meter.children;
-  for (var i = 0; i < ticks.length; i++) {
-    ticks[i].classList.toggle('on', i / TICKS < s.progress);
-  }
-  document.getElementById('meter-value').textContent = COPY[currentLanguage][s.valueKey];
-  var buttons = document.querySelectorAll('#steps button');
-  for (var j = 0; j < buttons.length; j++) {
-    buttons[j].setAttribute('aria-pressed', String(buttons[j].dataset.step === step));
-  }
-}
-
-document.getElementById('steps').addEventListener('click', function (event) {
-  var button = event.target.closest('button[data-step]');
-  if (button) select(button.dataset.step);
-});
-
-setLanguage(getInitialLanguage(), false);
-
-document.addEventListener("click", function (event) {
-  var languageButton = event.target.closest("button[data-language]");
-  if (languageButton) setLanguage(languageButton.dataset.language, true);
-});
-
-// Some browsers refuse the initial autoplay until the video is ready; muted + playsinline
-// makes it allowed, this just retries if the first attempt was rejected.
-var hero = document.querySelector('.hero-video');
-function play() { var p = hero.play(); if (p && p.catch) p.catch(function () {}); }
-hero.addEventListener('canplay', play);
-play();
-
-var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// ---- scroll reveals. IntersectionObserver, never a scroll listener ----
-var revealables = document.querySelectorAll('.reveal');
-if (reduceMotion || !('IntersectionObserver' in window)) {
-  for (var r = 0; r < revealables.length; r++) revealables[r].classList.add('in');
-} else {
-  var revealObserver = new IntersectionObserver(function (entries) {
-    for (var i = 0; i < entries.length; i++) {
-      if (entries[i].isIntersecting) {
-        entries[i].target.classList.add('in');
-        revealObserver.unobserve(entries[i].target);
-      }
-    }
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-  for (var q = 0; q < revealables.length; q++) revealObserver.observe(revealables[q]);
-}
-
-// ---- sticky story: scroll progress reveals words and carries one message into the next ----
-var story = document.querySelector('.story');
-var storyMessages = story.querySelectorAll('.story-message');
-
-function tokenizeStory() {
-  for (var t = 0; t < storyMessages.length; t++) {
-    var tokens = storyMessages[t].textContent.split(/(\s+)/);
-    storyMessages[t].textContent = '';
-    for (var k = 0; k < tokens.length; k++) {
-      if (!tokens[k]) continue;
-      if (/^\s+$/.test(tokens[k])) {
-        storyMessages[t].appendChild(document.createTextNode(tokens[k]));
-      } else {
-        var word = document.createElement('span');
-        word.className = 'w';
-        word.textContent = tokens[k];
-        if (reduceMotion || !('IntersectionObserver' in window)) word.style.opacity = '1';
-        storyMessages[t].appendChild(word);
-      }
-    }
-  }
-}
-
-tokenizeStory();
-
-function clamp(value) { return Math.max(0, Math.min(1, value)); }
-
-if (reduceMotion || !('IntersectionObserver' in window)) {
-  for (var m = 0; m < storyMessages.length; m++) {
-    var staticWords = storyMessages[m].querySelectorAll('.w');
-    storyMessages[m].style.gridArea = 'auto';
-    storyMessages[m].style.position = 'relative';
-    storyMessages[m].style.opacity = '1';
-    storyMessages[m].style.transform = 'none';
-    storyMessages[m].style.filter = 'none';
-    for (var sw = 0; sw < staticWords.length; sw++) staticWords[sw].style.opacity = '1';
-  }
-  if (!reduceMotion) {
-    story.style.height = 'auto';
-    story.querySelector('.story-sticky').style.position = 'relative';
-    story.querySelector('.story-sticky').style.minHeight = '0';
-    story.querySelector('.story-messages').style.gap = '64px';
-  }
-} else {
-  var storyActive = false;
-  var storyFrame = 0;
-
-  function renderStory() {
-    storyFrame = 0;
-    if (!storyActive) return;
-
-    var rect = story.getBoundingClientRect();
-    var distance = Math.max(1, rect.height - window.innerHeight);
-    var progress = clamp(-rect.top / distance);
-    var phase = progress * storyMessages.length;
-
-    for (var i = 0; i < storyMessages.length; i++) {
-      var message = storyMessages[i];
-      var local = phase - i;
-      var enter = i === 0 ? 1 : clamp((local + 0.2) / 0.25);
-      var exit = i === storyMessages.length - 1 ? 1 : clamp((1.05 - local) / 0.25);
-      var opacity = Math.min(enter, exit);
-      var offset = ((1 - enter) * 24) - ((1 - exit) * 24);
-
-      message.style.opacity = opacity.toFixed(3);
-      message.style.transform = 'translate3d(0,' + offset.toFixed(2) + 'px,0)';
-      message.style.filter = 'blur(' + ((1 - opacity) * 10).toFixed(2) + 'px)';
-
-      var messageWords = message.querySelectorAll('.w');
-      for (var j = 0; j < messageWords.length; j++) {
-        var wordPosition = messageWords.length === 1 ? 0 : j / (messageWords.length - 1);
-        var threshold = 0.05 + wordPosition * 0.53;
-        var wordProgress = clamp((local - threshold) / 0.18);
-        messageWords[j].style.opacity = (0.28 + wordProgress * 0.72).toFixed(3);
-      }
-    }
-  }
-
-  function requestStoryFrame() {
-    if (!storyFrame) storyFrame = window.requestAnimationFrame(renderStory);
-  }
-
-  var storyObserver = new IntersectionObserver(function (entries) {
-    storyActive = entries[0].isIntersecting;
-    if (storyActive) {
-      window.addEventListener('scroll', requestStoryFrame, { passive: true });
-      window.addEventListener('resize', requestStoryFrame);
-      requestStoryFrame();
-    } else {
-      window.removeEventListener('scroll', requestStoryFrame);
-      window.removeEventListener('resize', requestStoryFrame);
-    }
-  }, { rootMargin: '100% 0px 100% 0px' });
-
-  storyObserver.observe(story);
-}
-
-// ---- mobile menu ----
-var menuButton = document.querySelector('.nav-menu');
-var overlay = document.getElementById('mobile-menu');
-var closeTimer;
-
-function openMenu() {
-  window.clearTimeout(closeTimer);
-  overlay.hidden = false;
-  window.requestAnimationFrame(function () { overlay.classList.add('open'); });
-  menuButton.setAttribute('aria-expanded', 'true');
-  menuButton.setAttribute('aria-label', COPY[currentLanguage]['a11y.closeMenu']);
-  document.body.style.overflow = 'hidden';
-}
-
-function closeMenu() {
-  overlay.classList.remove('open');
-  menuButton.setAttribute('aria-expanded', 'false');
-  menuButton.setAttribute('aria-label', COPY[currentLanguage]['a11y.openMenu']);
-  document.body.style.overflow = '';
-  closeTimer = window.setTimeout(function () { overlay.hidden = true; }, reduceMotion ? 0 : 700);
-}
-
-menuButton.addEventListener('click', function () {
-  if (menuButton.getAttribute('aria-expanded') === 'true') closeMenu();
-  else openMenu();
-});
-overlay.addEventListener('click', function (event) {
-  if (event.target === overlay || event.target.tagName === 'A') closeMenu();
-});
-document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
-    closeMenu();
-    menuButton.focus();
-  }
-});
-
-// ---- which section am I in ----
-var spyLinks = document.querySelectorAll('.nav-links a[data-spy]');
-if ('IntersectionObserver' in window) {
-  var spyObserver = new IntersectionObserver(function (entries) {
-    for (var i = 0; i < entries.length; i++) {
-      if (!entries[i].isIntersecting) continue;
-      for (var j = 0; j < spyLinks.length; j++) {
-        spyLinks[j].setAttribute('aria-current', String(spyLinks[j].dataset.spy === entries[i].target.id));
-      }
-    }
-  }, { rootMargin: '-45% 0px -45% 0px' });
-  var spied = ['how', 'why', 'proof', 'faq'];
-  for (var y = 0; y < spied.length; y++) {
-    var target = document.getElementById(spied[y]);
-    if (target) spyObserver.observe(target);
-  }
-}
+  // Tagline: words light up one at a time as the block crosses the viewport.
+  const tag = document.querySelector('.tag p');
+  const words = [...tag.querySelectorAll('.w')];
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const r = tag.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const progress = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
+    const lit = Math.round(progress * words.length);
+    words.forEach((w, i) => w.classList.toggle('on', i < lit));
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
 </script>
-
 </body>
 </html>
