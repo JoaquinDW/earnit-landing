@@ -50,7 +50,9 @@ No poner el token de Google en `.env.local` de la web, en Vercel ni en código d
 
 ## Medición de la web con PostHog
 
-Se encontró el proyecto existente de Earnit: ID `613296`. Su configuración pública de ingesta quedó en `.env.local` de este equipo, fuera de Git. Para activarla al desplegar, configurar las mismas variables en el proyecto de hosting:
+Se encontró el proyecto existente de Earnit: ID `613296`. Su configuración pública de ingesta quedó en `.env.local` de este equipo, fuera de Git. Las tres variables también se guardaron y comprobaron en el entorno **Production** del proyecto `earnit-landing` en Vercel. Se aplicarán al próximo despliegue de producción; no se republicó la web actual.
+
+Para reinstalar o trasladar la configuración, las variables son:
 
 - `POSTHOG_PROJECT_TOKEN`: el token público de proyecto, nunca una clave personal.
 - `POSTHOG_HOST`: el host de ingesta que devuelve la configuración del proyecto.
