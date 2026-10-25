@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-25T00:13:52.250287+00:00",
+  "title": "Design System: Earnit",
+  "extensions": {
+    "source": {
+      "file": "index.html",
+      "scope": "Implemented landing CSS and behavior",
+      "primitiveAuthority": "DESIGN.md YAML frontmatter",
+      "tonalRampPurpose": "Derived preview strips only; not application tokens."
+    },
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Forest ground",
+        "canonical": "#070e0d",
+        "tonalRamp": [
+          "oklch(15% 0.0116 185.55)",
+          "oklch(26% 0.0116 185.55)",
+          "oklch(38% 0.0116 185.55)",
+          "oklch(49% 0.0116 185.55)",
+          "oklch(61% 0.0116 185.55)",
+          "oklch(72% 0.0116 185.55)",
+          "oklch(84% 0.0116 185.55)",
+          "oklch(95% 0.0116 185.55)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Forest surface",
+        "canonical": "#0c1814",
+        "tonalRamp": [
+          "oklch(15% 0.0191 171.30)",
+          "oklch(26% 0.0191 171.30)",
+          "oklch(38% 0.0191 171.30)",
+          "oklch(49% 0.0191 171.30)",
+          "oklch(61% 0.0191 171.30)",
+          "oklch(72% 0.0191 171.30)",
+          "oklch(84% 0.0191 171.30)",
+          "oklch(95% 0.0191 171.30)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Forest panel, reserved in source",
+        "canonical": "#12221b",
+        "tonalRamp": [
+          "oklch(15% 0.0257 164.93)",
+          "oklch(26% 0.0257 164.93)",
+          "oklch(38% 0.0257 164.93)",
+          "oklch(49% 0.0257 164.93)",
+          "oklch(61% 0.0257 164.93)",
+          "oklch(72% 0.0257 164.93)",
+          "oklch(84% 0.0257 164.93)",
+          "oklch(95% 0.0257 164.93)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Pale leaf text",
+        "canonical": "#ecf3ee",
+        "tonalRamp": [
+          "oklch(15% 0.0099 155.09)",
+          "oklch(26% 0.0099 155.09)",
+          "oklch(38% 0.0099 155.09)",
+          "oklch(49% 0.0099 155.09)",
+          "oklch(61% 0.0099 155.09)",
+          "oklch(72% 0.0099 155.09)",
+          "oklch(84% 0.0099 155.09)",
+          "oklch(95% 0.0099 155.09)"
+        ]
+      },
+      "soft": {
+        "role": "neutral",
+        "displayName": "Soft leaf text",
+        "canonical": "#b9ccc2",
+        "tonalRamp": [
+          "oklch(15% 0.0248 163.01)",
+          "oklch(26% 0.0248 163.01)",
+          "oklch(38% 0.0248 163.01)",
+          "oklch(49% 0.0248 163.01)",
+          "oklch(61% 0.0248 163.01)",
+          "oklch(72% 0.0248 163.01)",
+          "oklch(84% 0.0248 163.01)",
+          "oklch(95% 0.0248 163.01)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted sage text",
+        "canonical": "#96ada0",
+        "tonalRamp": [
+          "oklch(15% 0.0316 160.78)",
+          "oklch(26% 0.0316 160.78)",
+          "oklch(38% 0.0316 160.78)",
+          "oklch(49% 0.0316 160.78)",
+          "oklch(61% 0.0316 160.78)",
+          "oklch(72% 0.0316 160.78)",
+          "oklch(84% 0.0316 160.78)",
+          "oklch(95% 0.0316 160.78)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Cobalt",
+        "canonical": "#2e5ce6",
+        "tonalRamp": [
+          "oklch(15% 0.2151 265.33)",
+          "oklch(26% 0.2151 265.33)",
+          "oklch(38% 0.2151 265.33)",
+          "oklch(49% 0.2151 265.33)",
+          "oklch(61% 0.2151 265.33)",
+          "oklch(72% 0.2151 265.33)",
+          "oklch(84% 0.2151 265.33)",
+          "oklch(95% 0.2151 265.33)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Cobalt hover, reserved in source",
+        "canonical": "#426cf0",
+        "tonalRamp": [
+          "oklch(15% 0.2040 266.54)",
+          "oklch(26% 0.2040 266.54)",
+          "oklch(38% 0.2040 266.54)",
+          "oklch(49% 0.2040 266.54)",
+          "oklch(61% 0.2040 266.54)",
+          "oklch(72% 0.2040 266.54)",
+          "oklch(84% 0.2040 266.54)",
+          "oklch(95% 0.2040 266.54)"
+        ]
+      },
+      "blue": {
+        "role": "primary",
+        "displayName": "Periwinkle blue",
+        "canonical": "#8caaff",
+        "tonalRamp": [
+          "oklch(15% 0.1276 268.44)",
+          "oklch(26% 0.1276 268.44)",
+          "oklch(38% 0.1276 268.44)",
+          "oklch(49% 0.1276 268.44)",
+          "oklch(61% 0.1276 268.44)",
+          "oklch(72% 0.1276 268.44)",
+          "oklch(84% 0.1276 268.44)",
+          "oklch(95% 0.1276 268.44)"
+        ]
+      },
+      "moss": {
+        "role": "secondary",
+        "displayName": "Moss",
+        "canonical": "#a4c78e",
+        "tonalRamp": [
+          "oklch(15% 0.0866 133.73)",
+          "oklch(26% 0.0866 133.73)",
+          "oklch(38% 0.0866 133.73)",
+          "oklch(49% 0.0866 133.73)",
+          "oklch(61% 0.0866 133.73)",
+          "oklch(72% 0.0866 133.73)",
+          "oklch(84% 0.0866 133.73)",
+          "oklch(95% 0.0866 133.73)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Forest divider",
+        "canonical": "#293930",
+        "tonalRamp": [
+          "oklch(15% 0.0263 159.88)",
+          "oklch(26% 0.0263 159.88)",
+          "oklch(38% 0.0263 159.88)",
+          "oklch(49% 0.0263 159.88)",
+          "oklch(61% 0.0263 159.88)",
+          "oklch(72% 0.0263 159.88)",
+          "oklch(84% 0.0263 159.88)",
+          "oklch(95% 0.0263 159.88)"
+        ]
+      },
+      "black": {
+        "role": "neutral",
+        "displayName": "Black",
+        "canonical": "#000",
+        "tonalRamp": [
+          "oklch(15% 0.0000 0.00)",
+          "oklch(26% 0.0000 0.00)",
+          "oklch(38% 0.0000 0.00)",
+          "oklch(49% 0.0000 0.00)",
+          "oklch(61% 0.0000 0.00)",
+          "oklch(72% 0.0000 0.00)",
+          "oklch(84% 0.0000 0.00)",
+          "oklch(95% 0.0000 0.00)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#fff",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(26% 0.0000 89.88)",
+          "oklch(38% 0.0000 89.88)",
+          "oklch(49% 0.0000 89.88)",
+          "oklch(61% 0.0000 89.88)",
+          "oklch(72% 0.0000 89.88)",
+          "oklch(84% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "store-border": {
+        "role": "neutral",
+        "displayName": "Store border",
+        "canonical": "#9aa69f",
+        "tonalRamp": [
+          "oklch(15% 0.0169 160.45)",
+          "oklch(26% 0.0169 160.45)",
+          "oklch(38% 0.0169 160.45)",
+          "oklch(49% 0.0169 160.45)",
+          "oklch(61% 0.0169 160.45)",
+          "oklch(72% 0.0169 160.45)",
+          "oklch(84% 0.0169 160.45)",
+          "oklch(95% 0.0169 160.45)"
+        ]
+      },
+      "download-hover": {
+        "role": "neutral",
+        "displayName": "Download hover",
+        "canonical": "#cdded2",
+        "tonalRamp": [
+          "oklch(15% 0.0244 155.10)",
+          "oklch(26% 0.0244 155.10)",
+          "oklch(38% 0.0244 155.10)",
+          "oklch(49% 0.0244 155.10)",
+          "oklch(61% 0.0244 155.10)",
+          "oklch(72% 0.0244 155.10)",
+          "oklch(84% 0.0244 155.10)",
+          "oklch(95% 0.0244 155.10)"
+        ]
+      },
+      "demo-selected": {
+        "role": "neutral",
+        "displayName": "Demo selected",
+        "canonical": "#1c2c24",
+        "tonalRamp": [
+          "oklch(15% 0.0261 162.34)",
+          "oklch(26% 0.0261 162.34)",
+          "oklch(38% 0.0261 162.34)",
+          "oklch(49% 0.0261 162.34)",
+          "oklch(61% 0.0261 162.34)",
+          "oklch(72% 0.0261 162.34)",
+          "oklch(84% 0.0261 162.34)",
+          "oklch(95% 0.0261 162.34)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headlines."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default website reading text."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Hero explanation."
+      },
+      "navigation": {
+        "displayName": "Navigation",
+        "purpose": "Desktop navigation and acquisition action."
+      },
+      "brand": {
+        "displayName": "Brand",
+        "purpose": "Earnit wordmark."
+      }
+    },
+    "shadows": [
+      {
+        "name": "phone-depth",
+        "value": "0 28px 64px -20px #000",
+        "purpose": "Physical depth beneath the illustrative phone."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Phone entrance easing."
+      },
+      {
+        "name": "phone-arrive",
+        "value": "phone-arrive 1s var(--ease) both",
+        "purpose": "One-time translateY(18px) to translateY(0) device entrance."
+      },
+      {
+        "name": "control-transition",
+        "value": ".2s",
+        "purpose": "Background, border, and color state transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "min-width:1450px"
+      },
+      {
+        "name": "medium",
+        "value": "max-width:1050px"
+      },
+      {
+        "name": "mobile",
+        "value": "max-width:760px"
+      },
+      {
+        "name": "narrow",
+        "value": "max-width:380px"
+      }
+    ],
+    "accessibility": {
+      "focus": "2px solid var(--blue), outline-offset:5px",
+      "reducedMotion": "Animation and transitions disabled; scroll-behavior:auto."
+    }
+  },
+  "components": [
+    {
+      "name": "Navigation download",
+      "kind": "button",
+      "refersTo": "navigation-download",
+      "description": "Compact pale acquisition action used in the sticky header.",
+      "html": "<a class=\"ds-download\" href=\"https://apps.apple.com/app/id6804905841\">Get the app<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-download{display:inline-flex;align-items:center;gap:12px;background:var(--text,#ecf3ee);color:var(--ground,#070e0d);padding:10px 18px;border-radius:8px;text-decoration:none;font:600 14px/1.6 var(--sans,Figtree,sans-serif);min-height:44px;transition:background .2s}.ds-download:hover{background:#cdded2}.ds-download:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+    },
+    {
+      "name": "App Store badge",
+      "kind": "button",
+      "refersTo": "store-badge",
+      "description": "Primary App Store acquisition badge, shared by the hero and closing section.",
+      "html": "<a class=\"ds-store\" href=\"https://apps.apple.com/app/id6804905841\"><svg class=\"ds-apple\" viewBox=\"0 0 24 28\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M19.6 14.8c0-3.1 2.5-4.6 2.6-4.7-1.4-2.1-3.7-2.4-4.5-2.4-1.9-.2-3.7 1.1-4.7 1.1-1 0-2.5-1.1-4.1-1-2.1 0-4 1.2-5.1 3-2.2 3.8-.6 9.4 1.5 12.5 1 1.5 2.2 3.1 3.8 3 1.5-.1 2.1-1 4-1 1.9 0 2.4 1 4.1 1 1.7 0 2.7-1.5 3.7-3 .9-1.1 1.6-2.5 2-4-2.2-1-3.3-2.6-3.3-4.5ZM16.5 5.7c.9-1.1 1.6-2.7 1.4-4.2-1.4.1-3.1.9-4.1 2-.9 1-1.7 2.6-1.5 4.1 1.6.1 3.2-.8 4.2-1.9Z\"/></svg><span><small>Download on the</small><strong>App Store</strong></span></a>",
+      "css": ".ds-store{display:inline-flex;align-items:center;gap:10px;border-radius:10px;border:1px solid #9aa69f;background:#000;color:#fff;text-decoration:none;padding:9px 17px 10px 15px;min-height:62px;font-family:var(--sans,Figtree,sans-serif);transition:background .2s,border-color .2s}.ds-store:hover{background:#15211b;border-color:var(--text,#ecf3ee)}.ds-apple{width:28px;height:32px}.ds-store small{display:block;font-size:11px;font-weight:400;line-height:1.2;letter-spacing:.01em}.ds-store strong{display:block;font-size:24px;font-weight:500;line-height:1.15;letter-spacing:-.02em}.ds-store:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+    },
+    {
+      "name": "Language selection",
+      "kind": "nav",
+      "description": "Two language buttons, with underline and pressed state.",
+      "html": "<div class=\"ds-language\" role=\"group\" aria-label=\"Language\"><button aria-label=\"English\" aria-pressed=\"true\">EN</button><button aria-label=\"Espa\u00f1ol\" aria-pressed=\"false\">ES</button></div>",
+      "css": ".ds-language{display:flex;gap:2px}.ds-language button{background:transparent;border:0;padding:10px 8px;color:var(--muted,#96ada0);font:600 12px/1.6 var(--sans,Figtree,sans-serif);min-height:44px;cursor:pointer}.ds-language button[aria-pressed=true]{color:var(--text,#ecf3ee);text-decoration:underline;text-decoration-color:var(--blue,#8caaff);text-underline-offset:6px}.ds-language button:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+    },
+    {
+      "name": "Demo stage controls",
+      "kind": "button",
+      "refersTo": "demo-control",
+      "description": "Pressed-state controls beneath the illustrative product device.",
+      "html": "<div class=\"ds-demo\" role=\"group\" aria-label=\"Explore the app\"><button aria-pressed=\"false\">Walk</button><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg><button aria-pressed=\"true\">Earn</button><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg><button aria-pressed=\"false\">Unlock</button></div>",
+      "css": ".ds-demo{display:inline-flex;align-items:center;gap:4px;color:#779080;font-family:var(--sans,Figtree,sans-serif)}.ds-demo button{border:0;background:transparent;padding:7px 12px;min-height:44px;font:400 13px/1.6 var(--sans,Figtree,sans-serif);border-radius:7px;color:var(--muted,#96ada0);transition:background .2s,color .2s;cursor:pointer}.ds-demo button[aria-pressed=true]{background:#1c2c24;color:var(--text,#ecf3ee)}.ds-demo button:hover{color:var(--text,#ecf3ee);background:var(--surface,#0c1814)}.ds-demo button:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+    },
+    {
+      "name": "Exchange example",
+      "kind": "card",
+      "refersTo": "exchange",
+      "description": "Flat informational band presenting an illustrative exchange rate.",
+      "html": "<div class=\"ds-exchange\"><div class=\"ds-value\"><span>1,000 steps</span><svg width=\"28\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg><span>5 minutes</span></div><p>An example exchange. Set your rate in the app.</p></div>",
+      "css": ".ds-exchange{padding:22px 26px;background:var(--surface,#0c1814);color:var(--text,#ecf3ee);display:flex;justify-content:space-between;gap:24px;align-items:center;border-radius:12px;font:400 17px/1.6 var(--sans,Figtree,sans-serif)}.ds-value{display:flex;align-items:center;gap:18px;white-space:nowrap}.ds-value svg{color:var(--muted,#96ada0)}.ds-exchange p{margin:0;font-size:12px;color:var(--muted,#96ada0)}@media(max-width:760px){.ds-exchange{flex-direction:column;gap:12px;padding:22px 16px;text-align:center}.ds-value{font-size:15px;gap:12px}}"
+    },
+    {
+      "name": "Native FAQ",
+      "kind": "custom",
+      "refersTo": "faq-summary",
+      "description": "Native independent disclosure with plus/minus indicators and fine dividers.",
+      "html": "<div class=\"ds-faq\"><details><summary>Which apps does it block?</summary><p>You pick the apps you want to manage using Apple\u2019s Screen Time controls.</p></details></div>",
+      "css": ".ds-faq{font-family:var(--sans,Figtree,sans-serif);color:var(--text,#ecf3ee)}.ds-faq details{border-bottom:1px solid var(--line,#293930)}.ds-faq details:first-child{border-top:1px solid var(--line,#293930)}.ds-faq summary{list-style:none;cursor:pointer;font-size:16px;font-weight:500;padding:22px 36px 22px 0;position:relative;line-height:1.5}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:after{content:\"+\";position:absolute;right:4px;top:20px;color:var(--muted,#96ada0);font-size:22px;font-weight:400}.ds-faq details[open] summary:after{content:\"\u2212\"}.ds-faq summary:hover{color:var(--blue,#8caaff)}.ds-faq details p{margin:0;color:var(--soft,#b9ccc2);font-size:15px;line-height:1.75;padding:0 32px 24px 0}.ds-faq summary:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Forest and cobalt",
+    "overview": "Earnit pairs a nearly black forest ground with cobalt actions, pale leaf text, and serif headlines. Instrument Serif supplies the wordmark and expressive statements; Figtree keeps explanations and controls direct. The implementation uses open sections, fine dividers, and a single dimensional product device rather than pervasive floating cards.",
+    "keyCharacteristics": [
+      "Forest tonal surfaces and pale leaf typography.",
+      "Cobalt actions, blue emphasis, and moss functional icons.",
+      "Serif statements with restrained sans-serif controls.",
+      "Flat editorial sections with a physical phone silhouette."
+    ],
+    "rules": [],
+    "dos": [
+      "Do use the existing forest, cobalt, blue, and moss roles.",
+      "Do reserve Instrument Serif for the brand, major headlines, and illustrated balance numerals.",
+      "Do preserve visible keyboard focus and reduced-motion behavior.",
+      "Do keep instructional illustrations distinguishable from real product evidence."
+    ],
+    "donts": [
+      "Don't replace the established forest and cobalt identity with the reference site's purple palette.",
+      "Don't use a cinematic background video on this landing.",
+      "Don't turn the illustrated screen into evidence of an exact production screenshot.",
+      "Don't invent ratings, customer testimonials, or fixed pricing."
+    ]
+  }
+}
