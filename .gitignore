@@ -1,2 +1,7 @@
 .vite/
 .impeccable/review/
+public/
+node_modules/
+.seo-data/
+.env*
+!.env.example

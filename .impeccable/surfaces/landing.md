@@ -4,11 +4,11 @@ Mode: persuade.
 
 ## Scope and authority
 
-Implemented surface: `index.html`, the English/Spanish static marketing homepage. Visual tokens are in root `DESIGN.md`; extensions and component previews are in `.impeccable/design.json`. The user's approved direction is a visible iPhone, direct proposition, App Store acquisition, and an illustrative interface inspired by Vaultaire's clarity. Earnit's forest/cobalt identity and serif/sans pairing remain its own.
+Implemented surfaces: `/` and `/es/`, built into `public/index.html` and `public/es/index.html` by `scripts/build.mjs`. Homepage markup lives in `src/home.html`, localized copy in `content/home.json`, shared styles in `assets/site.css`, illustrative-phone behavior in `assets/home.js`, and shared navigation behavior in `assets/site.js`. Visual tokens are in root `DESIGN.md`; extensions and component previews are in `.impeccable/design.json`. The user's approved direction is a visible iPhone, direct proposition, App Store acquisition, and an illustrative interface inspired by Vaultaire's clarity. Earnit's forest/cobalt identity and serif/sans pairing remain its own.
 
 ## Visitor path
 
-Sticky navigation → proposition with App Store badge and desktop QR → illustrative phone with Walk / Earn / Unlock controls → iPhone / Apple Health / Apple Screen Time facts → three-step explanation and labeled example exchange → benefits → privacy → FAQ → closing App Store badge → legal/support footer.
+Sticky navigation → proposition with App Store badge and desktop QR → illustrative phone with Walk / Earn / Unlock controls → iPhone / Apple Health / Apple Screen Time facts → three-step explanation and labeled example exchange → benefits → privacy → FAQ → guide links → closing App Store badge → guides/legal/support footer.
 
 All App Store actions and the QR lead to `https://apps.apple.com/app/id6804905841`. Compatibility is iPhone with iOS 18 or later. Current pricing is delegated to the App Store. Legal/support paths remain `privacy.html`, `terms.html`, and `support/`.
 
@@ -30,9 +30,9 @@ The exchange (1,000 steps / 5 minutes) is explicitly labeled an example, with a 
 
 ## Language and navigation mechanics
 
-English is present in static HTML for no-JavaScript reading. JavaScript initially selects Spanish when the browser language starts with `es`, otherwise English; a valid saved `earnit-language` value takes precedence. EN/ES selection updates the document language/title, visible copy, meta copy, alt text, accessible labels, and current demo state, then persists the preference when local storage is available.
+English and Spanish are complete static HTML pages, including translated visible copy, metadata, accessible labels, and illustrative-phone copy. EN/ES are real anchors to the reciprocal locale page; `aria-current=page` and a blue underline identify the current locale. With JavaScript enabled, switching locale carries the current section fragment. Language is determined by the URL; there is no browser-language rewrite or stored language preference. Guide links appear in desktop navigation, mobile navigation, the section before the closing acquisition action, and the footer; they lead to the matching locale's guide index.
 
-Mobile navigation toggles `hidden`, `aria-expanded`, and its translated label. Selecting a menu link, clicking outside the header, pressing Escape, or returning above the mobile breakpoint closes it. Escape returns focus to the menu button. Native FAQ disclosures operate without JavaScript and allow multiple open answers. A skip link appears on focus; shared blue outlines expose keyboard focus. Reduced-motion settings disable animation/transitions and smooth scrolling.
+Without JavaScript, mobile navigation links remain visible and the menu toggle stays hidden. JavaScript collapses the menu and reveals the toggle; mobile navigation then toggles `hidden`, `aria-expanded`, and its translated label. Selecting a menu link, clicking outside the header, pressing Escape, or returning above the mobile breakpoint closes it. Escape returns focus to the menu button. Native FAQ disclosures operate without JavaScript and allow multiple open answers. A skip link appears on focus; shared blue outlines expose keyboard focus. Reduced-motion settings disable animation/transitions and smooth scrolling.
 
 ## Content guardrails
 

@@ -1,0 +1,76 @@
+[
+  {
+    "id": "walking",
+    "datePublished": "2026-10-24",
+    "dateModified": "2026-10-24",
+    "en": {
+      "slug": "earn-screen-time-by-walking",
+      "title": "How to earn screen time by walking on iPhone",
+      "description": "Turn steps into time for selected apps with Earnit. Learn how walking rewards work, what permissions you need, and how this differs from a daily app limit.",
+      "summary": "Put a walk before your next scroll. A practical guide to steps, earned minutes, and app restrictions.",
+      "lead": "You can make movement the condition for your next app session. Here’s how earning minutes works, and how to choose a rule you can live with.",
+      "answer": "To earn screen time by walking, use an app that connects your step count with app restrictions. Earnit reads steps from Apple Health, turns them into minutes, and lets you spend those minutes on the apps you choose. When a session ends, the restrictions return.",
+      "toc": [
+        ["how-it-works", "How walking becomes screen time"],
+        ["set-it-up", "Set up your walking rule"],
+        ["step-goal", "Step goals or a balance of minutes?"],
+        ["choose-your-rule", "Choose a rule for your day"],
+        ["before-you-start", "What to know before you start"],
+        ["questions", "Common questions"]
+      ]
+    },
+    "es": {
+      "slug": "ganar-tiempo-de-pantalla-caminando",
+      "title": "Cómo ganar tiempo de pantalla caminando con tu iPhone",
+      "description": "Convierte pasos en minutos para tus apps con Earnit. Descubre cómo funciona, qué permisos necesita y en qué se diferencia de un límite diario de uso.",
+      "summary": "Camina antes de volver al scroll. Una guía sobre pasos, minutos ganados y restricciones de apps.",
+      "lead": "Puedes poner un poco de movimiento antes de tu próxima sesión. Así funciona ganar minutos caminando y elegir una regla que encaje en tu día.",
+      "answer": "Para ganar tiempo de pantalla caminando necesitas una app que conecte tus pasos con las restricciones de uso. Earnit lee los pasos de Salud de Apple, los convierte en minutos y te permite gastarlos en las apps que elijas. Cuando termina la sesión, vuelven las restricciones.",
+      "toc": [
+        ["how-it-works", "De pasos a tiempo de pantalla"],
+        ["set-it-up", "Configura tu regla de movimiento"],
+        ["step-goal", "¿Meta de pasos o saldo de minutos?"],
+        ["choose-your-rule", "Elige una regla para tu día"],
+        ["before-you-start", "Antes de empezar"],
+        ["questions", "Preguntas frecuentes"]
+      ]
+    }
+  },
+  {
+    "id": "instagram",
+    "datePublished": "2026-10-24",
+    "dateModified": "2026-10-24",
+    "en": {
+      "slug": "limit-instagram-iphone",
+      "title": "How to limit Instagram on iPhone",
+      "description": "Set an Instagram limit with Apple Screen Time, or put a walk before each session with Earnit. Compare the two approaches and choose the rule that fits your day.",
+      "summary": "Set a daily limit, or earn your next session. Choose an Instagram boundary that makes sense for you.",
+      "lead": "A quick check doesn’t need to become your whole break. Choose between a daily allowance and time you earn before opening Instagram.",
+      "answer": "You can limit Instagram from Settings → Screen Time → App Limits on your iPhone. For a different approach, Earnit lets you earn minutes through walking and spend them on selected apps. A daily cap sets an allowance; Earnit puts effort before a session.",
+      "toc": [
+        ["daily-limit", "Set a daily Instagram limit"],
+        ["choose-the-rule", "Pick the boundary you want"],
+        ["walk-first", "Earn your next session"],
+        ["make-it-practical", "Make the rule practical"],
+        ["limits", "Understand the limits"],
+        ["questions", "Common questions"]
+      ]
+    },
+    "es": {
+      "slug": "limitar-instagram-iphone",
+      "title": "Cómo limitar Instagram en tu iPhone",
+      "description": "Configura un límite con Tiempo de uso de Apple o camina antes de cada sesión con Earnit. Compara las dos opciones y elige una regla que encaje en tu día.",
+      "summary": "Un límite diario o minutos que ganas caminando. Elige cómo quieres ponerle un límite a Instagram.",
+      "lead": "Una consulta rápida no tiene por qué ocupar todo tu descanso. Puedes elegir un límite diario o ganar tiempo antes de abrir Instagram.",
+      "answer": "Puedes limitar Instagram desde Ajustes → Tiempo de uso → Límites de uso de apps en tu iPhone. Si prefieres otra regla, Earnit te permite ganar minutos caminando y gastarlos en las apps que elijas. El límite diario fija una cantidad; Earnit pone el esfuerzo antes de una sesión.",
+      "toc": [
+        ["daily-limit", "Pon un límite diario a Instagram"],
+        ["choose-the-rule", "Elige el tipo de límite"],
+        ["walk-first", "Gana tu próxima sesión"],
+        ["make-it-practical", "Adapta la regla a tu rutina"],
+        ["limits", "Conoce sus límites"],
+        ["questions", "Preguntas frecuentes"]
+      ]
+    }
+  }
+]

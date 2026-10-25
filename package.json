@@ -1,0 +1,13 @@
+{
+  "name": "earnit-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "python3 scripts/check-site.py",
+    "test": "node --test scripts/*.test.mjs",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory public",
+    "seo:opportunities": "node scripts/seo-opportunities.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
