@@ -37,3 +37,7 @@ Optional analytics uses `.env.local` locally and hosting environment variables i
 ## Scheduled listicles
 
 The October 26–November 4 campaign covers 20 Applyra keywords in 10 bilingual listicles. See [the calendar](docs/seo/CALENDAR-2026-10-26.md). Future articles stay in source but are excluded from the static output until their publication day in Córdoba. The daily chat automation rebuilds and deploys; a date change alone does not update a static deployment. Run `npm run verify:published` after deployment.
+
+## Discovery checks
+
+`npm run check` also validates crawler access in robots.txt, index/snippet eligibility and visible structured-data citations. After deployment, `npm run verify:crawlers` tests identical static HTML across five search user-agent strings. This does not establish actual crawler visits or indexing. See [the audit](docs/seo/AI-DISCOVERY-2026-10-26.md) and the public `/editorial/` and `/es/editorial/` methodology pages.

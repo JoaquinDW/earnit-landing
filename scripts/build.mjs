@@ -31,8 +31,15 @@ const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<'
 const json = value => JSON.stringify(value).replace(/</g, '\\u003c');
 const homePath = lang => lang === 'es' ? '/es/' : '/';
 const guidesPath = lang => `${homePath(lang)}guides/`;
+const editorialPath = lang => `${homePath(lang)}editorial/`;
 const guidePath = (guide, lang) => `${guidesPath(lang)}${guide[lang].slug}/`;
 const url = route => origin + route;
+const publisher = { '@type':'Organization', '@id':origin+'/#publisher', name:config.publisher, url:origin+'/' };
+const appEntity = {
+  '@type':'MobileApplication', '@id':origin+'/#app', name:'Earnit',
+  url:origin+'/', installUrl:config.appStore, operatingSystem:'iOS 18.0 or later',
+  applicationCategory:'ProductivityApplication', publisher:{'@id':publisher['@id']}
+};
 const arrow = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>';
 const label = {
   en: {
@@ -86,6 +93,8 @@ function alternates(paths) {
     `\n<link rel="alternate" hreflang="x-default" href="${url(paths.en)}">`;
 }
 function seoHead(route, paths, lang, schema) {
+  // Stable entity IDs connect the publisher, app, homepage and editorial policy.
+  schema = {...schema, '@graph': [{...publisher, publishingPrinciples:url(editorialPath(lang))}, appEntity, ...schema['@graph']]};
   const verification = config.googleSiteVerification ? `\n<meta name="google-site-verification" content="${esc(config.googleSiteVerification)}">` : '';
   return `<link rel="canonical" href="${url(route)}">\n${alternates(paths)}
 <meta property="og:locale" content="${lang === 'es' ? 'es_ES' : 'en_US'}">
@@ -125,6 +134,7 @@ function cta(lang) {
   return `<aside class="reader-cta" aria-labelledby="cta-title"><h2 id="cta-title">${t.ctaTitle}</h2><p>${t.ctaBody}</p>${appLink(lang, 'article-end')}<a class="text-link" href="${homePath(lang)}#how">${t.product}${arrow}</a><p class="cta-fine">${t.available}</p></aside>`;
 }
 function page(lang, route, paths, title, description, content, schema, article = false, extraMeta = '') {
+  const pageKind = article ? 'guide' : route === editorialPath(lang) ? 'editorial' : 'guides';
   const favicon = template.match(/<link rel="icon"[^>]+>/)[0];
   return `<!doctype html>
 <html lang="${lang}"><head>
@@ -141,7 +151,7 @@ ${extraMeta}${favicon}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
-</head><body class="reader-page" data-page="${article ? 'guide' : 'guides'}" data-content="${article ? esc(guides.find(g => guidePath(g, lang) === route).id) : 'guides'}">
+</head><body class="reader-page" data-page="${pageKind}" data-content="${article ? esc(guides.find(g => guidePath(g, lang) === route).id) : pageKind}">
 ${header(lang, paths)}${content}${footer(lang)}</body></html>\n`;
 }
 function translateHome(html, lang) {
@@ -197,7 +207,7 @@ for (const lang of languages) {
   const paths = { en:'/', es:'/es/' };
   const schema = { '@context':'https://schema.org', '@graph':[
     { '@type':'WebSite', '@id':origin+'/#website', name:'Earnit', url:origin+'/', inLanguage:['en','es'] },
-    { '@type':'WebPage', name:homeCopy[lang]['meta.title'], url:url(homePath(lang)), inLanguage:lang, isPartOf:{ '@id':origin+'/#website' } }
+    { '@type':'WebPage', mainEntity:{'@id':appEntity['@id']}, name:homeCopy[lang]['meta.title'], url:url(homePath(lang)), inLanguage:lang, isPartOf:{ '@id':origin+'/#website' } }
   ]};
   const demoCopy = Object.fromEntries(Object.entries(homeCopy[lang]).filter(([key]) => key.startsWith('phone.') || key.startsWith('demo.')));
   const substitutions = {
@@ -234,6 +244,18 @@ for (const lang of languages) {
   await save(guidesPath(lang), page(lang, guidesPath(lang), indexPaths, t.indexTitle, t.description, indexContent, indexSchema));
   routes.push({ route:guidesPath(lang), paths:indexPaths });
 
+  const editorialPaths = Object.fromEntries(languages.map(code => [code, editorialPath(code)]));
+  const editorialTitle = lang === 'es' ? 'Cómo comparamos apps | Earnit' : 'How we compare apps | Earnit';
+  const editorialDescription = lang === 'es' ? 'Quién publica las guías de Earnit, qué fuentes usamos y cómo evaluamos las alternativas.' : 'Who publishes Earnit guides, which sources we use, and how we evaluate alternatives.';
+  const editorialBody = await read(`content/editorial.${lang}.html`);
+  const editorialSchema = {'@context':'https://schema.org', '@graph':[
+    {'@type':'AboutPage', '@id':url(editorialPath(lang)), name:editorialTitle, inLanguage:lang,
+      about:{'@id':publisher['@id']}, publisher:{'@id':publisher['@id']}, dateModified:'2026-10-26'}
+  ]};
+  await save(editorialPath(lang), page(lang, editorialPath(lang), editorialPaths, editorialTitle,
+    editorialDescription, `<main id="main" class="article wrap"><div class="article-body">${editorialBody}</div></main>`, editorialSchema));
+  routes.push({route:editorialPath(lang), paths:editorialPaths, modified:'2026-10-26'});
+
   for (const guide of guides) {
     const data = guide[lang];
     const route = guidePath(guide,lang);
@@ -254,16 +276,19 @@ for (const lang of languages) {
     const related = guides.filter(g => g.id !== guide.id).slice(-3).reverse();
     const content = `<main id="main"><article class="article wrap">
 <nav class="breadcrumbs" aria-label="${t.breadcrumb}"><a href="${homePath(lang)}">Earnit</a><span aria-hidden="true">/</span><a href="${guidesPath(lang)}">${t.guides}</a></nav>
-<header class="article-header"><h1>${esc(data.title)}</h1><p class="article-lead">${esc(data.lead)}</p><div class="article-meta"><span>${t.author}</span><span>${t.updated} <time datetime="${guide.dateModified}">${date}</time></span><span>${minutes} min ${lang === 'es' ? 'de lectura' : 'read'}</span></div></header>
+<header class="article-header"><h1>${esc(data.title)}</h1><p class="article-lead">${esc(data.lead)}</p><div class="article-meta"><a href="${editorialPath(lang)}" rel="author">${t.author}</a><span>${t.updated} <time datetime="${guide.dateModified}">${date}</time></span><span>${minutes} min ${lang === 'es' ? 'de lectura' : 'read'}</span></div></header>
 <div class="article-layout"><div class="article-body"><div class="quick-answer"><h2>${t.answer}</h2><p>${esc(data.answer)}</p></div><details class="mobile-toc"><summary>${t.onThisPage}</summary>${toc}</details>${body}${cta(lang)}</div><aside class="article-rail">${toc}<a class="rail-product" href="${homePath(lang)}#how">${t.product}${arrow}</a></aside></div>
 </article><section class="related-guides wrap" aria-labelledby="related-title"><h2 id="related-title">${t.next}</h2>${guideRows(lang,related)}</section></main>`;
     const articleSchema = { '@context':'https://schema.org', '@graph':[
-      { '@type':'Article', headline:data.title, description:data.description, inLanguage:lang,
+      { '@type':'Article', '@id':url(route)+'#article', headline:data.title, description:data.description, inLanguage:lang,
         datePublished:guide.datePublished, dateModified:guide.dateModified,
         mainEntityOfPage:{ '@type':'WebPage', '@id':url(route) },
-        author:{ '@type':'Organization', name:config.publisher, url:origin+'/' },
-        publisher:{ '@type':'Organization', name:config.publisher, url:origin+'/' } },
-      ...(guide.picks ? [{ '@type':'ItemList', name:data.title, itemListOrder:'https://schema.org/ItemListOrderAscending',
+        author:{ '@type':'Organization', '@id':publisher['@id'], name:config.publisher, url:url(editorialPath(lang)) },
+        publisher:{ '@id':publisher['@id'] },
+        image:[url('/assets/earnit-appstore.png')],
+        ...(guide.citations ? {citation:guide.citations} : {}),
+        ...(guide.picks ? {mentions:guide.picks.map(pick => ({'@type':'SoftwareApplication',name:pick.name,url:pick.url}))} : {}) },
+      ...(guide.picks ? [{ '@type':'ItemList', name:data.title, itemListOrder:'https://schema.org/ItemListUnordered', numberOfItems:guide.picks.length,
         itemListElement:guide.picks.map((pick,i) => ({ '@type':'ListItem', position:i+1, name:pick.name, url:pick.url })) }] : []),
       breadcrumbSchema(lang,guide)
     ]};

@@ -256,7 +256,13 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://www.unrot.com/",
+      "https://apps.apple.com/us/app/pushup-time-app-blocker/id6749405784",
+      "https://www.pushblock.app/terms"
+    ]
   },
   {
     "id": "pushup-apps",
@@ -357,7 +363,12 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://www.pushblock.app/terms",
+      "https://apps.apple.com/us/app/pushup-time-app-blocker/id6749405784"
+    ]
   },
   {
     "id": "opal-alternatives",
@@ -470,7 +481,14 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://screenzen.co/",
+      "https://freedom.to/",
+      "https://one-sec.app/",
+      "https://help.opalapp.com/article/how-to-use-schedules"
+    ]
   },
   {
     "id": "study-apps",
@@ -583,7 +601,13 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://www.forestapp.cc/",
+      "https://help.opalapp.com/article/how-to-use-schedules",
+      "https://freedom.to/"
+    ]
   },
   {
     "id": "freedom-alternatives",
@@ -696,7 +720,14 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://help.opalapp.com/article/how-to-use-schedules",
+      "https://screenzen.co/",
+      "https://www.forestapp.cc/",
+      "https://freedom.to/"
+    ]
   },
   {
     "id": "tracking-apps",
@@ -797,7 +828,12 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://support.apple.com/en-gb/guide/iphone/iphbfa595995/18.0/ios/18.0",
+      "https://apps.apple.com/app/id6804905841",
+      "https://www.forestapp.cc/"
+    ]
   },
   {
     "id": "scrolling-apps",
@@ -910,7 +946,13 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://one-sec.app/",
+      "https://screenzen.co/",
+      "https://www.unrot.com/"
+    ]
   },
   {
     "id": "forest-alternatives",
@@ -1023,7 +1065,14 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://help.opalapp.com/article/how-to-use-schedules",
+      "https://freedom.to/",
+      "https://screenzen.co/",
+      "https://www.forestapp.cc/"
+    ]
   },
   {
     "id": "one-sec-alternatives",
@@ -1136,7 +1185,14 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://screenzen.co/",
+      "https://help.opalapp.com/article/how-to-use-schedules",
+      "https://www.unrot.com/",
+      "https://one-sec.app/"
+    ]
   },
   {
     "id": "exercise-apps",
@@ -1249,6 +1305,12 @@
           "Antes de instalar"
         ]
       ]
-    }
+    },
+    "citations": [
+      "https://apps.apple.com/app/id6804905841",
+      "https://apps.apple.com/us/app/pushup-time-app-blocker/id6749405784",
+      "https://www.pushblock.app/terms",
+      "https://www.unrot.com/"
+    ]
   }
 ]
