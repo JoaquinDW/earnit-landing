@@ -380,3 +380,7 @@ h3 { font-size: 21px; line-height: 1.3; font-weight: 500; letter-spacing: -.015e
  .reader-page .brand { font-size: 29px; }
  .reader-page .nav { gap: 8px; }
 }
+
+/* Two-column listicle comparisons stay readable without sideways scrolling. */
+.reading-table.listicle-table { min-width: 0; }
+.reading-table.listicle-table th:first-child { min-width: 0; width: 34%; }
