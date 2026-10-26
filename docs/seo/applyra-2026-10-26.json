@@ -1,0 +1,230 @@
+{
+  "researchedAt": "2026-10-26",
+  "appId": 556271,
+  "store": "ITUNES",
+  "country": "US",
+  "language": "en-US",
+  "note": "Applyra App Store scores (0–100), not Google keyword volume or SEO difficulty. Twenty keywords grouped by ten distinct editorial intents.",
+  "keywords": [
+    {
+      "keyword": "earn screen time",
+      "article": "earned-apps",
+      "date": "2026-10-26",
+      "traffic": 52,
+      "difficulty": 59,
+      "kei": {
+        "score": 0.88,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "earn screen time rewards",
+      "article": "earned-apps",
+      "date": "2026-10-26",
+      "traffic": 8,
+      "difficulty": 20,
+      "kei": {
+        "score": 0.4,
+        "level": "moderate"
+      }
+    },
+    {
+      "keyword": "pushups to unlock apps",
+      "article": "pushup-apps",
+      "date": "2026-10-27",
+      "traffic": 25,
+      "difficulty": 20,
+      "kei": {
+        "score": 1.25,
+        "level": "excellent"
+      }
+    },
+    {
+      "keyword": "app blocker pushups",
+      "article": "pushup-apps",
+      "date": "2026-10-27",
+      "traffic": 25,
+      "difficulty": 23,
+      "kei": {
+        "score": 1.09,
+        "level": "excellent"
+      }
+    },
+    {
+      "keyword": "opal alternative",
+      "article": "opal-alternatives",
+      "date": "2026-10-28",
+      "traffic": 8,
+      "difficulty": 22,
+      "kei": {
+        "score": 0.36,
+        "level": "low"
+      }
+    },
+    {
+      "keyword": "app blocker",
+      "article": "opal-alternatives",
+      "date": "2026-10-28",
+      "traffic": 54,
+      "difficulty": 61,
+      "kei": {
+        "score": 0.89,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "study lock",
+      "article": "study-apps",
+      "date": "2026-10-29",
+      "traffic": 25,
+      "difficulty": 35,
+      "kei": {
+        "score": 0.71,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "set study mode timer",
+      "article": "study-apps",
+      "date": "2026-10-29",
+      "traffic": 8,
+      "difficulty": 23,
+      "kei": {
+        "score": 0.35,
+        "level": "low"
+      }
+    },
+    {
+      "keyword": "freedom alternative",
+      "article": "freedom-alternatives",
+      "date": "2026-10-30",
+      "traffic": 8,
+      "difficulty": 10,
+      "kei": {
+        "score": 0.8,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "app blocker for productivity",
+      "article": "freedom-alternatives",
+      "date": "2026-10-30",
+      "traffic": 25,
+      "difficulty": 26,
+      "kei": {
+        "score": 0.96,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "screen time tracker",
+      "article": "tracking-apps",
+      "date": "2026-10-31",
+      "traffic": 24,
+      "difficulty": 44,
+      "kei": {
+        "score": 0.55,
+        "level": "moderate"
+      }
+    },
+    {
+      "keyword": "earn screen time tracker",
+      "article": "tracking-apps",
+      "date": "2026-10-31",
+      "traffic": 8,
+      "difficulty": 18,
+      "kei": {
+        "score": 0.44,
+        "level": "moderate"
+      }
+    },
+    {
+      "keyword": "block endless scrolling",
+      "article": "scrolling-apps",
+      "date": "2026-11-01",
+      "traffic": 8,
+      "difficulty": 11,
+      "kei": {
+        "score": 0.73,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "reduce doomscrolling habit",
+      "article": "scrolling-apps",
+      "date": "2026-11-01",
+      "traffic": 8,
+      "difficulty": 14,
+      "kei": {
+        "score": 0.57,
+        "level": "moderate"
+      }
+    },
+    {
+      "keyword": "forest alternative",
+      "article": "forest-alternatives",
+      "date": "2026-11-02",
+      "traffic": 8,
+      "difficulty": 10,
+      "kei": {
+        "score": 0.8,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "create focus blocks",
+      "article": "forest-alternatives",
+      "date": "2026-11-02",
+      "traffic": 8,
+      "difficulty": 16,
+      "kei": {
+        "score": 0.5,
+        "level": "moderate"
+      }
+    },
+    {
+      "keyword": "one sec alternative",
+      "article": "one-sec-alternatives",
+      "date": "2026-11-03",
+      "traffic": 8,
+      "difficulty": 23,
+      "kei": {
+        "score": 0.35,
+        "level": "low"
+      }
+    },
+    {
+      "keyword": "digital wellbeing",
+      "article": "one-sec-alternatives",
+      "date": "2026-11-03",
+      "traffic": 19,
+      "difficulty": 33,
+      "kei": {
+        "score": 0.58,
+        "level": "moderate"
+      }
+    },
+    {
+      "keyword": "workout to unlock apps",
+      "article": "exercise-apps",
+      "date": "2026-11-04",
+      "traffic": 18,
+      "difficulty": 29,
+      "kei": {
+        "score": 0.62,
+        "level": "good"
+      }
+    },
+    {
+      "keyword": "unlock apps with exercise",
+      "article": "exercise-apps",
+      "date": "2026-11-04",
+      "traffic": 8,
+      "difficulty": 20,
+      "kei": {
+        "score": 0.4,
+        "level": "moderate"
+      }
+    }
+  ]
+}

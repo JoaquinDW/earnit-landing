@@ -11,12 +11,30 @@
       "lead": "You can make movement the condition for your next app session. Here’s how earning minutes works, and how to choose a rule you can live with.",
       "answer": "To earn screen time by walking, use an app that connects your step count with app restrictions. Earnit reads steps from Apple Health, turns them into minutes, and lets you spend those minutes on the apps you choose. When a session ends, the restrictions return.",
       "toc": [
-        ["how-it-works", "How walking becomes screen time"],
-        ["set-it-up", "Set up your walking rule"],
-        ["step-goal", "Step goals or a balance of minutes?"],
-        ["choose-your-rule", "Choose a rule for your day"],
-        ["before-you-start", "What to know before you start"],
-        ["questions", "Common questions"]
+        [
+          "how-it-works",
+          "How walking becomes screen time"
+        ],
+        [
+          "set-it-up",
+          "Set up your walking rule"
+        ],
+        [
+          "step-goal",
+          "Step goals or a balance of minutes?"
+        ],
+        [
+          "choose-your-rule",
+          "Choose a rule for your day"
+        ],
+        [
+          "before-you-start",
+          "What to know before you start"
+        ],
+        [
+          "questions",
+          "Common questions"
+        ]
       ]
     },
     "es": {
@@ -27,12 +45,30 @@
       "lead": "Puedes poner un poco de movimiento antes de tu próxima sesión. Así funciona ganar minutos caminando y elegir una regla que encaje en tu día.",
       "answer": "Para ganar tiempo de pantalla caminando necesitas una app que conecte tus pasos con las restricciones de uso. Earnit lee los pasos de Salud de Apple, los convierte en minutos y te permite gastarlos en las apps que elijas. Cuando termina la sesión, vuelven las restricciones.",
       "toc": [
-        ["how-it-works", "De pasos a tiempo de pantalla"],
-        ["set-it-up", "Configura tu regla de movimiento"],
-        ["step-goal", "¿Meta de pasos o saldo de minutos?"],
-        ["choose-your-rule", "Elige una regla para tu día"],
-        ["before-you-start", "Antes de empezar"],
-        ["questions", "Preguntas frecuentes"]
+        [
+          "how-it-works",
+          "De pasos a tiempo de pantalla"
+        ],
+        [
+          "set-it-up",
+          "Configura tu regla de movimiento"
+        ],
+        [
+          "step-goal",
+          "¿Meta de pasos o saldo de minutos?"
+        ],
+        [
+          "choose-your-rule",
+          "Elige una regla para tu día"
+        ],
+        [
+          "before-you-start",
+          "Antes de empezar"
+        ],
+        [
+          "questions",
+          "Preguntas frecuentes"
+        ]
       ]
     }
   },
@@ -48,12 +84,30 @@
       "lead": "A quick check doesn’t need to become your whole break. Choose between a daily allowance and time you earn before opening Instagram.",
       "answer": "You can limit Instagram from Settings → Screen Time → App Limits on your iPhone. For a different approach, Earnit lets you earn minutes through walking and spend them on selected apps. A daily cap sets an allowance; Earnit puts effort before a session.",
       "toc": [
-        ["daily-limit", "Set a daily Instagram limit"],
-        ["choose-the-rule", "Pick the boundary you want"],
-        ["walk-first", "Earn your next session"],
-        ["make-it-practical", "Make the rule practical"],
-        ["limits", "Understand the limits"],
-        ["questions", "Common questions"]
+        [
+          "daily-limit",
+          "Set a daily Instagram limit"
+        ],
+        [
+          "choose-the-rule",
+          "Pick the boundary you want"
+        ],
+        [
+          "walk-first",
+          "Earn your next session"
+        ],
+        [
+          "make-it-practical",
+          "Make the rule practical"
+        ],
+        [
+          "limits",
+          "Understand the limits"
+        ],
+        [
+          "questions",
+          "Common questions"
+        ]
       ]
     },
     "es": {
@@ -64,12 +118,1136 @@
       "lead": "Una consulta rápida no tiene por qué ocupar todo tu descanso. Puedes elegir un límite diario o ganar tiempo antes de abrir Instagram.",
       "answer": "Puedes limitar Instagram desde Ajustes → Tiempo de uso → Límites de uso de apps en tu iPhone. Si prefieres otra regla, Earnit te permite ganar minutos caminando y gastarlos en las apps que elijas. El límite diario fija una cantidad; Earnit pone el esfuerzo antes de una sesión.",
       "toc": [
-        ["daily-limit", "Pon un límite diario a Instagram"],
-        ["choose-the-rule", "Elige el tipo de límite"],
-        ["walk-first", "Gana tu próxima sesión"],
-        ["make-it-practical", "Adapta la regla a tu rutina"],
-        ["limits", "Conoce sus límites"],
-        ["questions", "Preguntas frecuentes"]
+        [
+          "daily-limit",
+          "Pon un límite diario a Instagram"
+        ],
+        [
+          "choose-the-rule",
+          "Elige el tipo de límite"
+        ],
+        [
+          "walk-first",
+          "Gana tu próxima sesión"
+        ],
+        [
+          "make-it-practical",
+          "Adapta la regla a tu rutina"
+        ],
+        [
+          "limits",
+          "Conoce sus límites"
+        ],
+        [
+          "questions",
+          "Preguntas frecuentes"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "earned-apps",
+    "datePublished": "2026-10-26",
+    "dateModified": "2026-10-26",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "earn screen time",
+      "earn screen time rewards"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "Unrot",
+        "url": "https://www.unrot.com/"
+      },
+      {
+        "name": "PushUp Time",
+        "url": "https://apps.apple.com/us/app/pushup-time-app-blocker/id6749405784"
+      },
+      {
+        "name": "PushBlock",
+        "url": "https://www.pushblock.app/terms"
+      }
+    ],
+    "en": {
+      "slug": "best-earn-screen-time-apps-2026",
+      "title": "4 best apps to earn screen time in 2026",
+      "description": "Compare four apps that make you earn screen time: Earnit, Unrot, PushUp Time and PushBlock. Choose between minutes, task rewards and exercise-based unlocks.",
+      "summary": "Compare four apps that make you earn screen time: Earnit, Unrot, PushUp Time and PushBlock. Choose between minutes, task rewards and exercise-based unlocks.",
+      "lead": "The useful question is what you want to do before you scroll. These four options turn that decision into an app-access rule.",
+      "answer": "Earnit is our pick for earning a balance through walking, study or push-ups. Consider Unrot for task rewards, PushUp Time for exercise-based access, and PushBlock for a push-up-first rule. Choose by the effort you will actually repeat.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "pushup",
+          "PushUp Time"
+        ],
+        [
+          "pushblock",
+          "PushBlock"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-apps-ganar-tiempo-pantalla-2026",
+      "title": "Las 4 mejores apps para ganar tiempo de pantalla en 2026",
+      "description": "Compara Earnit, Unrot, PushUp Time y PushBlock para ganar tiempo de pantalla. Elige entre minutos, recompensas por tareas y desbloqueos con ejercicio.",
+      "summary": "Compara Earnit, Unrot, PushUp Time y PushBlock para ganar tiempo de pantalla. Elige entre minutos, recompensas por tareas y desbloqueos con ejercicio.",
+      "lead": "La pregunta útil es qué quieres hacer antes de abrir tus redes. Estas cuatro opciones convierten esa decisión en una regla de acceso.",
+      "answer": "Earnit es nuestra opción para ganar un saldo caminando, estudiando o haciendo flexiones. Considera Unrot para tareas, PushUp Time para ejercicio y PushBlock para una regla centrada en flexiones. Elige una actividad que puedas repetir.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "pushup",
+          "PushUp Time"
+        ],
+        [
+          "pushblock",
+          "PushBlock"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "pushup-apps",
+    "datePublished": "2026-10-27",
+    "dateModified": "2026-10-27",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "pushups to unlock apps",
+      "app blocker pushups"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "PushBlock",
+        "url": "https://www.pushblock.app/terms"
+      },
+      {
+        "name": "PushUp Time",
+        "url": "https://apps.apple.com/us/app/pushup-time-app-blocker/id6749405784"
+      }
+    ],
+    "en": {
+      "slug": "best-pushup-app-blockers-2026",
+      "title": "3 best push-up app blockers for iPhone in 2026",
+      "description": "Compare Earnit, PushBlock and PushUp Time for unlocking iPhone apps with push-ups. See which earning model fits your breaks and daily routine.",
+      "summary": "Compare Earnit, PushBlock and PushUp Time for unlocking iPhone apps with push-ups. See which earning model fits your breaks and daily routine.",
+      "lead": "If you want push-ups to unlock apps, the important difference is what happens after the set: banked minutes, a direct unlock or an access window.",
+      "answer": "Earnit suits a shared balance of earned minutes; PushBlock suits a direct push-up condition; PushUp Time suits an exercise-to-access-window workflow. All three document camera-based counting, so compare the access model as well as the exercise.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "pushblock",
+          "PushBlock"
+        ],
+        [
+          "pushup",
+          "PushUp Time"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-bloqueadores-apps-flexiones-2026",
+      "title": "Los 3 mejores bloqueadores de apps con flexiones para iPhone en 2026",
+      "description": "Compara Earnit, PushBlock y PushUp Time para desbloquear apps con flexiones. Elige el modelo que mejor encaje con tus descansos y rutina.",
+      "summary": "Compara Earnit, PushBlock y PushUp Time para desbloquear apps con flexiones. Elige el modelo que mejor encaje con tus descansos y rutina.",
+      "lead": "Si quieres desbloquear apps con flexiones, la diferencia clave llega después de la serie: un saldo, un desbloqueo directo o una ventana de acceso.",
+      "answer": "Earnit encaja con un saldo de minutos; PushBlock, con una condición directa de flexiones; PushUp Time, con una ventana de acceso por ejercicio. Las tres documentan conteo con cámara: compara también qué acceso obtienes.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "pushblock",
+          "PushBlock"
+        ],
+        [
+          "pushup",
+          "PushUp Time"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "opal-alternatives",
+    "datePublished": "2026-10-28",
+    "dateModified": "2026-10-28",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "opal alternative",
+      "app blocker"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "ScreenZen",
+        "url": "https://screenzen.co/"
+      },
+      {
+        "name": "Freedom",
+        "url": "https://freedom.to/"
+      },
+      {
+        "name": "one sec",
+        "url": "https://one-sec.app/"
+      }
+    ],
+    "en": {
+      "slug": "best-opal-alternatives-2026",
+      "title": "4 best Opal alternatives for iPhone in 2026",
+      "description": "Looking for an Opal alternative? Compare Earnit, ScreenZen, Freedom and one sec by earned access, daily limits, multiple devices and opening interventions.",
+      "summary": "Looking for an Opal alternative? Compare Earnit, ScreenZen, Freedom and one sec by earned access, daily limits, multiple devices and opening interventions.",
+      "lead": "Opal is built around blocking rules. The best alternative depends on whether you want a different rule, a different cost model or coverage beyond your phone.",
+      "answer": "Choose Earnit to earn access through effort, ScreenZen for a donation-supported option, Freedom for sessions across devices, or one sec for interventions around app openings. Opal itself remains worth considering if scheduled app and website blocks already fit your needs.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "freedom",
+          "Freedom"
+        ],
+        [
+          "onesec",
+          "one sec"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-alternativas-opal-2026",
+      "title": "Las 4 mejores alternativas a Opal para iPhone en 2026",
+      "description": "¿Buscas una alternativa a Opal? Compara Earnit, ScreenZen, Freedom y one sec según minutos ganados, límites, dispositivos e intervenciones.",
+      "summary": "¿Buscas una alternativa a Opal? Compara Earnit, ScreenZen, Freedom y one sec según minutos ganados, límites, dispositivos e intervenciones.",
+      "lead": "Opal gira en torno a reglas de bloqueo. La mejor alternativa depende de si buscas otra regla, otro modelo de pago o cubrir más dispositivos.",
+      "answer": "Elige Earnit para ganar acceso con esfuerzo, ScreenZen por su modelo de donaciones, Freedom para sesiones entre dispositivos o one sec para intervenir al abrir apps. Opal sigue siendo una opción si sus bloqueos por horario ya encajan contigo.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "freedom",
+          "Freedom"
+        ],
+        [
+          "onesec",
+          "one sec"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "study-apps",
+    "datePublished": "2026-10-29",
+    "dateModified": "2026-10-29",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "study lock",
+      "set study mode timer"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "Forest",
+        "url": "https://www.forestapp.cc/"
+      },
+      {
+        "name": "Opal",
+        "url": "https://help.opalapp.com/article/how-to-use-schedules"
+      },
+      {
+        "name": "Freedom",
+        "url": "https://freedom.to/"
+      }
+    ],
+    "en": {
+      "slug": "best-study-app-blockers-2026",
+      "title": "4 best app blockers for studying on iPhone in 2026",
+      "description": "Compare Earnit, Forest, Opal and Freedom for studying. Find a study lock, focus timer or blocking routine that fits your next session.",
+      "summary": "Compare Earnit, Forest, Opal and Freedom for studying. Find a study lock, focus timer or blocking routine that fits your next session.",
+      "lead": "A study timer and an app restriction solve different parts of the same problem. Choose what should happen when the phone becomes tempting.",
+      "answer": "Earnit fits study-to-earn breaks, Forest fits visible focus sessions, Opal fits scheduled restrictions, and Freedom fits studying across devices. Set a study mode timer only after deciding which distraction the session should keep out.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "forest",
+          "Forest"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "freedom",
+          "Freedom"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-bloqueadores-apps-estudiar-2026",
+      "title": "Los 4 mejores bloqueadores de apps para estudiar en iPhone en 2026",
+      "description": "Compara Earnit, Forest, Opal y Freedom para estudiar. Elige entre minutos ganados, temporizadores y bloqueos para tu próxima sesión.",
+      "summary": "Compara Earnit, Forest, Opal y Freedom para estudiar. Elige entre minutos ganados, temporizadores y bloqueos para tu próxima sesión.",
+      "lead": "Un temporizador y una restricción resuelven partes distintas del problema. Elige qué debería pasar cuando el teléfono empiece a tentarte.",
+      "answer": "Earnit encaja con descansos ganados estudiando; Forest, con sesiones visibles; Opal, con horarios; y Freedom, con varios dispositivos. Configura el temporizador después de decidir qué distracción quieres dejar fuera.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "forest",
+          "Forest"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "freedom",
+          "Freedom"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "freedom-alternatives",
+    "datePublished": "2026-10-30",
+    "dateModified": "2026-10-30",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "freedom alternative",
+      "app blocker for productivity"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "Opal",
+        "url": "https://help.opalapp.com/article/how-to-use-schedules"
+      },
+      {
+        "name": "ScreenZen",
+        "url": "https://screenzen.co/"
+      },
+      {
+        "name": "Forest",
+        "url": "https://www.forestapp.cc/"
+      }
+    ],
+    "en": {
+      "slug": "best-freedom-alternatives-iphone-2026",
+      "title": "4 best Freedom alternatives for iPhone in 2026",
+      "description": "Compare four Freedom alternatives for an iPhone-first routine: Earnit, Opal, ScreenZen and Forest. Choose by earned breaks, schedules or focus sessions.",
+      "summary": "Compare four Freedom alternatives for an iPhone-first routine: Earnit, Opal, ScreenZen and Forest. Choose by earned breaks, schedules or focus sessions.",
+      "lead": "Freedom’s cross-device sessions are useful when distractions move between screens. If your problem is centered on your iPhone, a different rule may fit better.",
+      "answer": "For an iPhone-first Freedom alternative, compare Earnit for earned breaks, Opal for blocking schedules, ScreenZen for donation-supported limits, and Forest for visible focus sessions. This list does not treat every option as a replacement for Freedom’s cross-device synchronization.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "forest",
+          "Forest"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-alternativas-freedom-iphone-2026",
+      "title": "Las 4 mejores alternativas a Freedom para iPhone en 2026",
+      "description": "Compara Earnit, Opal, ScreenZen y Forest como alternativas a Freedom para una rutina centrada en iPhone: descansos, horarios y concentración.",
+      "summary": "Compara Earnit, Opal, ScreenZen y Forest como alternativas a Freedom para una rutina centrada en iPhone: descansos, horarios y concentración.",
+      "lead": "Las sesiones entre dispositivos de Freedom sirven cuando las distracciones cambian de pantalla. Si tu problema está en el iPhone, otra regla puede encajar mejor.",
+      "answer": "Para una alternativa centrada en iPhone, compara Earnit para descansos ganados, Opal para horarios, ScreenZen para límites con donaciones y Forest para sesiones visibles. No todas sustituyen la sincronización entre dispositivos de Freedom.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "forest",
+          "Forest"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "tracking-apps",
+    "datePublished": "2026-10-31",
+    "dateModified": "2026-10-31",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "screen time tracker",
+      "earn screen time tracker"
+    ],
+    "picks": [
+      {
+        "name": "Apple Screen Time",
+        "url": "https://support.apple.com/en-gb/guide/iphone/iphbfa595995/18.0/ios/18.0"
+      },
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "Forest",
+        "url": "https://www.forestapp.cc/"
+      }
+    ],
+    "en": {
+      "slug": "best-screen-time-trackers-iphone-2026",
+      "title": "3 best screen time and focus trackers for iPhone in 2026",
+      "description": "Compare Apple Screen Time, Earnit and Forest for three different tracking jobs: app usage, earned minutes and completed focus sessions.",
+      "summary": "Compare Apple Screen Time, Earnit and Forest for three different tracking jobs: app usage, earned minutes and completed focus sessions.",
+      "lead": "Before choosing a screen time tracker, choose what you want to measure. Time used, time earned and time focused answer different questions.",
+      "answer": "Use Apple Screen Time to review app activity, Earnit to connect earned-minute progress with app access, and Forest to review focus sessions. An earn screen time tracker is not automatically a replacement for the iPhone’s usage report.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "apple",
+          "Apple Screen Time"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "forest",
+          "Forest"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-registros-tiempo-pantalla-iphone-2026",
+      "title": "Los 3 mejores registros de tiempo de pantalla y concentración para iPhone en 2026",
+      "description": "Compara Tiempo de uso de Apple, Earnit y Forest para registrar uso de apps, minutos ganados y sesiones de concentración.",
+      "summary": "Compara Tiempo de uso de Apple, Earnit y Forest para registrar uso de apps, minutos ganados y sesiones de concentración.",
+      "lead": "Antes de elegir un registro, decide qué quieres medir. El tiempo usado, ganado y dedicado a concentrarte responde a preguntas distintas.",
+      "answer": "Usa Tiempo de uso de Apple para revisar actividad, Earnit para relacionar minutos ganados y acceso, y Forest para revisar sesiones. Registrar tiempo ganado no sustituye automáticamente el informe de uso del iPhone.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "apple",
+          "Apple Screen Time"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "forest",
+          "Forest"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "scrolling-apps",
+    "datePublished": "2026-11-01",
+    "dateModified": "2026-11-01",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "block endless scrolling",
+      "reduce doomscrolling habit"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "one sec",
+        "url": "https://one-sec.app/"
+      },
+      {
+        "name": "ScreenZen",
+        "url": "https://screenzen.co/"
+      },
+      {
+        "name": "Unrot",
+        "url": "https://www.unrot.com/"
+      }
+    ],
+    "en": {
+      "slug": "best-apps-stop-doomscrolling-2026",
+      "title": "4 best apps to stop doomscrolling on iPhone in 2026",
+      "description": "Compare Earnit, one sec, ScreenZen and Unrot for endless scrolling. Choose between effort, opening interventions, daily limits and task rewards.",
+      "summary": "Compare Earnit, one sec, ScreenZen and Unrot for endless scrolling. Choose between effort, opening interventions, daily limits and task rewards.",
+      "lead": "Endless scrolling can begin with a reflex, continue through an open-ended break, or replace a task you meant to do. Choose the boundary for that moment.",
+      "answer": "Earnit fits effort before a short session, one sec fits the app-opening reflex, ScreenZen fits daily boundaries, and Unrot fits task-based rewards. The best pick is the one that addresses where your scrolling loop starts.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "onesec",
+          "one sec"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-apps-frenar-scroll-2026",
+      "title": "Las 4 mejores apps para frenar el scroll en iPhone en 2026",
+      "description": "Compara Earnit, one sec, ScreenZen y Unrot para frenar el scroll. Elige entre esfuerzo, intervenciones, límites diarios y recompensas por tareas.",
+      "summary": "Compara Earnit, one sec, ScreenZen y Unrot para frenar el scroll. Elige entre esfuerzo, intervenciones, límites diarios y recompensas por tareas.",
+      "lead": "El scroll puede empezar por reflejo, alargar un descanso o sustituir una tarea pendiente. Elige la regla según el momento que quieres cambiar.",
+      "answer": "Earnit encaja con esfuerzo antes de una sesión breve; one sec, con aperturas por reflejo; ScreenZen, con límites diarios; y Unrot, con tareas. La mejor opción depende de dónde empieza tu ciclo de scroll.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "onesec",
+          "one sec"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "forest-alternatives",
+    "datePublished": "2026-11-02",
+    "dateModified": "2026-11-02",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "forest alternative",
+      "create focus blocks"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "Opal",
+        "url": "https://help.opalapp.com/article/how-to-use-schedules"
+      },
+      {
+        "name": "Freedom",
+        "url": "https://freedom.to/"
+      },
+      {
+        "name": "ScreenZen",
+        "url": "https://screenzen.co/"
+      }
+    ],
+    "en": {
+      "slug": "best-forest-alternatives-2026",
+      "title": "4 best Forest alternatives for focus in 2026",
+      "description": "Compare Earnit, Opal, Freedom and ScreenZen as Forest alternatives. Choose earned breaks, scheduled focus blocks or blocking across devices.",
+      "summary": "Compare Earnit, Opal, Freedom and ScreenZen as Forest alternatives. Choose earned breaks, scheduled focus blocks or blocking across devices.",
+      "lead": "Forest makes focus visible through growing trees. If you want a different kind of commitment, start with the rule you want your next focus block to follow.",
+      "answer": "Earnit is a Forest alternative for turning effort into app minutes. Compare Opal for recurring focus blocks, Freedom for coordinated device sessions, and ScreenZen for donation-supported limits. Stay with Forest if the visible tree is what helps you begin.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "freedom",
+          "Freedom"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-alternativas-forest-2026",
+      "title": "Las 4 mejores alternativas a Forest para concentrarte en 2026",
+      "description": "Compara Earnit, Opal, Freedom y ScreenZen como alternativas a Forest. Elige descansos ganados, horarios o bloqueo entre dispositivos.",
+      "summary": "Compara Earnit, Opal, Freedom y ScreenZen como alternativas a Forest. Elige descansos ganados, horarios o bloqueo entre dispositivos.",
+      "lead": "Forest hace visible la concentración con árboles. Si quieres otro compromiso, empieza por definir la regla de tu siguiente bloque de trabajo.",
+      "answer": "Earnit es una alternativa para convertir esfuerzo en minutos de apps. Compara Opal para bloques recurrentes, Freedom para dispositivos coordinados y ScreenZen para límites con donaciones. Conserva Forest si el árbol es lo que te ayuda a empezar.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "freedom",
+          "Freedom"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "one-sec-alternatives",
+    "datePublished": "2026-11-03",
+    "dateModified": "2026-11-03",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "one sec alternative",
+      "digital wellbeing"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "ScreenZen",
+        "url": "https://screenzen.co/"
+      },
+      {
+        "name": "Opal",
+        "url": "https://help.opalapp.com/article/how-to-use-schedules"
+      },
+      {
+        "name": "Unrot",
+        "url": "https://www.unrot.com/"
+      }
+    ],
+    "en": {
+      "slug": "best-one-sec-alternatives-2026",
+      "title": "4 best one sec alternatives for iPhone in 2026",
+      "description": "Compare Earnit, ScreenZen, Opal and Unrot as alternatives to one sec. Find the digital wellbeing rule that fits effort, limits, schedules or tasks.",
+      "summary": "Compare Earnit, ScreenZen, Opal and Unrot as alternatives to one sec. Find the digital wellbeing rule that fits effort, limits, schedules or tasks.",
+      "lead": "one sec can interrupt the moment you open an app. If you want the decision to happen earlier, compare these four different boundaries.",
+      "answer": "Choose Earnit for effort-based access, ScreenZen for daily limits, Opal for scheduled restrictions, or Unrot for task rewards. These are different digital wellbeing approaches, so choose by the moment you want to change rather than expecting an identical one sec experience.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-alternativas-one-sec-2026",
+      "title": "Las 4 mejores alternativas a one sec para iPhone en 2026",
+      "description": "Compara Earnit, ScreenZen, Opal y Unrot como alternativas a one sec. Elige una regla basada en esfuerzo, límites, horarios o tareas.",
+      "summary": "Compara Earnit, ScreenZen, Opal y Unrot como alternativas a one sec. Elige una regla basada en esfuerzo, límites, horarios o tareas.",
+      "lead": "one sec puede intervenir cuando abres una app. Si quieres tomar la decisión antes, compara estas cuatro reglas diferentes.",
+      "answer": "Elige Earnit para acceso ganado, ScreenZen para límites diarios, Opal para horarios o Unrot para tareas. Son enfoques diferentes: decide según el momento que quieres cambiar, sin esperar una experiencia idéntica a one sec.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "screenzen",
+          "ScreenZen"
+        ],
+        [
+          "opal",
+          "Opal"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
+      ]
+    }
+  },
+  {
+    "id": "exercise-apps",
+    "datePublished": "2026-11-04",
+    "dateModified": "2026-11-04",
+    "sourceChecked": "2026-10-26",
+    "format": "listicle",
+    "keywords": [
+      "workout to unlock apps",
+      "unlock apps with exercise"
+    ],
+    "picks": [
+      {
+        "name": "Earnit",
+        "url": "https://apps.apple.com/app/id6804905841"
+      },
+      {
+        "name": "PushUp Time",
+        "url": "https://apps.apple.com/us/app/pushup-time-app-blocker/id6749405784"
+      },
+      {
+        "name": "PushBlock",
+        "url": "https://www.pushblock.app/terms"
+      },
+      {
+        "name": "Unrot",
+        "url": "https://www.unrot.com/"
+      }
+    ],
+    "en": {
+      "slug": "best-workout-to-unlock-apps-2026",
+      "title": "4 best workout-to-unlock apps for iPhone in 2026",
+      "description": "Compare Earnit, PushUp Time, PushBlock and Unrot for workout-to-unlock routines. Understand counted reps, earned minutes and task-based access.",
+      "summary": "Compare Earnit, PushUp Time, PushBlock and Unrot for workout-to-unlock routines. Understand counted reps, earned minutes and task-based access.",
+      "lead": "“Workout to unlock apps” can mean counted reps, steps or a completed task. Choose the verification method before choosing your reward.",
+      "answer": "Earnit suits steps and supported on-device exercises alongside study; PushUp Time suits exercise-based access windows; PushBlock centers the rule on push-ups; Unrot offers a broader task-reward approach. Check the supported activity rather than assuming every workout qualifies.",
+      "toc": [
+        [
+          "comparison",
+          "The shortlist at a glance"
+        ],
+        [
+          "method",
+          "How we chose"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "pushup",
+          "PushUp Time"
+        ],
+        [
+          "pushblock",
+          "PushBlock"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "choose",
+          "Which one should you choose?"
+        ],
+        [
+          "questions",
+          "A useful question before you install"
+        ]
+      ]
+    },
+    "es": {
+      "slug": "mejores-apps-desbloquear-con-ejercicio-2026",
+      "title": "Las 4 mejores apps para desbloquear con ejercicio en iPhone en 2026",
+      "description": "Compara Earnit, PushUp Time, PushBlock y Unrot para desbloquear apps con actividad. Distingue repeticiones, minutos ganados y tareas.",
+      "summary": "Compara Earnit, PushUp Time, PushBlock y Unrot para desbloquear apps con actividad. Distingue repeticiones, minutos ganados y tareas.",
+      "lead": "“Desbloquear con ejercicio” puede significar repeticiones, pasos o una tarea completada. Elige el método de verificación antes que la recompensa.",
+      "answer": "Earnit encaja con pasos y ejercicios admitidos, además de estudio; PushUp Time, con ventanas de acceso; PushBlock, con flexiones; y Unrot, con tareas. Comprueba la actividad admitida sin suponer que cualquier entrenamiento sirve.",
+      "toc": [
+        [
+          "comparison",
+          "Comparación rápida"
+        ],
+        [
+          "method",
+          "Cómo elegimos"
+        ],
+        [
+          "earnit",
+          "Earnit"
+        ],
+        [
+          "pushup",
+          "PushUp Time"
+        ],
+        [
+          "pushblock",
+          "PushBlock"
+        ],
+        [
+          "unrot",
+          "Unrot"
+        ],
+        [
+          "choose",
+          "¿Cuál deberías elegir?"
+        ],
+        [
+          "questions",
+          "Antes de instalar"
+        ]
       ]
     }
   }

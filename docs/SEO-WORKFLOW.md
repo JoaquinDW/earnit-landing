@@ -85,4 +85,4 @@ Usar [la instrucción del plan](../SEO-PLAN.md#instrucción-reutilizable-para-un
 4. Verificar producto e instrucciones del sistema; no inventar estadísticas, capturas o funciones.
 5. Construir, comprobar y entregar cambios revisables.
 
-No se configuró una ejecución recurrente ni publicación automática. No publicar para cumplir una cuota cuando falte una oportunidad respaldada por datos.
+Al 24 de octubre no había publicación automática. El 26 de octubre el usuario autorizó la campaña de listicles descrita en [el calendario](seo/CALENDAR-2026-10-26.md): 20 keywords de Applyra agrupadas en 10 artículos bilingües, publicados del 26 de octubre al 4 de noviembre mediante una automatización diaria de este chat. Las métricas de Applyra son de App Store; no son volumen de Google.
