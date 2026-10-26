@@ -1,0 +1,23 @@
+{
+  "campaign": "2026-10-26--2026-11-04",
+  "timeZone": "America/Argentina/Cordoba",
+  "automationId": "publicar-listicles-de-earnit",
+  "publications": [
+    {
+      "date": "2026-10-26",
+      "article": "earned-apps",
+      "deploymentId": "dpl_DKxe5NSDAyLVTmNmTj12n8MZPwHc",
+      "url": "https://www.earnitscreen.com/guides/best-earn-screen-time-apps-2026/",
+      "spanishUrl": "https://www.earnitscreen.com/es/guides/mejores-apps-ganar-tiempo-pantalla-2026/",
+      "status": "verified",
+      "verifiedAt": "2026-10-26T19:18:23.826250+00:00",
+      "checks": [
+        "public HTTP 200 in both languages",
+        "headings and canonical URLs",
+        "sitemap entries",
+        "production article IDs",
+        "next-day URLs return 404"
+      ]
+    }
+  ]
+}

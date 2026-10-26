@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir, cp, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { publishedGuides, editorialDay } from './publication.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const out = path.join(root, 'public');
@@ -14,7 +15,9 @@ try {
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
 const config = JSON.parse(await read('site.config.json'));
 const homeCopy = JSON.parse(await read('content/home.json'));
-const guides = JSON.parse(await read('content/guides.json'));
+const allGuides = JSON.parse(await read('content/guides.json'));
+// Future articles are omitted from HTML, navigation, related links and sitemap.
+const guides = publishedGuides(allGuides);
 const template = await read('src/home.html');
 const origin = new URL(config.origin).origin;
 const languages = ['en', 'es'];
@@ -68,7 +71,7 @@ const label = {
   }
 };
 
-for (const guide of guides) {
+for (const guide of allGuides) {
   if (!/^[a-z][a-z0-9-]+$/.test(guide.id)) throw new Error(`Invalid guide ID: ${guide.id}`);
   for (const lang of languages) {
     if (!/^[a-z0-9-]+$/.test(guide[lang].slug)) throw new Error('Invalid guide slug');
@@ -115,7 +118,7 @@ function guideRows(lang, selected = guides) {
 }
 function guideSection(lang) {
   const t = label[lang];
-  return `<section class="section guide-feature wrap" aria-labelledby="guides-title"><div class="section-heading"><h2 id="guides-title">${t.sectionTitle}</h2><p>${t.sectionBody}</p><a class="text-link" href="${guidesPath(lang)}">${t.back}${arrow}</a></div>${guideRows(lang)}</section>`;
+  return `<section class="section guide-feature wrap" aria-labelledby="guides-title"><div class="section-heading"><h2 id="guides-title">${t.sectionTitle}</h2><p>${t.sectionBody}</p><a class="text-link" href="${guidesPath(lang)}">${t.back}${arrow}</a></div>${guideRows(lang, guides.slice(-3).reverse())}</section>`;
 }
 function cta(lang) {
   const t = label[lang];
@@ -248,7 +251,7 @@ for (const lang of languages) {
     const minutes = Math.max(1, Math.ceil(text.split(' ').length / (lang === 'es' ? 210 : 230)));
     const date = new Intl.DateTimeFormat(lang === 'es' ? 'es' : 'en', { dateStyle:'long', timeZone:'UTC' }).format(new Date(guide.dateModified+'T12:00:00Z'));
     const toc = `<nav class="article-toc" aria-label="${t.contents}"><p>${t.contents}</p><ol>${data.toc.map(([id,title]) => `<li><a href="#${id}">${esc(title)}</a></li>`).join('')}</ol></nav>`;
-    const related = guides.filter(g => g.id !== guide.id);
+    const related = guides.filter(g => g.id !== guide.id).slice(-3).reverse();
     const content = `<main id="main"><article class="article wrap">
 <nav class="breadcrumbs" aria-label="${t.breadcrumb}"><a href="${homePath(lang)}">Earnit</a><span aria-hidden="true">/</span><a href="${guidesPath(lang)}">${t.guides}</a></nav>
 <header class="article-header"><h1>${esc(data.title)}</h1><p class="article-lead">${esc(data.lead)}</p><div class="article-meta"><span>${t.author}</span><span>${t.updated} <time datetime="${guide.dateModified}">${date}</time></span><span>${minutes} min ${lang === 'es' ? 'de lectura' : 'read'}</span></div></header>
@@ -260,6 +263,8 @@ for (const lang of languages) {
         mainEntityOfPage:{ '@type':'WebPage', '@id':url(route) },
         author:{ '@type':'Organization', name:config.publisher, url:origin+'/' },
         publisher:{ '@type':'Organization', name:config.publisher, url:origin+'/' } },
+      ...(guide.picks ? [{ '@type':'ItemList', name:data.title, itemListOrder:'https://schema.org/ItemListOrderAscending',
+        itemListElement:guide.picks.map((pick,i) => ({ '@type':'ListItem', position:i+1, name:pick.name, url:pick.url })) }] : []),
       breadcrumbSchema(lang,guide)
     ]};
     const extra = `<meta property="article:published_time" content="${guide.datePublished}"><meta property="article:modified_time" content="${guide.dateModified}">`;
@@ -272,3 +277,5 @@ for (const route of ['/privacy.html','/terms.html','/support/']) sitemapEntries.
 await writeFile(path.join(out,'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sitemapEntries.join('\n')}\n</urlset>\n`);
 await writeFile(path.join(out,'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${url('/sitemap.xml')}\n`);
 console.log(`Built ${routes.length} localized pages, sitemap, robots.txt, and existing legal/support pages in public/.`);
+
+await writeFile(path.join(out, 'publication.json'), json({day:editorialDay(), timeZone:'America/Argentina/Cordoba', articles:guides.map(g => ({id:g.id, date:g.datePublished, en:guidePath(g,'en'), es:guidePath(g,'es')}))}) + '\n');

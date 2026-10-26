@@ -33,3 +33,7 @@ Production origin is configured in `site.config.json`. Updating it changes canon
 See [the operating instructions](docs/SEO-WORKFLOW.md) for Search Console, sitemap submission, CSV/API analysis, PostHog events and acquisition limits. See [the original strategy](SEO-PLAN.md) for the video analysis.
 
 Optional analytics uses `.env.local` locally and hosting environment variables in production. See `.env.example`. Only public browser ingestion configuration may be exposed in the generated client file. Personal API keys and GSC OAuth tokens must never be included in the build.
+
+## Scheduled listicles
+
+The October 26–November 4 campaign covers 20 Applyra keywords in 10 bilingual listicles. See [the calendar](docs/seo/CALENDAR-2026-10-26.md). Future articles stay in source but are excluded from the static output until their publication day in Córdoba. The daily chat automation rebuilds and deploys; a date change alone does not update a static deployment. Run `npm run verify:published` after deployment.
