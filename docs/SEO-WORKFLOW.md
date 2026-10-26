@@ -86,3 +86,7 @@ Usar [la instrucción del plan](../SEO-PLAN.md#instrucción-reutilizable-para-un
 5. Construir, comprobar y entregar cambios revisables.
 
 Al 24 de octubre no había publicación automática. El 26 de octubre el usuario autorizó la campaña de listicles descrita en [el calendario](seo/CALENDAR-2026-10-26.md): 20 keywords de Applyra agrupadas en 10 artículos bilingües, publicados del 26 de octubre al 4 de noviembre mediante una automatización diaria de este chat. Las métricas de Applyra son de App Store; no son volumen de Google.
+
+## Descubrimiento en respuestas de IA
+
+Ver [la auditoría del 26 de octubre](seo/AI-DISCOVERY-2026-10-26.md) para requisitos técnicos, límites de la comprobación HTTP, estándar de comparaciones y medición. La web conserva acceso general de rastreo; no se necesitan etiquetas que prometan ser recomendado.

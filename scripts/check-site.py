@@ -5,6 +5,7 @@ import sys
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
+from urllib.robotparser import RobotFileParser
 from xml.etree import ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -29,6 +30,7 @@ class Page(HTMLParser):
         self.jsonld = []
         self.in_jsonld = False
         self.json_text = ''
+        self.robots = []
     def handle_starttag(self, tag, attrs):
         names = [name for name, _ in attrs]
         if len(names) != len(set(names)):
@@ -42,6 +44,8 @@ class Page(HTMLParser):
         if tag == 'h1': self.h1s += 1
         if tag == 'title': self.in_title = True
         if tag == 'meta' and a.get('name') == 'description': self.description.append(a.get('content',''))
+        if tag == 'meta' and a.get('name', '').lower() in ('robots','googlebot','bingbot','oai-searchbot'):
+            self.robots.append(a.get('content','').lower())
         if tag == 'link' and a.get('rel') == 'canonical': self.canonical.append(a.get('href'))
         if tag == 'link' and a.get('rel') == 'alternate' and a.get('hreflang'): self.alternates[a['hreflang']] = a.get('href')
         if tag == 'a' and a.get('href'): self.links.append(a['href'])
@@ -98,6 +102,19 @@ for file,page in pages.items():
     if set(page.alternates) != {'en','es','x-default'}: errors.append(f'{page.file}: missing locale alternate')
     if page.alternates.get(page.lang) != expected: errors.append(f'{page.file}: missing self alternate')
     if not page.jsonld: errors.append(f'{page.file}: missing structured data')
+    if any(re.search(r'\b(noindex|nosnippet|none)\b|max-snippet:\s*0\b', rule) for rule in page.robots):
+        errors.append(f'{page.file}: index or snippet restriction on a public localized page')
+    for schema in page.jsonld:
+        for entity in schema.get('@graph', []):
+            if entity.get('@type') == 'Article':
+                for citation in entity.get('citation', []):
+                    if citation not in page.links: errors.append(f'{page.file}: citation absent from visible links: {citation}')
+            if entity.get('@type') == 'ItemList':
+                items = entity.get('itemListElement', [])
+                if entity.get('numberOfItems') != len(items): errors.append(f'{page.file}: incorrect comparison item count')
+                for i,item in enumerate(items, 1):
+                    if item.get('position') != i or item.get('url') not in page.links:
+                        errors.append(f'{page.file}: comparison schema must match the visible list')
     for lang, href in page.alternates.items():
         target,_ = resolve(href,file)
         other = pages.get(target)
@@ -118,6 +135,11 @@ for location in locations:
     if target is None or not target.is_file(): errors.append(f'Sitemap points to missing file: {location}')
 robots = (PUBLIC / 'robots.txt').read_text()
 if f'Sitemap: {ORIGIN}/sitemap.xml' not in robots: errors.append('robots.txt missing sitemap')
+rules = RobotFileParser()
+rules.parse(robots.splitlines())
+for page in localized:
+    for agent in ['OAI-SearchBot','Googlebot','bingbot','PerplexityBot','Claude-SearchBot']:
+        if not rules.can_fetch(agent, page.canonical[0]): errors.append(f'{page.file}: robots.txt blocks {agent}')
 for css in (PUBLIC/'assets').glob('*.css'):
     for href in re.findall(r'url\([\'"]?([^\)\'"\s]+)',css.read_text()):
         if href.startswith('data:'): continue

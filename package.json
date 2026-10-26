@@ -8,7 +8,8 @@
     "test": "node --test scripts/*.test.mjs",
     "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory public",
     "seo:opportunities": "node scripts/seo-opportunities.mjs",
-    "verify:published": "node scripts/verify-publication.mjs"
+    "verify:published": "node scripts/verify-publication.mjs",
+    "verify:crawlers": "python3 scripts/verify-crawlers.py"
   },
   "engines": {
     "node": ">=20"
