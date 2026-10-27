@@ -190,7 +190,7 @@ async function save(route, html) {
 await rm(out, { recursive:true, force:true });
 await mkdir(out, { recursive:true });
 await mkdir(path.join(out, 'assets'), { recursive:true });
-for (const asset of ['site.css','site.js','home.js','analytics.js','earnit-appstore.png','app-store-qr.svg','home-evening.jpg','earnit-guide.webp','earnit-logo.svg']) {
+for (const asset of ['site.css','home.css','earnit-waves.webp','site.js','home.js','analytics.js','earnit-appstore.png','app-store-qr.svg','home-evening.jpg','earnit-guide.webp','earnit-logo.svg']) {
   await cp(path.join(root,'assets',asset),path.join(out,'assets',asset));
 }
 await writeFile(path.join(out,'assets/analytics-config.js'), `window.EARNIT_ANALYTICS=${json({

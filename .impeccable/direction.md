@@ -1,13 +1,13 @@
-# Earnit landing direction
+# Earnit: abstract landscape and walking together
 
-Mode: persuade. Code-led implementation of the user's explicit Vaultaire reference and approved illustrative interface; no generated concept image is required for a faithful product demonstration.
+Mode: persuade. User-approved comp: `.impeccable/mocks/approved-vibrant-friends.png` (approved in this conversation on 2026-10-26). The user explicitly asked to implement this exact style and supplied the new Friends interface as product truth.
 
-The user's pinned direction takes precedence over concept-seed 9d2f34f7: visible iPhone beside a direct proposition, direct App Store badge, desktop scan-to-install, concise functional sections. Keep Earnit's forest ground, cobalt and serif wordmark rather than copying Vaultaire's purple and angular typography.
+First viewport: dense forest/ivory/cobalt hero, large serif copy at left, three overlapping dimensional iPhones at right (Progress, Today, Friends), abstract sculpted sage/forest/cobalt surfaces throughout, cobalt acquisition action and compact App Store badge. A light moss four-benefit strip meets the hero immediately. No botanical imagery, cinematic video, invented ratings, or testimonials.
 
-First viewport: full-width restrained navigation; left-aligned large serif headline and app-specific explanation; download badge and QR on the left; one large upright iPhone on the right. No cinematic video or background landscape. Landscapes exist only inside the illustrated app screen.
+The generated background is an independent image plate derived from the approved comp. The phones are semantic HTML rather than flattened screenshots: their localized typography, chart, squad, app icons and demo states remain crisp and interactive. Phone hardware can respond to the selected preview and viewport. Friends illustration follows the supplied screen: friend nudge, weekly squad, and friend step progress. Names and numbers are explicitly examples, not user evidence.
 
-Visitor path: recognize iPhone app → understand effort-to-minutes mechanism → inspect interactive stages → understand restrictions and privacy → FAQ → install. Signature interaction changes the phone from walking/earning to available minutes to app session. Explicitly label the interface as an illustration and exchange as an example.
+Below hero: compact how-it-works sequence and live steps-to-minutes example; Friends feature with a readable example squad; existing rationale, API-based privacy explanation, native FAQ, SEO guide links and closing acquisition. The comp only covers the hero/benefits; lower sections inherit its colors and tighter rhythm.
 
-Responsive: same content and direct install action on mobile; stack phone after proposition; omit desktop-only QR because users can install directly. No scroll-jacking, hidden content, or motion dependency. Support English, Spanish, keyboard use, reduced motion and no-JS reading.
+Responsive: retain the compact trio with a full central phone and visible side previews. Today / Progress / Friends controls bring the chosen screen forward. At narrow widths the copy leads and the benefit strip becomes two columns. English and Spanish remain server-rendered routes; the shared reader styles and analytics contract stay intact.
 
-Acceptance: no video request, no invented reviews, no fixed stale pricing, verified download id6804905841, working support/legal links, no horizontal overflow from 320px to desktop, clear phone within the first two mobile screens.
+Acceptance: strong visual fidelity to the approved comp, real rendered typography, no horizontal page overflow from320px, no foliage, all three app screens visible and selectable, working existing session demo, no external nudge sends, native keyboard-friendly menu and FAQ, current App Store target, SEO/crawler/analytics checks pass.

@@ -1,6 +1,6 @@
 ---
 name: Earnit
-description: Forest-dark iPhone app identity with cobalt actions and expressive serif headlines.
+description: Forest and cobalt identity with an abstract sage landscape and dimensional app previews on the homepage.
 colors:
   ground: "#070e0d"
   surface: "#0c1814"
@@ -18,6 +18,16 @@ colors:
   store-border: "#9aa69f"
   download-hover: "#cdded2"
   demo-selected: "#1c2c24"
+  sage: "#bedfa6"
+  ink: "#12271b"
+  home-header: "#07110d"
+  home-scene: "#07150e"
+  home-preview: "#08160ee0"
+  home-preview-text: "#c0d3c3"
+  home-preview-selected-text: "#152d1d"
+  home-preview-hover: "#29432f"
+  home-preview-selected-hover: "#d1eabc"
+  home-crew: "#07130d"
 typography:
   display:
     fontFamily: "Instrument Serif, Georgia, serif"
@@ -25,6 +35,23 @@ typography:
     fontWeight: 400
     lineHeight: 0.99
     letterSpacing: "-.025em"
+  home-display:
+    fontFamily: "Instrument Serif, Georgia, serif"
+    fontSize: "clamp(76px,8.3vw,132px)"
+    fontWeight: 400
+    lineHeight: 0.99
+    letterSpacing: "-.025em"
+  home-lead:
+    fontFamily: "Figtree, sans-serif"
+    fontSize: "clamp(18px,1.6vw,22px)"
+    fontWeight: 400
+    lineHeight: 1.5
+  home-benefit:
+    fontFamily: "Instrument Serif, Georgia, serif"
+    fontSize: "26px"
+    fontWeight: 400
+    lineHeight: 1.1
+    letterSpacing: "-.02em"
   headline:
     fontFamily: "Instrument Serif, Georgia, serif"
     fontSize: "clamp(44px,4.8vw,64px)"
@@ -65,6 +92,11 @@ rounded:
   phone: "46px"
   phone-screen: "37px"
   circle: "50%"
+  pill: "999px"
+  home-phone: "47px"
+  home-phone-screen: "38px"
+  home-callout: "16px"
+  home-crew: "16px"
 spacing:
   icon-gap: "10px"
   control-gap: "12px"
@@ -76,7 +108,32 @@ spacing:
   hero-gap: "48px"
   section-gap: "64px"
   section-padding: "112px"
+  home-section-padding: "86px"
+  home-mobile-section-padding: "62px"
+  home-hero-gap: "18px"
+  home-friends-gap: "80px"
 components:
+  home-navigation-download:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.white}"
+    rounded: "{rounded.pill}"
+    padding: "10px 22px"
+    typography: "{typography.navigation}"
+  home-navigation-download-hover:
+    backgroundColor: "{colors.accent-hover}"
+  home-preview-control:
+    backgroundColor: "transparent"
+    textColor: "{colors.home-preview-text}"
+    rounded: "{rounded.pill}"
+    padding: "7px 17px"
+    height: "40px"
+  home-preview-control-selected:
+    backgroundColor: "{colors.sage}"
+    textColor: "{colors.home-preview-selected-text}"
+  home-crew:
+    backgroundColor: "{colors.home-crew}"
+    rounded: "{rounded.home-crew}"
+    padding: "30px"
   navigation-download:
     backgroundColor: "{colors.text}"
     textColor: "{colors.ground}"
@@ -113,116 +170,93 @@ components:
 
 **Creative North Star: "Forest and cobalt"**
 
-Earnit pairs a nearly black forest ground with cobalt actions, pale leaf text, and serif headlines. Instrument Serif supplies the wordmark and expressive statements; Figtree keeps explanations and controls direct. The implementation uses open sections, fine dividers, and a single dimensional product device rather than pervasive floating cards.
+Earnit combines nearly black forest surfaces, pale leaf text, cobalt actions, and expressive serif headlines. The approved homepage adds a sculpted sage/forest/cobalt landscape, three dimensional iPhones, and a light sage benefit strip. Its visual authority is `.impeccable/mocks/approved-vibrant-friends.png`, approved by the user on 2026-10-26.
 
-This captures the implemented web identity. Page composition and acquisition mechanics live in `.impeccable/surfaces/landing.md`; the compact type within the phone belongs to its illustrative screen, not the website reading scale.
+This is a generated static site. Homepage sources are `src/home.html`, `content/home.json`, `assets/home.css`, and `assets/home.js`; `scripts/build.mjs` produces `public/index.html` and `public/es/index.html`. Shared `assets/site.css` remains the editorial baseline for guides and reading pages. Only the homepage loads `assets/home.css`. The baseline tokens remain above alongside explicitly prefixed homepage roles; a homepage override is not an instruction to restyle editorial pages.
 
 **Key Characteristics:**
-- Forest tonal surfaces and pale leaf typography.
-- Cobalt actions, blue emphasis, and moss functional icons.
-- Serif statements with restrained sans-serif controls.
-- Flat editorial sections with a physical phone silhouette.
+
+- Forest tones, cobalt actions, and sage emphasis.
+- User-pinned Instrument Serif and Figtree typography rendered as real text.
+- An abstract, non-botanical image plate with semantic HTML app previews.
+- Compact lower sections, fine dividers, and selective dimensional depth.
 
 ## Colors
 
-The palette reads as a quiet forest at night, interrupted by clear blue actions and small moss signals. The frontmatter preserves the source values and names.
+The frontmatter records source CSS values. Shared primary colors are cobalt for actions and periwinkle blue for links and keyboard focus. Moss supports functional icons. Forest ground, surface, panel, line, pale text, soft text, and muted text retain their shared meanings.
 
-### Primary
+On the homepage, **sage** fills the four-benefit band, selected preview control, and earned-time callout; it also colors italic headline emphasis. **Ink** is the dark benefit-band reading color. The sticky header uses home-header; the hero's underlying fill is home-scene. The homepage navigation download is cobalt with white text and uses accent-hover on hover. Editorial navigation keeps the pale filled download and download-hover background from `site.css`.
 
-- **Cobalt:** the illustrated earning action, brand dot, and text selection.
-- **Periwinkle blue:** emphasized hero and closing headline phrases, text links, and visible focus outlines.
-- **Cobalt hover:** declared in the source but currently unused; it is not the implemented download hover treatment.
-
-### Secondary
-
-- **Moss:** functional line icons and earned-time signals.
-
-### Neutral
-
-- **Forest ground:** body and opaque sticky header.
-- **Forest surface:** alternate section bands and the exchange example.
-- **Forest panel:** declared in the source but currently unused.
-- **Pale leaf text:** primary reading color and the navigation download fill.
-- **Soft leaf text:** descriptive copy and secondary navigation.
-- **Muted sage text:** supporting metadata and unselected controls.
-- **Forest divider:** section, list, and control boundaries.
-- **Black / white / store border:** the App Store badge and desktop QR treatment.
-- **Download hover / demo selected:** the observed navigation hover fill and chosen demo-stage fill.
+Black, white, and store-border remain the App Store badge palette. Homepage preview controls and the squad board use their dedicated home-prefixed surface roles. The image plate contributes visual color variation; it does not replace the CSS text or interaction tokens.
 
 ## Typography
 
-**Display Font:** Instrument Serif, with Georgia and serif fallback. Regular and italic are loaded.
+**Display Font:** Instrument Serif, Georgia, serif; regular and italic. **Body Font:** Figtree, sans-serif; 400, 500, and 600. This source pairing is user-pinned.
 
-**Body Font:** Figtree, with sans-serif fallback. The loaded weights are regular, medium, and semibold (400, 500, 600).
+The homepage hero uses home-display, with tight tracking and sage italic emphasis. Its lead uses home-lead with a 450px maximum measure. On widths up to 1100px and above 760px, the hero uses `clamp(68px,7vw,78px)` (Spanish: 72px); up to 900px it is 67px. Mobile uses `clamp(61px,12.5vw,84px)`, then 61px at 380px and below. The homepage benefit labels use home-benefit, adjusted at the recorded breakpoints.
 
-Large statements use tightly set serif type with italic color emphasis. Supporting copy stays in Figtree; interface labels use medium or semibold only where hierarchy requires it. Major headlines use balanced wrapping and paragraphs use pretty wrapping.
+Shared headings retain `clamp(44px,4.8vw,64px)` and a 1.05 line height; body text is 17px/1.6. Step titles are 21px/1.3 and medium weight. Navigation is 14px; language anchors are 12px and semibold. Brand typography is 36px/1 on desktop, 32px on mobile, then 29px at the narrow breakpoint. The homepage Friends headline has its own `clamp(44px,4.5vw,62px)` scale.
 
-### Hierarchy
-
-- **Display:** the frontmatter display role is the desktop hero. At medium widths it becomes a fixed (78px); mobile uses (clamp(62px,12vw,84px)); the smallest breakpoint uses (61px).
-- **Headline:** section headings use the headline role; mobile uses (clamp(42px,8vw,56px)). The closing statement has a separate larger scale (clamp(64px,7vw,88px)), becoming (clamp(58px,11vw,76px)) on mobile.
-- **Title:** step titles use the title role. Benefit titles are smaller (18px).
-- **Body:** the body role is the default; supporting section copy commonly uses (15px), while the hero lead uses the lead role with a (440px) desktop measure.
-- **Navigation:** links and the navigation download use the navigation role; the download is semibold (600). Language labels are (12px, 600), with an underline for the selected language.
-- **Supporting labels:** illustration caption, copyright, privacy facts, compatibility copy, and mobile product facts are (12px). Compact labels within the illustrated device retain their smaller product-screen scale.
-- **Brand:** the brand role is reduced to (32px) on mobile, then (29px) at the narrowest breakpoint. The footer wordmark is (32px).
+Small labels inside the devices reproduce a scaled illustrative app interface; they do not define website reading sizes. Major headings use balanced wrapping and paragraphs use pretty wrapping.
 
 ## Layout
 
-The centered content container is capped at (1160px), with (48px) desktop side gutters. At the mobile breakpoint the gutters become (24px), then (18px) at the narrowest breakpoint. Wide compositions use unequal columns rather than a uniform card grid. Standard sections use generous vertical breathing room, then tighten to (72px) on mobile.
+Shared editorial containers remain capped at 1160px with 48px desktop gutters, 24px mobile gutters, and 18px narrow gutters. Homepage hero/navigation/benefits use a 1440px cap and 56px desktop gutters. The hero uses `.8fr / 1.2fr` columns, an 18px gap, and 26px/16px vertical padding; its copy rises 20px. Detailed device geometry and adaptive layout live in `.impeccable/surfaces/landing.md`.
 
-The actual breakpoints are (1450px minimum), (1050px maximum), (760px maximum), and (380px maximum). On mobile, content stacks in reading order, navigation links move into a disclosure menu, and the direct download remains visible. The landing surface brief records exact hero and device dimensions.
+The homepage adds breakpoints at 1700, 1320, 1100, and 900px, alongside the shared 1450, 1050, 760, and 380px rules. Below 761px, hero copy leads a compact three-phone arrangement and the benefit strip changes from four columns to two. Standard homepage sections use 86px vertical padding, becoming 62px on mobile. The closing image band uses 74px, becoming 60px. Friends changes from two columns with an 80px gap to a single column with a 38px gap.
+
+Guide links, legal/support destinations, English and Spanish routes, metadata, structured data, crawler outputs, and the existing analytics contract remain part of the generated site. Redesign work must preserve those integrations.
 
 ## Elevation & Depth
 
-The website is flat by default: forest tonal bands, fine borders, and spacing separate information. The single illustrated device supplies the physical depth. Its screen uses an existing landscape photograph behind a dark gradient; the page background remains a solid forest ground.
+The homepage hero, device screens, and closing acquisition band share `assets/earnit-waves.webp`: abstract matte waves with sage/forest/cobalt color, no foliage. Dark gradients preserve text contrast. The artwork is an independent background plate; phones, chart, squad, and text are semantic HTML rather than one flattened composition.
 
-### Shadow Vocabulary
+Depth is concentrated in the overlapping phones, tilted earned-time callout, and slightly rotated squad board. Other sections use tonal backgrounds and thin dividers. Homepage phone shadow is `0 22px 30px -14px #000c`; callout shadow is `0 14px 25px -16px #000a`; squad-board shadow is `0 24px 40px -22px #000b`. The baseline phone shadow remains `0 28px 64px -20px #000` in shared CSS.
 
-- **Phone depth** (`0 28px 64px -20px #000`): the implemented device shadow. There is no general-purpose card shadow.
-
-The device arrives once from (18px) below over (1s), using the source easing curve. Controls use short color/background transitions (0.2s). Reduced motion disables transitions and animation and changes smooth scrolling to automatic scrolling.
+Homepage phones have no entrance animation. Preview selection transitions transforms over `.65s` with `cubic-bezier(.16,1,.3,1)`; shared controls use `.2s` transitions. Reduced motion disables animations/transitions and smooth scrolling.
 
 ## Shapes
 
-Controls have modest rounded corners; store badges and the exchange example use slightly broader rounding. Device and screen radii are much larger to establish a recognizable iPhone silhouette. Dividers are thin (1px); the phone has a physical border (2px). Circular privacy rings frame a small line-drawn device. Rounded pill shapes occur inside the illustrative phone, not as a universal website button style.
+The homepage acquisition action and preview selector use pill rounding. The App Store badge keeps its 10px radius; the joined exchange/demo container uses 12px outer rounding. Callout and squad board use 16px. Homepage phone shells use 47px and screens 38px, with a 2px hardware border. Circular icon frames and avatars support the benefit and Friends illustrations. Shared editorial controls retain their existing 8px corners.
 
 ## Components
 
 ### Download actions
 
-The navigation download is a pale filled rectangle with dark text, a compact arrow, and a minimum height (44px). Its hover fill is the extracted download-hover token. The App Store badge is black with a pale border, a white Apple mark, and two lines of text; it has a minimum height (62px), changes to a dark forest fill on hover, and retains the common focus outline.
+The sticky homepage header has a cobalt pill action with a 44px minimum height. The hero and closing section use the shared black App Store badge with white Apple mark and two-line label. The badge is at least 62px high on desktop and 58px in the mobile hero. A native desktop `details` disclosure opens a QR panel; it is hidden at 760px and below. Acquisition links target `https://apps.apple.com/app/id6804905841`.
 
 ### Navigation and language
 
-The header stays at the top with an opaque ground fill and a bottom divider. Desktop navigation uses muted links that brighten and underline on hover. EN and ES are real buttons; `aria-pressed` and a blue-underlined label communicate selection. A bordered menu button appears on mobile; expanded links are placed beneath the header.
+EN/ES are real reciprocal locale anchors with `aria-current="page"`, translated accessible names, and a blue underline for the active page. Shared JavaScript carries the section fragment when switching locales. The URL determines language. The mobile menu uses a native button, `hidden`, and `aria-expanded`; shared behavior handles Escape, outside clicks, selected links, and resizing. Native navigation remains available without JavaScript.
 
-### Demonstration controls
+### Semantic three-phone showcase
 
-Walk, Earn, and Unlock are a small button group with (44px) minimum targets. The selected button uses the extracted dark selected fill and primary text. Hover uses the surface fill and primary text. The shared focus outline is blue (2px), offset (5px). The phone's action-shaped element is an illustration, not a clickable download control.
+Progress, Today, and Friends are separate HTML devices. Progress contains a weekly chart and earned-minute ledger; Today shows the interactive balance/session example; Friends shows a nudge, weekly squad standings, and friend progress. Native buttons below the trio use `aria-pressed` and bring the selected preview forward through `data-preview`. The default is Today (`home`). Device tabs, nudge-shaped elements, and in-screen actions are illustrative; they do not send messages or navigate the real app.
 
-### Exchange container
+### Benefit strip and Friends board
 
-A flat forest-surface band contains the steps-to-minutes example. It has the extracted exchange radius and padding, becoming a centered vertical arrangement on mobile. It explicitly labels its rate as an example.
+The light sage strip follows the hero immediately: Move more, Earn time, Unlock your apps, Move together. Circular line icons accompany serif labels. The lower Friends section pairs concise squad/nudge copy with a readable example board. Names, active days, step counts, and goal celebrations are illustrative data, labeled as such.
 
-### FAQ disclosure
+### Steps-to-minutes example
 
-Native `details` and `summary` elements form the FAQ. Thin dividers separate questions, a plus becomes a minus when open, question hover turns blue, and supporting text remains soft leaf. Questions retain native keyboard and no-JavaScript behavior. Multiple answers can stay open together.
+The three-step explanation ends in a joined exchange band and Walk / Earn / Unlock button group. These controls use `aria-pressed`, update Today, update the lower number, and announce a localized note through a polite live region. Earn is the initial state: 2,000 steps and 10 minutes. Walk shows 800 steps and 0 minutes; Unlock (`use`) shows a 5-minute session. There is no timer or automatic progression. The 1,000-steps/5-minutes rate is explicitly an example configurable in the app.
 
-### Line illustration
+### FAQ and supporting illustrations
 
-Functional SVG icons share rounded stroke ends and joins, commonly at a (24px) base size and (1.6) stroke width. The privacy medallion uses concentric divider-colored circles and a small moss device motif. There are no website form inputs in this surface.
+Native `details`/`summary` FAQ items retain dividers, plus/minus affordances, keyboard behavior, and independent open states. Shared line SVGs use rounded ends and joins, commonly 24px with a 1.6 stroke. The privacy medallion remains a decorative line illustration. No website form inputs are implemented.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** use the existing forest, cobalt, blue, and moss roles.
-- **Do** reserve Instrument Serif for the brand, major headlines, and illustrated balance numerals.
-- **Do** preserve visible keyboard focus and reduced-motion behavior.
-- **Do** keep instructional illustrations distinguishable from real product evidence.
+
+- **Do** preserve the approved abstract landscape, semantic trio, and immediate sage benefit strip on the homepage.
+- **Do** retain Instrument Serif/Figtree and the shared editorial baseline.
+- **Do** keep visible keyboard focus, reduced-motion support, and localized example labels.
+- **Do** preserve generated locale routes, acquisition links, guides, SEO, and analytics behavior.
 
 ### Don't:
-- **Don't** replace the established forest and cobalt identity with the reference site's purple palette.
-- **Don't** use a cinematic background video on this landing.
-- **Don't** turn the illustrated screen into evidence of an exact production screenshot.
-- **Don't** invent ratings, customer testimonials, or fixed pricing.
+
+- **Don't** add botanical imagery or a cinematic background video to this approved homepage.
+- **Don't** flatten app previews into an image or imply they are exact production screenshots.
+- **Don't** present example people/numbers as customer evidence or send real social nudges from illustrations.
+- **Don't** invent ratings, testimonials, fixed pricing, or unsupported Friends privacy guarantees.

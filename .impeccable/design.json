@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-25T00:13:52.250287+00:00",
+  "generatedAt": "2026-10-27T03:59:23Z",
   "title": "Design System: Earnit",
   "extensions": {
     "source": {
@@ -117,7 +117,7 @@
       },
       "accent-hover": {
         "role": "primary",
-        "displayName": "Cobalt hover, reserved in source",
+        "displayName": "Cobalt hover",
         "canonical": "#426cf0",
         "tonalRamp": [
           "oklch(15% 0.2040 266.54)",
@@ -249,12 +249,62 @@
           "oklch(84% 0.0261 162.34)",
           "oklch(95% 0.0261 162.34)"
         ]
+      },
+      "sage": {
+        "role": "secondary",
+        "displayName": "Sage",
+        "canonical": "#bedfa6"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Benefit ink",
+        "canonical": "#12271b"
+      },
+      "home-header": {
+        "role": "neutral",
+        "displayName": "Homepage header",
+        "canonical": "#07110d"
+      },
+      "home-scene": {
+        "role": "neutral",
+        "displayName": "Homepage scene base",
+        "canonical": "#07150e"
+      },
+      "home-preview": {
+        "role": "neutral",
+        "displayName": "Homepage preview surface",
+        "canonical": "#08160ee0"
+      },
+      "home-preview-text": {
+        "role": "neutral",
+        "displayName": "Homepage preview text",
+        "canonical": "#c0d3c3"
+      },
+      "home-preview-selected-text": {
+        "role": "neutral",
+        "displayName": "Selected preview ink",
+        "canonical": "#152d1d"
+      },
+      "home-preview-hover": {
+        "role": "neutral",
+        "displayName": "Preview hover",
+        "canonical": "#29432f"
+      },
+      "home-preview-selected-hover": {
+        "role": "secondary",
+        "displayName": "Selected preview hover",
+        "canonical": "#d1eabc"
+      },
+      "home-crew": {
+        "role": "neutral",
+        "displayName": "Squad board",
+        "canonical": "#07130d"
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Hero headline."
+        "purpose": "Shared baseline headline scale retained in site.css; homepage hero uses home-display."
       },
       "headline": {
         "displayName": "Headline",
@@ -270,7 +320,7 @@
       },
       "lead": {
         "displayName": "Lead",
-        "purpose": "Hero explanation."
+        "purpose": "Shared baseline lead typography; homepage hero uses home-lead."
       },
       "navigation": {
         "displayName": "Navigation",
@@ -279,40 +329,83 @@
       "brand": {
         "displayName": "Brand",
         "purpose": "Earnit wordmark."
+      },
+      "home-display": {
+        "displayName": "Homepage display",
+        "purpose": "Approved large left-hand hero headline."
+      },
+      "home-lead": {
+        "displayName": "Homepage lead",
+        "purpose": "Homepage proposition beneath the headline."
+      },
+      "home-benefit": {
+        "displayName": "Homepage benefit label",
+        "purpose": "Serif headings in the sage four-benefit strip."
       }
     },
     "shadows": [
       {
         "name": "phone-depth",
         "value": "0 28px 64px -20px #000",
-        "purpose": "Physical depth beneath the illustrative phone."
+        "purpose": "Baseline device style retained in shared site.css."
+      },
+      {
+        "name": "home-phone-depth",
+        "value": "0 22px 30px -14px #000c",
+        "purpose": "Homepage trio hardware."
+      },
+      {
+        "name": "home-callout-depth",
+        "value": "0 14px 25px -16px #000a",
+        "purpose": "Sage earned-time callout."
+      },
+      {
+        "name": "home-crew-depth",
+        "value": "0 24px 40px -22px #000b",
+        "purpose": "Illustrative squad board."
       }
     ],
     "motion": [
       {
         "name": "ease",
         "value": "cubic-bezier(.16,1,.3,1)",
-        "purpose": "Phone entrance easing."
+        "purpose": "Source easing curve."
       },
       {
-        "name": "phone-arrive",
-        "value": "phone-arrive 1s var(--ease) both",
-        "purpose": "One-time translateY(18px) to translateY(0) device entrance."
+        "name": "home-preview-transform",
+        "value": "transform .65s var(--ease)",
+        "purpose": "Selected app preview moves forward; no homepage entrance animation."
       },
       {
         "name": "control-transition",
         "value": ".2s",
-        "purpose": "Background, border, and color state transitions."
+        "purpose": "Shared color/background/border interactions."
       }
     ],
     "breakpoints": [
       {
-        "name": "wide",
+        "name": "home-extra-wide",
+        "value": "min-width:1700px"
+      },
+      {
+        "name": "shared-wide",
         "value": "min-width:1450px"
       },
       {
-        "name": "medium",
+        "name": "home-compact",
+        "value": "max-width:1320px and min-width:761px"
+      },
+      {
+        "name": "home-medium",
+        "value": "max-width:1100px and min-width:761px"
+      },
+      {
+        "name": "shared-medium",
         "value": "max-width:1050px"
+      },
+      {
+        "name": "home-small-desktop",
+        "value": "max-width:900px and min-width:761px"
       },
       {
         "name": "mobile",
@@ -326,14 +419,59 @@
     "accessibility": {
       "focus": "2px solid var(--blue), outline-offset:5px",
       "reducedMotion": "Animation and transitions disabled; scroll-behavior:auto."
+    },
+    "scope": {
+      "sharedBaseline": "assets/site.css remains unchanged for editorial pages. Baseline frontmatter roles retain their source meanings.",
+      "homepage": "assets/home.css loads only on generated homepages; home-prefixed frontmatter roles describe its overrides. --sage and --ink are scoped to body[data-page=\"home\"].",
+      "approvedReference": ".impeccable/mocks/approved-vibrant-friends.png",
+      "imagePlate": "assets/earnit-waves.webp",
+      "sources": [
+        "src/home.html",
+        "content/home.json",
+        "assets/site.css",
+        "assets/home.css",
+        "assets/home.js"
+      ],
+      "generatedRoutes": [
+        "public/index.html",
+        "public/es/index.html"
+      ]
+    },
+    "shapes": [
+      {
+        "name": "home-phone",
+        "value": "47px",
+        "purpose": "Homepage hardware shell; primitive in DESIGN.md."
+      },
+      {
+        "name": "home-phone-screen",
+        "value": "38px",
+        "purpose": "Homepage inner screen; primitive in DESIGN.md."
+      },
+      {
+        "name": "home-crew",
+        "value": "16px",
+        "purpose": "Squad board; primitive in DESIGN.md."
+      },
+      {
+        "name": "pill",
+        "value": "999px",
+        "purpose": "Homepage acquisition and preview controls; primitive in DESIGN.md."
+      }
+    ],
+    "desktopTrio": {
+      "phoneLeft": "calc(50% - 12px)",
+      "friendsOffset": "calc(var(--spread) + 32px)",
+      "scope": "min-width:761px",
+      "purpose": "Expose Friends title and row labels while preserving overlap."
     }
   },
   "components": [
     {
-      "name": "Navigation download",
+      "name": "Editorial navigation download",
       "kind": "button",
       "refersTo": "navigation-download",
-      "description": "Compact pale acquisition action used in the sticky header.",
+      "description": "Shared pale acquisition action retained in site.css; homepage overrides it with the cobalt pill.",
       "html": "<a class=\"ds-download\" href=\"https://apps.apple.com/app/id6804905841\">Get the app<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></a>",
       "css": ".ds-download{display:inline-flex;align-items:center;gap:12px;background:var(--text,#ecf3ee);color:var(--ground,#070e0d);padding:10px 18px;border-radius:8px;text-decoration:none;font:600 14px/1.6 var(--sans,Figtree,sans-serif);min-height:44px;transition:background .2s}.ds-download:hover{background:#cdded2}.ds-download:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
     },
@@ -348,23 +486,23 @@
     {
       "name": "Language selection",
       "kind": "nav",
-      "description": "Two language buttons, with underline and pressed state.",
-      "html": "<div class=\"ds-language\" role=\"group\" aria-label=\"Language\"><button aria-label=\"English\" aria-pressed=\"true\">EN</button><button aria-label=\"Espa\u00f1ol\" aria-pressed=\"false\">ES</button></div>",
-      "css": ".ds-language{display:flex;gap:2px}.ds-language button{background:transparent;border:0;padding:10px 8px;color:var(--muted,#96ada0);font:600 12px/1.6 var(--sans,Figtree,sans-serif);min-height:44px;cursor:pointer}.ds-language button[aria-pressed=true]{color:var(--text,#ecf3ee);text-decoration:underline;text-decoration-color:var(--blue,#8caaff);text-underline-offset:6px}.ds-language button:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+      "description": "Real reciprocal locale anchors, with current-page underline.",
+      "html": "<nav class=\"ds-language\" aria-label=\"Language\"><a href=\"/\" aria-label=\"English\" aria-current=\"page\">EN</a><a href=\"/es/\" aria-label=\"Español\" lang=\"es\">ES</a></nav>",
+      "css": ".ds-language{display:flex;gap:2px;font-family:var(--sans,Figtree,sans-serif)}.ds-language a{padding:10px 8px;min-height:44px;color:var(--muted,#96ada0);font-size:12px;font-weight:600;text-decoration:none}.ds-language a[aria-current=page]{color:var(--text,#ecf3ee);text-decoration:underline;text-decoration-color:var(--blue,#8caaff);text-underline-offset:6px}.ds-language a:hover{color:var(--text,#ecf3ee)}.ds-language a:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px}"
     },
     {
       "name": "Demo stage controls",
       "kind": "button",
       "refersTo": "demo-control",
-      "description": "Pressed-state controls beneath the illustrative product device.",
-      "html": "<div class=\"ds-demo\" role=\"group\" aria-label=\"Explore the app\"><button aria-pressed=\"false\">Walk</button><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg><button aria-pressed=\"true\">Earn</button><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg><button aria-pressed=\"false\">Unlock</button></div>",
-      "css": ".ds-demo{display:inline-flex;align-items:center;gap:4px;color:#779080;font-family:var(--sans,Figtree,sans-serif)}.ds-demo button{border:0;background:transparent;padding:7px 12px;min-height:44px;font:400 13px/1.6 var(--sans,Figtree,sans-serif);border-radius:7px;color:var(--muted,#96ada0);transition:background .2s,color .2s;cursor:pointer}.ds-demo button[aria-pressed=true]{background:#1c2c24;color:var(--text,#ecf3ee)}.ds-demo button:hover{color:var(--text,#ecf3ee);background:var(--surface,#0c1814)}.ds-demo button:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+      "description": "Lower homepage Walk / Earn / Unlock example controls; standalone preview illustrates their states.",
+      "html": "<div class=\"ds-demo\" role=\"group\" aria-label=\"Try the steps-to-minutes example\"><button aria-pressed=\"false\">Walk</button><button aria-pressed=\"true\">Earn</button><button aria-pressed=\"false\">Unlock</button></div>",
+      "css": ".ds-demo{display:inline-flex;align-items:center;gap:4px;color:#779080;font-family:var(--sans,Figtree,sans-serif)}.ds-demo button{border:0;background:transparent;padding:7px 17px;min-height:44px;font:400 14px/1.6 var(--sans,Figtree,sans-serif);border-radius:7px;color:var(--muted,#96ada0);transition:background .2s,color .2s;cursor:pointer}.ds-demo button[aria-pressed=true]{background:#263f2c;color:#e3f0de}.ds-demo button:hover{color:var(--text,#ecf3ee);background:var(--surface,#0c1814)}.ds-demo button:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
     },
     {
       "name": "Exchange example",
       "kind": "card",
       "refersTo": "exchange",
-      "description": "Flat informational band presenting an illustrative exchange rate.",
+      "description": "Illustrative configurable exchange; homepage joins its bottom edge to the lower demo controls.",
       "html": "<div class=\"ds-exchange\"><div class=\"ds-value\"><span>1,000 steps</span><svg width=\"28\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg><span>5 minutes</span></div><p>An example exchange. Set your rate in the app.</p></div>",
       "css": ".ds-exchange{padding:22px 26px;background:var(--surface,#0c1814);color:var(--text,#ecf3ee);display:flex;justify-content:space-between;gap:24px;align-items:center;border-radius:12px;font:400 17px/1.6 var(--sans,Figtree,sans-serif)}.ds-value{display:flex;align-items:center;gap:18px;white-space:nowrap}.ds-value svg{color:var(--muted,#96ada0)}.ds-exchange p{margin:0;font-size:12px;color:var(--muted,#96ada0)}@media(max-width:760px){.ds-exchange{flex-direction:column;gap:12px;padding:22px 16px;text-align:center}.ds-value{font-size:15px;gap:12px}}"
     },
@@ -373,31 +511,54 @@
       "kind": "custom",
       "refersTo": "faq-summary",
       "description": "Native independent disclosure with plus/minus indicators and fine dividers.",
-      "html": "<div class=\"ds-faq\"><details><summary>Which apps does it block?</summary><p>You pick the apps you want to manage using Apple\u2019s Screen Time controls.</p></details></div>",
-      "css": ".ds-faq{font-family:var(--sans,Figtree,sans-serif);color:var(--text,#ecf3ee)}.ds-faq details{border-bottom:1px solid var(--line,#293930)}.ds-faq details:first-child{border-top:1px solid var(--line,#293930)}.ds-faq summary{list-style:none;cursor:pointer;font-size:16px;font-weight:500;padding:22px 36px 22px 0;position:relative;line-height:1.5}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:after{content:\"+\";position:absolute;right:4px;top:20px;color:var(--muted,#96ada0);font-size:22px;font-weight:400}.ds-faq details[open] summary:after{content:\"\u2212\"}.ds-faq summary:hover{color:var(--blue,#8caaff)}.ds-faq details p{margin:0;color:var(--soft,#b9ccc2);font-size:15px;line-height:1.75;padding:0 32px 24px 0}.ds-faq summary:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+      "html": "<div class=\"ds-faq\"><details><summary>Which apps does it block?</summary><p>You pick the apps you want to manage using Apple’s Screen Time controls.</p></details></div>",
+      "css": ".ds-faq{font-family:var(--sans,Figtree,sans-serif);color:var(--text,#ecf3ee)}.ds-faq details{border-bottom:1px solid var(--line,#293930)}.ds-faq details:first-child{border-top:1px solid var(--line,#293930)}.ds-faq summary{list-style:none;cursor:pointer;font-size:16px;font-weight:500;padding:22px 36px 22px 0;position:relative;line-height:1.5}.ds-faq summary::-webkit-details-marker{display:none}.ds-faq summary:after{content:\"+\";position:absolute;right:4px;top:20px;color:var(--muted,#96ada0);font-size:22px;font-weight:400}.ds-faq details[open] summary:after{content:\"−\"}.ds-faq summary:hover{color:var(--blue,#8caaff)}.ds-faq details p{margin:0;color:var(--soft,#b9ccc2);font-size:15px;line-height:1.75;padding:0 32px 24px 0}.ds-faq summary:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px;}"
+    },
+    {
+      "name": "Homepage navigation download",
+      "kind": "button",
+      "refersTo": "home-navigation-download",
+      "description": "Cobalt pill acquisition action on the homepage only.",
+      "html": "<a class=\"ds-home-download\" href=\"https://apps.apple.com/app/id6804905841\">Get the app <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></a>",
+      "css": ".ds-home-download{display:inline-flex;align-items:center;gap:12px;background:var(--accent,#2e5ce6);color:#fff;padding:10px 22px;border-radius:999px;text-decoration:none;min-height:44px;font:600 14px/1.6 var(--sans,Figtree,sans-serif);transition:background .2s}.ds-home-download:hover{background:var(--accent-hover,#426cf0)}.ds-home-download:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px}"
+    },
+    {
+      "name": "Homepage preview selector",
+      "kind": "button",
+      "refersTo": "home-preview-control",
+      "description": "Native pressed-state buttons select the Progress, Today, or Friends device. Standalone snippet shows the initial Today state.",
+      "html": "<div class=\"ds-preview\" role=\"group\" aria-label=\"Explore Earnit\"><button type=\"button\" aria-pressed=\"false\">Progress</button><button type=\"button\" aria-pressed=\"true\">Today</button><button type=\"button\" aria-pressed=\"false\">Friends</button></div>",
+      "css": ".ds-preview{display:inline-flex;gap:4px;padding:3px;background:#08160ee0;border:1px solid #bddba640;border-radius:999px}.ds-preview button{min-height:40px;padding:7px 17px;border:0;border-radius:999px;background:transparent;color:#c0d3c3;font:400 12px/1.6 var(--sans,Figtree,sans-serif);cursor:pointer}.ds-preview button[aria-pressed=true]{background:var(--sage,#bedfa6);color:#152d1d}.ds-preview button:hover{background:#29432f;color:#fff}.ds-preview button[aria-pressed=true]:hover{background:#d1eabc;color:#152d1d}.ds-preview button:focus-visible{outline:2px solid var(--blue,#8caaff);outline-offset:5px}"
+    },
+    {
+      "name": "Illustrative squad board",
+      "kind": "card",
+      "refersTo": "home-crew",
+      "description": "Readable example progress board in the Friends section; no real social sends.",
+      "html": "<figure class=\"ds-crew\"><div class=\"ds-board\"><span class=\"ds-week\">This week</span><h3>A good week, together.</h3><div class=\"ds-member\"><span class=\"ds-avatar\">A</span><div><strong>Ana</strong><span>Goal reached</span><i></i></div><span>8,240 steps</span></div><p>Park crew</p></div><figcaption>Illustrative squad · Example names and progress</figcaption></figure>",
+      "css": ".ds-crew{margin:0;color:var(--text,#ecf3ee);font:400 12px/1.6 var(--sans,Figtree,sans-serif)}.ds-board{background:#07130d;border-radius:16px;padding:30px;transform:rotate(2deg);box-shadow:0 24px 40px -22px #000b}.ds-week{color:var(--soft,#b9ccc2)}.ds-board h3{font:400 34px/1.15 var(--serif,\"Instrument Serif\",Georgia,serif);margin:23px 0}.ds-member{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line,#293930);padding:21px 0}.ds-avatar{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#a2ca7a;color:#0c1d13;font-size:14px;font-weight:600}.ds-member>div{flex:1}.ds-member strong{display:block;font-size:15px;font-weight:500}.ds-member div>span{display:block;color:var(--muted,#96ada0)}.ds-member i{display:block;height:4px;margin-top:8px;background:var(--sage,#bedfa6);border-radius:3px}.ds-board p{border-top:1px solid var(--line,#293930);padding-top:16px;margin:0;color:var(--soft,#b9ccc2)}.ds-crew figcaption{color:var(--muted,#96ada0);text-align:center;margin-top:20px}"
     }
   ],
   "narrative": {
     "northStar": "Forest and cobalt",
-    "overview": "Earnit pairs a nearly black forest ground with cobalt actions, pale leaf text, and serif headlines. Instrument Serif supplies the wordmark and expressive statements; Figtree keeps explanations and controls direct. The implementation uses open sections, fine dividers, and a single dimensional product device rather than pervasive floating cards.",
+    "overview": "Earnit pairs nearly black forest surfaces, pale leaf text, cobalt actions, Instrument Serif statements, and Figtree reading text. The user-approved homepage adds an abstract sage/forest/cobalt landscape, a semantic Progress / Today / Friends trio, and an immediate sage benefit strip. Shared editorial pages retain assets/site.css.",
     "keyCharacteristics": [
-      "Forest tonal surfaces and pale leaf typography.",
-      "Cobalt actions, blue emphasis, and moss functional icons.",
-      "Serif statements with restrained sans-serif controls.",
-      "Flat editorial sections with a physical phone silhouette."
+      "User-pinned Instrument Serif and Figtree.",
+      "Abstract matte waves, no botanical background.",
+      "Three selectable semantic app previews with labeled example data.",
+      "Compact lower sections and selective device/squad depth."
     ],
     "rules": [],
     "dos": [
-      "Do use the existing forest, cobalt, blue, and moss roles.",
-      "Do reserve Instrument Serif for the brand, major headlines, and illustrated balance numerals.",
-      "Do preserve visible keyboard focus and reduced-motion behavior.",
-      "Do keep instructional illustrations distinguishable from real product evidence."
+      "Do preserve the approved homepage composition and the shared editorial baseline.",
+      "Do keep keyboard focus, reduced-motion support, and bilingual illustration labels.",
+      "Do preserve routes, acquisition, guides, SEO, and analytics integration."
     ],
     "donts": [
-      "Don't replace the established forest and cobalt identity with the reference site's purple palette.",
-      "Don't use a cinematic background video on this landing.",
-      "Don't turn the illustrated screen into evidence of an exact production screenshot.",
-      "Don't invent ratings, customer testimonials, or fixed pricing."
+      "Don't add botanical imagery or cinematic background video to this homepage.",
+      "Don't flatten the semantic app previews into artwork or claim exact production screenshots.",
+      "Don't present example people or numbers as customer evidence or send real nudges.",
+      "Don't invent ratings, testimonials, fixed prices, or unsupported Friends privacy guarantees."
     ]
   }
 }

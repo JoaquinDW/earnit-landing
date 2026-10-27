@@ -12,6 +12,8 @@
     const state = stages[stage];
     if (!state) return;
     phone.dataset.stage = stage;
+    const balance = document.getElementById('demo-balance');
+    if (balance) balance.innerHTML = state.balance + ' <small>min</small>';
     document.getElementById('balance-number').textContent = state.balance;
     for (const [id, key] of Object.entries({
       'balance-label': state.label, 'balance-sub': state.sub, 'phone-action-label': state.action,
@@ -22,6 +24,13 @@
       button.setAttribute('aria-pressed', String(button.dataset.stage === stage));
     });
   }
+  const preview = document.getElementById('app-preview');
+  document.querySelectorAll('button[data-preview]').forEach(button => {
+    button.addEventListener('click', () => {
+      preview.dataset.preview = button.dataset.preview;
+      document.querySelectorAll('button[data-preview]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    });
+  });
   document.querySelectorAll('button[data-stage]').forEach(button => {
     button.addEventListener('click', () => render(button.dataset.stage));
   });

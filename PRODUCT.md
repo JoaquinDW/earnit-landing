@@ -17,7 +17,9 @@ The landing explains the walking workflow: read steps from Apple Health, convert
 The current listing also describes study and push-up rewards; these are outside this landing redesign's walking-led narrative. Exact pricing must come from the App Store rather than the old landing's outdated annual price.
 
 ## Brand Commitments
-Preserve Earnit, the forest-dark and cobalt identity, and the English/Spanish language switch. The user explicitly requested Vaultaire's patterns: immediately visible phone, clear app proposition, and direct App Store acquisition. Remove the cinematic background video. User approved an illustrative app interface on 2026-10-24.
+Preserve Earnit, the forest-dark and cobalt identity, and the English/Spanish language switch. The user explicitly requested Vaultaire's patterns: immediately visible phone, clear app proposition, and direct App Store acquisition. Remove the cinematic background video. User approved an illustrative app interface on 2026-10-24, then approved the abstract sage/forest/cobalt three-phone mockup with Friends on 2026-10-26. The approved composition is stored at `.impeccable/mocks/approved-vibrant-friends.png`. Botanical backgrounds are replaced by abstract matte waves.
+
+The user-supplied Friends screen establishes friendly nudges, squads with weekly active-day standings, friends’ step progress, and goal celebrations. Example names and numbers must be labeled illustrative. Backend/account and Friends data-sharing architecture were not supplied; do not infer privacy guarantees from a UI image.
 
 ## Evidence on Hand
 Existing AppHome.dc.html and assets/earnit-appstore.png provide interface references. Existing scenic assets may support the in-phone illustration. Existing landing testimonials and rating are explicitly marked placeholders and must not be presented as evidence.
